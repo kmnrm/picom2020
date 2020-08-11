@@ -71,8 +71,15 @@ class Place(models.Model):
 
 @receiver(pre_save, sender=Place)
 def get_pinyin_address(sender, instance, **kwargs):
+    city_name_full = 'hé nán shěng zhèng zhōu shì'
+    city_name_short = 'hé nán zhèng zhōu'
     pinyin_address = pinyin.get(instance.address, format='diacritical', delimiter=" ")
-    instance.pinyin_address = pinyin_address
+    if pinyin_address.startswith(city_name_full):
+        instance.pinyin_address = pinyin_address.replace(city_name_full, '')
+    elif pinyin_address.startswith(city_name_short):
+        instance.pinyin_address = pinyin_address.replace(city_name_short, '')
+    else:
+        instance.pinyin_address = pinyin_address
 
 
 class PlaceImage(models.Model):
@@ -139,8 +146,3 @@ class Drink(models.Model):
         max_digits=6,
         default=0,
     )
-
-
-class OwnerStatusClaim(models.Model):
-    candidate = models.OneToOneField(User, on_delete=models.CASCADE)
-    license_number = models.CharField(max_length=100)
