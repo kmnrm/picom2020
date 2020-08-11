@@ -39,12 +39,13 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
 class IsReviewerOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        has_already_reviewed = request.user.reviews.filter(
-            place=request.data['place']
-        ).exists()
-        return request.user.is_authenticated and not has_already_reviewed
+        if request.method == 'POST' and 'place' in request.data:
+            can_not_review = request.user.id is None
+            has_already_reviewed = request.user.reviews.filter(
+                place=request.data['place']
+            ).exists() if not can_not_review else can_not_review
+            return request.user.is_authenticated and not has_already_reviewed
+        return True
 
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
