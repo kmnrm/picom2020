@@ -52,7 +52,7 @@ class PlaceSerializer(serializers.ModelSerializer):
     uploaded_by = serializers.PrimaryKeyRelatedField(read_only=True)
     coordinates = serializers.SerializerMethodField()
     events = EventSerializer(many=True, read_only=True)
-    images = PlaceImageSerializer(many=True, read_only=True)
+    images = serializers.SerializerMethodField()
     police_rating = serializers.ChoiceField(choices=Place.POLICE_RATING)
     rating = serializers.SerializerMethodField()
     average_price = serializers.SerializerMethodField()
@@ -65,6 +65,7 @@ class PlaceSerializer(serializers.ModelSerializer):
             'id',
             'uploaded_by',
             'title',
+            'category',
             'address',
             'pinyin_address',
             'description',
@@ -100,6 +101,7 @@ class PlaceSerializer(serializers.ModelSerializer):
                 'latitude': lat,
             }
         )
+        print(lon, lat)
         return super(PlaceSerializer, self).update(instance, validated_data)
 
     def get_coordinates(self, place):
@@ -114,6 +116,11 @@ class PlaceSerializer(serializers.ModelSerializer):
             value
             for key, value in Place.POLICE_RATING
             if key == ret['police_rating']
+        ][0]
+        ret['category'] = [
+            value
+            for key, value in Place.CATEGORIES
+            if key == ret['category']
         ][0]
         return ret
 
@@ -132,6 +139,9 @@ class PlaceSerializer(serializers.ModelSerializer):
 
     def get_pinyin_address(self, place):
         return place.pinyin_address
+
+    def get_images(self, place):
+        return [image.image.url for image in place.images.all()]
 
 
 class DrinkSerializer(serializers.ModelSerializer):
