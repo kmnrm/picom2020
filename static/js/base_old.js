@@ -7,6 +7,7 @@ var night = L.tileLayer.provider('Jawg.Dark', {
         accessToken: 'Ej2LIAfNJgZZ1TprVGdK16SXWDk9sWDrFbI8YMNYfIPYJMLwsN43j0dqVXovhUQE'
         })
     daytime = L.tileLayer.provider('Jawg.Light', {
+        variant: '356d4034-9a74-4ce1-b906-515215d2d48d',
         accessToken: 'Ej2LIAfNJgZZ1TprVGdK16SXWDk9sWDrFbI8YMNYfIPYJMLwsN43j0dqVXovhUQE'
         })
 
@@ -22,6 +23,13 @@ var sidebar = L.control.sidebar('sidebar', {
   position: 'right'
 });
 map.addControl(sidebar);
+
+var lc = L.control.locate({
+    position: 'topright',
+    strings: {
+        title: "Show me where I am, yo!"
+    }
+}).addTo(map);
 
 sidebar.show();
 

@@ -15,6 +15,8 @@
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/@ansur/leaflet-pulse-icon@0.1.1/dist/L.Icon.Pulse.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.72.0/dist/L.Control.Locate.min.css" />
   <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
   <script src="../static/js/interface.js"></script>
 
@@ -74,6 +76,7 @@
         <p>Rating: {{ selectedPlace.rating }}</p>
         <p>Police Rating: {{ selectedPlace.police_rating }}</p>
 
+
         {% endverbatim sidebar %}
 
         <div id="place-photos" class="carousel slide mb-3 shadow" data-ride="carousel" data-interval="5000">
@@ -125,11 +128,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/loglevel/1.6.8/loglevel.min.js" integrity="sha256-O/iFn3B3kEV/q5PPVW8TVpRhoywaK7NN4UjdnBO9DXo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js" integrity="sha256-ngFW3UnAN0Tnm76mDuu7uUtYEcG3G5H1+zioJw3t+68=" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@ansur/leaflet-pulse-icon@0.1.1/dist/L.Icon.Pulse.js"></script>
-
-
-  <script src="{% static 'js/leaflet-providers.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.72.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
   <script src="{% static 'js/leaflet-sidebar.js' %}"></script>
-
   <script src="{% static 'js/base_old.js' %}"></script>
+
+
+
 </body>
 </html>
