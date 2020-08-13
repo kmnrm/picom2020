@@ -25,6 +25,7 @@
   <button id="form-popUp" class="button" onclick="formPopUp()">Sign Up</button>
     <section id="form-section" class="disabled">
       <form action="{% url 'users-list' %}" id="form" method="POST">
+        {% csrf_token %}
         {% render_form registration_serializer template_pack='rest_framework/vertical' %}
         <input type="submit" value="Sign Up">
       </form>
