@@ -1,4 +1,4 @@
-var map = L.map('map');
+var map = L.map('map', {zoomControl: false});
 map.setView([34.76, 113.65], 11);
 
 /*L.tileLayer.provider('OpenStreetMap.Mapnik').addTo(map);*/
@@ -17,6 +17,9 @@ var overlays = {
 };
 
 L.control.layers(null, overlays).addTo(map);
+L.control.zoom({
+    position: 'topright'
+}).addTo(map);
 
 var sidebar = L.control.sidebar('sidebar', {
   closeButton: true,
