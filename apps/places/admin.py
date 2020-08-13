@@ -51,7 +51,7 @@ class PlaceAdmin(admin.ModelAdmin):
             'fields': ('average_price', ('latitude', 'longitude',), ('likes', 'dislikes',),)
         }),
     )
-    readonly_fields = ('average_price', 'latitude', 'longitude', 'likes', 'dislikes', 'uploaded_by')
+    readonly_fields = ('average_price', 'latitude', 'longitude', 'likes', 'dislikes')
     radio_fields = {"police_rating": admin.VERTICAL}
     inlines = [
         PlaceImageInline,
