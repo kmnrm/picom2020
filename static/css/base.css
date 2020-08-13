@@ -1,21 +1,77 @@
 body {
-      padding: 0;
-      margin: 0;
-    }
+  padding: 0;
+  margin: 0;
+}
 
-    html, body, #map {
-      height: 100%;
-    }
+html, body, #map {
+  height: 100%;
+}
 
-    .place-description img {
-      max-width: 100%;
-    }
+.place-description img {
+  max-width: 100%;
+}
 
-    .sidebar-content {
-      padding: 14px 20px;
-      height: 100%;
-    }
-    .select-place-prompt{
-      color: red;
-      width: 100px;
-    }
+.sidebar-content {
+  padding: 14px 20px;
+  height: 100%;
+}
+.select-place-prompt{
+  color: red;
+  width: 100px;
+}
+/* ================================ */
+
+#form-section {
+  position: absolute;
+  top: 10vh;
+  left: 10vw;
+  z-index: 999;
+  width: 400px;
+  padding: 20px;
+  background-color: white;
+}
+
+#form-section form {
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+}
+
+#form-section form > * {
+  padding: 5px 10px;
+  margin: 5px;
+  flex: 1 1 100%;
+}
+
+.help-block {
+  font-size: 0.8em;
+}
+
+.disabled {
+  display: none;
+}
+
+#form-section-show {
+  position: fixed;
+  z-index: 999;
+  top: 10px;
+  left: 60px;
+}
+
+#form-section-hide {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+#form-section-hide img {
+  width: 35px;
+  height: auto;
+}
+
+#form-section-hide:hover img {
+  opacity: 0.8;
+}

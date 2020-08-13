@@ -16,49 +16,38 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/@ansur/leaflet-pulse-icon@0.1.1/dist/L.Icon.Pulse.css">
   <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+  <script src="../static/js/interface.js"></script>
 
   {{ places_geojson|json_script:"places-geojson" }}
 
 </head>
 <body>
   <!-- <a href="">Войти</a> -->
-  <button id="form-popUp" class="button" onclick="formPopUp()">Sign Up</button>
-    <section id="form-section" class="disabled">
-      <form action="{% url 'users-list' %}" id="form" method="POST">
-        {% csrf_token %}
-        {% render_form registration_serializer template_pack='rest_framework/vertical' %}
-        <input type="submit" value="Sign Up">
-      </form>
-    </section>
-  <style>
-    #form-section {
-      position: absolute;
-      top: 10vh;
-      left: 10vw;
-      z-index: 999;
-    }
-    #form {
-      display: flex;
-      flex-wrap: wrap;
-      background-color: white;
-      width: 300px;
-      padding: 20px;
-    }
-    #form > * {
-      padding: 5px 10px;
-      margin: 5px;
-      flex: 1 1 100%;
-    }
-    .disabled {
-      display: none;
-    }
-  </style>
-  <script>
-    function formPopUp() {
-      let formSection = document.getElementById('form-section');
-      formSection.classList.toggle('disabled');
-    }
-  </script>
+  <button id ="form-section-show" class="button" onclick="formShow()">Open form</button>
+  <section id="form-section" class="disabled">
+    <button id="form-section-hide" class="button" onclick="formHide()">
+      <img src="../static/img/close-window.png" alt="" >
+    </button>
+    <form action="{% url 'users-list' %}" id="registration-form" class="disabled" method="POST">
+      <h2>Sign up</h2>
+      <p>Already have an account? 
+        <a href="#" onclick="formChange()">Log in</a>
+      </p>
+      {% csrf_token %}
+      {% render_form registration_serializer template_pack='rest_framework/vertical' %}
+      <input type="submit" value="Sign Up">
+    </form>
+    <form action="{% url 'users-list' %}" id="autorization-form" method="POST">
+      <h2>Sign in</h2>
+      <p>Don't have an account yet? 
+        <a href="#" onclick="formChange()">Create one</a>
+      </p>
+      {% csrf_token %}
+      {% render_form registration_serializer template_pack='rest_framework/vertical' %}
+      <input type="submit" value="Sign in">
+    </form>
+  </section>
+
   <div id="sidebar">
     <div id="sidebar-app" v-bind:class="{'sidebar-content': 1, 'bg-white': selectedPlace, 'bg-secondary': !selectedPlace}">
 
