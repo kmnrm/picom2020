@@ -3,6 +3,17 @@ from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 import pinyin
+from izhevsk.settings import BAIDUV3_GEOCODER_KEY
+from geopy.geocoders import BaiduV3
+
+
+def fetch_address_coordinates(address):
+    locator = BaiduV3(api_key=BAIDUV3_GEOCODER_KEY)
+    location = locator.geocode(
+        address,
+        timeout=300
+    )
+    return location.longitude, location.latitude
 
 
 class PlaceQuerySet(models.QuerySet):
@@ -80,6 +91,13 @@ def get_pinyin_address(sender, instance, **kwargs):
         instance.pinyin_address = pinyin_address.replace(city_name_short, '')
     else:
         instance.pinyin_address = pinyin_address
+
+
+@receiver(pre_save, sender=Place)
+def geocode_address(sender, instance, **kwargs):
+    instance.longitude, instance.latitude = fetch_address_coordinates(
+        instance.address
+    )
 
 
 class PlaceImage(models.Model):
