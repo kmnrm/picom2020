@@ -14,3 +14,7 @@ function formChange() {
   signInForm.classList.toggle('disabled');
   signUpForm.classList.toggle('disabled');
 }
+
+// let sidebar = document.getElementsByClassName('right')[0];
+// sidebar.classList.remove('right');
+// sidebar.classList.add('left');
