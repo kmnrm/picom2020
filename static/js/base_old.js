@@ -21,18 +21,20 @@ L.control.zoom({
     position: 'topright'
 }).addTo(map);
 
-var sidebar = L.control.sidebar('sidebar', {
-  closeButton: true,
-  position: 'left'
-});
-map.addControl(sidebar);
-
 var lc = L.control.locate({
     position: 'topright',
     strings: {
         title: "Show me where I am, yo!"
     }
 }).addTo(map);
+
+
+var sidebar = L.control.sidebar('sidebar', {
+  closeButton: true,
+  position: 'left'
+});
+map.addControl(sidebar);
+
 
 sidebar.show();
 
@@ -43,33 +45,23 @@ function createButton(label, container) {
     return btn;
 }
 
-map.on('click', function(e) {
-    var container = L.DomUtil.create('div'),
-        startBtn = createButton('Start from this location', container),
-        destBtn = createButton('Go to this location', container);
-
-    L.popup()
-        .setContent(container)
-        .setLatLng(e.latlng)
-        .openOn(map);
-
-    L.DomEvent.on(startBtn, 'click', function() {
-        control.spliceWaypoints(0, 1, e.latlng);
-        map.closePopup();
-    });
-
-    L.DomEvent.on(destBtn, 'click', function() {
-        control.spliceWaypoints(control.getWaypoints().length - 1, 1, e.latlng);
-        map.closePopup();
-    });
-});
-
 
 var control = L.Routing.control({
     // waypoints: [L.latLng(49.47748, 8.42216), L.latLng(49.47648, 8.32216)],
     waypoints: [null, null],
-    // routeWhileDragging: true
+    routeWhileDragging: false,
+    draggableWaypoints: false,
+    reverseWaypoints: true,
+    lineOptions : {
+        addWaypoints: false,
+    }
   }).addTo(map);
+
+var removeRouting = function() {
+    leafletData.getMap().then(function(map) {
+        map.removeControl(control);
+    });
+};
 
 
 function loadJSON(elementId){
@@ -112,6 +104,25 @@ L.geoJSON(places, {
       marker.on('click', function(event){
         sidebar.show();
         loadPlaceInfo(geoJsonPoint.properties.placeId, geoJsonPoint.properties.detailsUrl);
+
+        var container = L.DomUtil.create('div'),
+        startBtn = createButton('Start', container),
+        destBtn = createButton('Go', container);
+
+        L.popup()
+            .setContent(container)
+            .setLatLng(event.latlng)
+            .openOn(map);
+
+        L.DomEvent.on(startBtn, 'click', function() {
+            control.spliceWaypoints(0, 1, event.latlng);
+            map.closePopup();
+        });
+
+        L.DomEvent.on(destBtn, 'click', function() {
+            control.spliceWaypoints(control.getWaypoints().length - 1, 1, event.latlng);
+            map.closePopup();
+        });
       });
       return marker;
     }
