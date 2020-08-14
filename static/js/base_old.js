@@ -1,4 +1,4 @@
-var map = L.map('map');
+var map = L.map('map', {zoomControl: false});
 map.setView([34.76, 113.65], 11);
 
 /*L.tileLayer.provider('OpenStreetMap.Mapnik').addTo(map);*/
@@ -7,6 +7,7 @@ var night = L.tileLayer.provider('Jawg.Dark', {
         accessToken: 'Ej2LIAfNJgZZ1TprVGdK16SXWDk9sWDrFbI8YMNYfIPYJMLwsN43j0dqVXovhUQE'
         })
     daytime = L.tileLayer.provider('Jawg.Light', {
+        variant: '356d4034-9a74-4ce1-b906-515215d2d48d',
         accessToken: 'Ej2LIAfNJgZZ1TprVGdK16SXWDk9sWDrFbI8YMNYfIPYJMLwsN43j0dqVXovhUQE'
         })
 
@@ -16,14 +17,59 @@ var overlays = {
 };
 
 L.control.layers(null, overlays).addTo(map);
+L.control.zoom({
+    position: 'topright'
+}).addTo(map);
 
 var sidebar = L.control.sidebar('sidebar', {
   closeButton: true,
-  position: 'right'
+  position: 'left'
 });
 map.addControl(sidebar);
 
+var lc = L.control.locate({
+    position: 'topright',
+    strings: {
+        title: "Show me where I am, yo!"
+    }
+}).addTo(map);
+
 sidebar.show();
+
+function createButton(label, container) {
+    var btn = L.DomUtil.create('button', '', container);
+    btn.setAttribute('type', 'button');
+    btn.innerHTML = label;
+    return btn;
+}
+
+map.on('click', function(e) {
+    var container = L.DomUtil.create('div'),
+        startBtn = createButton('Start from this location', container),
+        destBtn = createButton('Go to this location', container);
+
+    L.popup()
+        .setContent(container)
+        .setLatLng(e.latlng)
+        .openOn(map);
+
+    L.DomEvent.on(startBtn, 'click', function() {
+        control.spliceWaypoints(0, 1, e.latlng);
+        map.closePopup();
+    });
+
+    L.DomEvent.on(destBtn, 'click', function() {
+        control.spliceWaypoints(control.getWaypoints().length - 1, 1, e.latlng);
+        map.closePopup();
+    });
+});
+
+
+var control = L.Routing.control({
+    // waypoints: [L.latLng(49.47748, 8.42216), L.latLng(49.47648, 8.32216)],
+    waypoints: [null, null],
+    // routeWhileDragging: true
+  }).addTo(map);
 
 
 function loadJSON(elementId){

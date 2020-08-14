@@ -4,19 +4,7 @@ from apps.places.models import (Place,
                                 Event,
                                 PlaceUserReview,
                                 Drink)
-
-from izhevsk.settings import BAIDUV3_GEOCODER_KEY
 from collections import Counter
-from geopy.geocoders import BaiduV3
-
-
-def fetch_address_coordinates(serializer_create_validated_data):
-    locator = BaiduV3(api_key=BAIDUV3_GEOCODER_KEY)
-    location = locator.geocode(
-        serializer_create_validated_data['address'],
-        timeout=300
-    )
-    return location.longitude, location.latitude
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -81,28 +69,14 @@ class PlaceSerializer(serializers.ModelSerializer):
         )
 
     def create(self, validated_data):
-        lon, lat = fetch_address_coordinates(validated_data)
         validated_data.update(
             {
                 'uploaded_by': self.context['request'].user,
-                'longitude': lon,
-                'latitude': lat,
                 'average_price': 0,
             }
         )
         place = Place.objects.create(**validated_data)
         return place
-
-    def update(self, instance, validated_data):
-        lon, lat = fetch_address_coordinates(validated_data)
-        validated_data.update(
-            {
-                'longitude': lon,
-                'latitude': lat,
-            }
-        )
-        print(lon, lat)
-        return super(PlaceSerializer, self).update(instance, validated_data)
 
     def get_coordinates(self, place):
         return {
