@@ -10,7 +10,7 @@
   z-index: 2000;
 }
 .leaflet-sidebar.left {
-  left: calc(-35vw - 40px);
+  left: calc(-36vw - 40px);
   transition: left 0.5s, width 0.5s;
   padding-right: 0;
 }
@@ -83,13 +83,13 @@
 @media (min-width: 768px) {
   .leaflet-sidebar {
     min-width: 550px;
-    width: 35vw;
+    width: 36vw;
   }
   .leaflet-sidebar.left.visible ~ .leaflet-left {
-    left: 35vw;
+    left: 36vw;
   }
   .leaflet-sidebar.right.visible ~ .leaflet-right {
-    right: 35vw;
+    right: 36vw;
   }
 }
 
@@ -155,8 +155,7 @@
 
 .ratings {
   display: flex;
-  padding: 0 10px;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .rating-category {
@@ -183,13 +182,28 @@
 
 .rate-icons li {
   margin: 0;
+  margin-left: -2px;
   padding: 0;
   display: inline-block;
   width: 35px;
   height: 35px;
+}
+
+.rate-icons li:first-child {
+  margin-left: 5px;
+}
+
+.rate-icons.stars li {
   background: url("../img/Star.png") no-repeat;
 }
 
+.rate-icons.warnings li {
+  background: url("../img/Police.png") no-repeat;
+}
+
+.rate-icons li.active {
+  background-position: -35px 0;
+}
 
 .place-description hr {
   border: 1px solid #c4c4c4;
@@ -201,7 +215,7 @@
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  margin: none;
+  padding: 0;
   margin-bottom: 50px;
 }
 

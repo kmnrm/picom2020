@@ -15,6 +15,18 @@ function formChange() {
   signUpForm.classList.toggle('disabled');
 }
 
-// let sidebar = document.getElementsByClassName('right')[0];
-// sidebar.classList.remove('right');
-// sidebar.classList.add('left');
+function descriptionRating() {
+  let rating = Math.round(document.getElementById('description-rating-value').innerHTML);
+  let stars = document.getElementsByClassName('description-rating-stars');
+  for (let i = 0; i < rating; i++) {
+    stars[i].classList.add('active');
+  }
+}
+
+function descriptionPoliceRate() {
+  let policeRate = parseInt(document.getElementById('description-police-rate-value').innerHTML);
+  let warnings = document.getElementsByClassName('description-rating-warnings');
+  for (let i = 0; i < policeRate; i++) {
+    warnings[i].classList.add('active');
+  }
+}

@@ -73,26 +73,26 @@
         
         <div class="ratings">
           <div class="description-rating">
-            <span class="rate-value">5/5</span>
-            <ul class="rate-icons">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
+            <span class="rate-value">{{ selectedPlace.rating }} / 5</span>
+            <ul class="rate-icons stars">
+              <li class="description-rating-stars"></li>
+              <li class="description-rating-stars"></li>
+              <li class="description-rating-stars"></li>
+              <li class="description-rating-stars"></li>
+              <li class="description-rating-stars"></li>
             </ul>
-            <p class="rating-category">rating review: <span>{{ selectedPlace.rating }}</span></p>
+            <p class="rating-category">rating review: <span id="description-rating-value">{{ selectedPlace.rating }}</span></p>
           </div>
           <div class="description-police-rate">
             <span class="rate-value">1/5</span>
-            <ul class="rate-icons">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
+            <ul class="rate-icons warnings">
+              <li class="description-rating-warnings"></li>
+              <li class="description-rating-warnings"></li>
+              <li class="description-rating-warnings"></li>
+              <li class="description-rating-warnings"></li>
+              <li class="description-rating-warnings"></li>
             </ul>
-            <p class="rating-category">police rating: <span>{{ selectedPlace.police_rating }}</span></p>
+            <p class="rating-category">police rating: <span id="description-police-rate-value">{{ selectedPlace.police_rating }}</span></p>
           </div>
         </div>
         <hr>
@@ -102,7 +102,7 @@
           <li><span class="icon-price"></span>price</li>
           <li><span class="icon-phone"></span>phone</li>
         </ul>
-        
+
         <!-- <p class="description-category">{{ selectedPlace.category }}</p> -->
         <p class="description-address">{{ selectedPlace.address }}</p>
         <p class="description-address-pinyin">({{ selectedPlace.pinyin_address }})</p>
