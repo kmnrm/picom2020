@@ -66,18 +66,15 @@
       </div>
 
       <div class="place-description" v-if="selectedPlace">
-
+        
         {% verbatim sidebar %}
-
-        <h5 class="mb-3">{{ selectedPlace.title }}</h5>
-
-        <p>{{ selectedPlace.category }}</p>
-        <p>{{ selectedPlace.address }}</p>
-        <p>({{ selectedPlace.pinyin_address }})</p>
-        <p>Rating: {{ selectedPlace.rating }}</p>
-        <p>Police Rating: {{ selectedPlace.police_rating }}</p>
-
-
+        <h5 class="description-title" class="mb-3">{{ selectedPlace.title }}</h5>
+        <p class="description-text" v-html="selectedPlace.description"></p>
+        <p class="description-rating">Rating: {{ selectedPlace.rating }}</p>
+        <p class="description-police-rate">Police Rating: {{ selectedPlace.police_rating }}</p>
+        <!-- <p class="description-category">{{ selectedPlace.category }}</p> -->
+        <p class="description-address">{{ selectedPlace.address }}</p>
+        <p class="description-address-pinyin">({{ selectedPlace.pinyin_address }})</p>
         {% endverbatim sidebar %}
 
         <div id="place-photos" class="carousel slide mb-3 shadow" data-ride="carousel" data-interval="5000">
@@ -105,10 +102,7 @@
           </template>
         </div>
 
-        <div v-html="selectedPlace.description"></div>
         {% verbatim %}
-
-
         <template v-for="review in selectedPlace.reviews">
             <li>{{ review.rating }} - {{ review.text }}</li>
         </template>
