@@ -39,29 +39,29 @@ map.addControl(sidebar);
 sidebar.show();
 
 function createButton(label, container) {
-    var btn = L.DomUtil.create('button', '', container);
-    btn.setAttribute('type', 'button');
-    btn.innerHTML = label;
-    return btn;
+  var btn = L.DomUtil.create('button', '', container);
+  btn.setAttribute('type', 'button');
+  btn.innerHTML = label;
+  return btn;
 }
 
 
 var control = L.Routing.control({
-    // waypoints: [L.latLng(49.47748, 8.42216), L.latLng(49.47648, 8.32216)],
-    waypoints: [null, null],
-    routeWhileDragging: false,
-    draggableWaypoints: false,
-    reverseWaypoints: true,
-    lineOptions : {
-        addWaypoints: false,
-    }
-  }).addTo(map);
+  routeWhileDragging: false,
+  draggableWaypoints: false,
+  reverseWaypoints: true,
+  // createMarker: function() { return null; },
+  lineOptions : {
+    addWaypoints: false,
+  }
+})
 
-var removeRouting = function() {
-    leafletData.getMap().then(function(map) {
-        map.removeControl(control);
-    });
-};
+map.on('click', function(){
+  if(control){
+    control.setWaypoints(null);
+    map.removeControl(control);
+  }
+})
 
 
 function loadJSON(elementId){
@@ -106,20 +106,22 @@ L.geoJSON(places, {
         loadPlaceInfo(geoJsonPoint.properties.placeId, geoJsonPoint.properties.detailsUrl);
 
         var container = L.DomUtil.create('div'),
-        startBtn = createButton('Start', container),
-        destBtn = createButton('Go', container);
+          startBtn = createButton('Start', container),
+          destBtn = createButton('Go', container);
 
         L.popup()
-            .setContent(container)
-            .setLatLng(event.latlng)
-            .openOn(map);
+          .setContent(container)
+          .setLatLng(event.latlng)
+          .openOn(map);
 
         L.DomEvent.on(startBtn, 'click', function() {
+            map.addControl(control);
             control.spliceWaypoints(0, 1, event.latlng);
             map.closePopup();
         });
 
         L.DomEvent.on(destBtn, 'click', function() {
+            map.addControl(control);
             control.spliceWaypoints(control.getWaypoints().length - 1, 1, event.latlng);
             map.closePopup();
         });
