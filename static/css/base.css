@@ -7,14 +7,19 @@ html, body, #map {
   height: 100%;
 }
 
+.sidebar-content {
+  padding: 40px 0;
+  height: 100%;
+}
+
+.place-description {
+  padding: 0 22px;
+}
+
 .place-description img {
   max-width: 100%;
 }
 
-.sidebar-content {
-  padding: 14px 20px;
-  height: 100%;
-}
 .select-place-prompt{
   color: red;
   width: 100px;
@@ -74,4 +79,10 @@ html, body, #map {
 
 #form-section-hide:hover img {
   opacity: 0.8;
+}
+/* =============================================== */
+
+/* Carousel */
+.carousel-inner {
+  /* height: 400px; */
 }
