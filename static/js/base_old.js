@@ -58,6 +58,7 @@ var control = L.Routing.control({
 
 map.on('click', function(){
   if(control){
+    control.setWaypoints(null);
     map.removeControl(control);
   }
 })
