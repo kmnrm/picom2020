@@ -23,10 +23,15 @@ L.control.zoom({
 
 var lc = L.control.locate({
     position: 'topright',
+    clickBehavior: {inView: 'setView'},
+    setView: false,
+    cacheLocation: false,
     strings: {
-        title: "Show me where I am, yo!"
+        title: "Show me where I am, yo!",
+        popup: "Time to go somewhere, bro..."
     }
 }).addTo(map);
+lc.start();
 
 
 var sidebar = L.control.sidebar('sidebar', {
@@ -47,6 +52,7 @@ function createButton(label, container) {
 
 
 var control = L.Routing.control({
+
   routeWhileDragging: false,
   draggableWaypoints: false,
   reverseWaypoints: true,
@@ -107,6 +113,7 @@ L.geoJSON(places, {
 
         var container = L.DomUtil.create('div'),
           startBtn = createButton('Start', container),
+          fromMyLoc = createButton('Get here now', container),
           destBtn = createButton('Go', container);
 
         L.popup()
@@ -125,6 +132,18 @@ L.geoJSON(places, {
             control.spliceWaypoints(control.getWaypoints().length - 1, 1, event.latlng);
             map.closePopup();
         });
+
+        L.DomEvent.on(fromMyLoc, 'click', function(){
+          map.addControl(control);
+          lc.stop();
+          lc.start();
+          map.on('locationfound', function(e){
+            control.spliceWaypoints(0, 1, e.latlng);
+            control.spliceWaypoints(control.getWaypoints().length - 1, 1, event.latlng);
+
+          });
+        });
+
       });
       return marker;
     }
