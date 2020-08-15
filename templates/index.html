@@ -75,22 +75,24 @@
           <div class="description-rating">
             <span class="rate-value">{{ selectedPlace.rating }} / 5</span>
             <ul class="rate-icons stars">
-              <li class="description-rating-stars"></li>
-              <li class="description-rating-stars"></li>
-              <li class="description-rating-stars"></li>
-              <li class="description-rating-stars"></li>
-              <li class="description-rating-stars"></li>
+              <template v-for="star in Math.round(selectedPlace.rating)">
+                <li class="description-rating-stars active"></li>
+              </template>
+              <template v-for="inactiveStar in 5" v-if="inactiveStar > Math.round(selectedPlace.rating)">
+                <li class="description-rating-stars"></li>
+              </template>
             </ul>
             <p class="rating-category">rating review: <span id="description-rating-value">{{ selectedPlace.rating }}</span></p>
           </div>
           <div class="description-police-rate">
-            <span class="rate-value">1/5</span>
+            <span class="rate-value">{{ selectedPlace.police_rating.charAt(0) }}/5</span>
             <ul class="rate-icons warnings">
-              <li class="description-rating-warnings"></li>
-              <li class="description-rating-warnings"></li>
-              <li class="description-rating-warnings"></li>
-              <li class="description-rating-warnings"></li>
-              <li class="description-rating-warnings"></li>
+              <template v-for="siren in parseInt(selectedPlace.police_rating.charAt(0))">
+                <li class="description-rating-warnings active"></li>
+              </template>
+              <template v-for="inactiveSiren in 5" v-if="inactiveSiren > parseInt(selectedPlace.police_rating.charAt(0))">
+                <li class="description-rating-warnings"></li>
+              </template>
             </ul>
             <p class="rating-category">police rating: <span id="description-police-rate-value">{{ selectedPlace.police_rating }}</span></p>
           </div>
