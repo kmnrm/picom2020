@@ -45,54 +45,6 @@
   background-clip: padding-box;
 }
 
-/* @media (max-width: 540px) {} */
-
-@media (max-width: 767px) {
-  .leaflet-sidebar {
-    width: 100%;
-    padding: 0;
-  }
-  .leaflet-sidebar.left.visible ~ .leaflet-left {
-    left: 100%;
-  }
-  .leaflet-sidebar.right.visible ~ .leaflet-right {
-    right: 100%;
-  }
-  .leaflet-sidebar.left {
-    left: -100%;
-  }
-  .leaflet-sidebar.left.visible {
-    left: 0;
-  }
-  .leaflet-sidebar.right {
-    right: -100%;
-  }
-  .leaflet-sidebar.right.visible {
-    right: 0;
-  }
-  .leaflet-sidebar > .leaflet-control {
-    box-shadow: none;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-  }
-  .leaflet-touch .leaflet-sidebar > .leaflet-control {
-    border: 0;
-  }
-}
-
-@media (min-width: 768px) {
-  .leaflet-sidebar {
-    min-width: 550px;
-    width: 36vw;
-  }
-  .leaflet-sidebar.left.visible ~ .leaflet-left {
-    left: 36vw;
-  }
-  .leaflet-sidebar.right.visible ~ .leaflet-right {
-    right: 36vw;
-  }
-}
-
 .leaflet-sidebar .close {
   position: absolute;
   right: 33px;
@@ -247,4 +199,89 @@
 
 ::-webkit-scrollbar {
 width: 0px;
+}
+
+@media (max-width: 767px) {
+  /* Сайдбар */
+  .leaflet-sidebar {
+    width: 100%;
+    padding: 0;
+  }
+  .leaflet-sidebar.left.visible ~ .leaflet-left {
+    left: 100%;
+  }
+  .leaflet-sidebar.right.visible ~ .leaflet-right {
+    right: 100%;
+  }
+  .leaflet-sidebar.left {
+    left: -100%;
+  }
+  .leaflet-sidebar.left.visible {
+    left: 0;
+  }
+  .leaflet-sidebar.right {
+    right: -100%;
+  }
+  .leaflet-sidebar.right.visible {
+    right: 0;
+  }
+  .leaflet-sidebar > .leaflet-control {
+    box-shadow: none;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+  }
+  .leaflet-touch .leaflet-sidebar > .leaflet-control {
+    border: 0;
+  }
+  /* Элементы */
+  .rate-value {
+    font-size: 36px;
+    line-height: 45px;
+  }
+  .rate-icons li {
+    width: 35px;
+    height: 35px;
+  }
+  .rate-icons.stars li {
+    background: url("../img/Star.png") no-repeat;
+  }
+  .rate-icons.warnings li {
+    background: url("../img/Police.png") no-repeat;
+  }
+  .rate-icons li.active {
+    background-position: -35px 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .leaflet-sidebar {
+    min-width: 550px;
+    width: 36vw;
+  }
+  .leaflet-sidebar.left.visible ~ .leaflet-left {
+    left: 36vw;
+  }
+  .leaflet-sidebar.right.visible ~ .leaflet-right {
+    right: 36vw;
+  }
+}
+
+@media (max-width: 1599px) {
+  .rate-value {
+    font-size: 30px;
+    line-height: 36px;
+  }
+  .rate-icons li {
+    width: 30px;
+    height: 30px;
+  }
+  .rate-icons.stars li {
+    background: url("../img/Star-small.png") no-repeat;
+  }
+  .rate-icons.warnings li {
+    background: url("../img/Police-small.png") no-repeat;
+  }
+  .rate-icons li.active {
+    background-position: -30px 0;
+  }
 }
