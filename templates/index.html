@@ -142,40 +142,22 @@
           </template>
         </div>
 
-        {% verbatim %}
-        <template v-for="review in selectedPlace.reviews">
-            <li>{{ review.rating }} - {{ review.text }}</li>
-        </template>
-        {% endverbatim %}
-      </div>
 
+      {% verbatim reviews %}
       <section id="reviews">
         <h2 class="average-mark">Average mark
-          <span class="average-rating">3/5</span>
+          <span class="average-rating">{{ selectedPlace.rating }}/5</span>
         </h2>
         <div class="user-reviews">
+          <template v-for="review in selectedPlace.reviews">
           <div class="review-card">
             <div class="user-avatar"></div>
             <div class="user-review">
-              <p class="name">Marina</p>
-              <p class="text">The most popular bar in Izhvesk. Popular Dj’s and artists are here!</p>
+              <p class="name">{{ review.username }}</p>
+              <p class="text">{{ review.text }}</p>
             </div>
           </div>
-          <div class="review-card">
-            <div class="user-avatar"></div>
-            <div class="user-review">
-              <p class="name">Marina</p>
-              <p class="text">The most popular bar in Izhvesk. Popular Dj’s and artists are here!</p>
-            </div>
-          </div>
-          <div class="review-card">
-            <div class="user-avatar"></div>
-            <div class="user-review">
-              <p class="name">Marina</p>
-              <p class="text">The most popular bar in Izhvesk. Popular Dj’s and artists are here!</p>
-            </div>
-          </div>
-        </div>
+          </template>
         <div class="reviews-controls clearfix">
           <button class="reviews-write">Write a review</button>
           <div class="reviews-pages">
@@ -186,7 +168,8 @@
           </div>
         </div>
       </section>
-
+      {% endverbatim reviews %}
+      </div>
 
     </div>
   </div>

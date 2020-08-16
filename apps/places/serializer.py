@@ -21,6 +21,7 @@ class PlaceImageSerializer(serializers.ModelSerializer):
 
 class ReviewSerializer(serializers.ModelSerializer):
     author = serializers.PrimaryKeyRelatedField(read_only=True)
+    username = serializers.SerializerMethodField()
 
     class Meta:
         model = PlaceUserReview
@@ -35,6 +36,8 @@ class ReviewSerializer(serializers.ModelSerializer):
         review = PlaceUserReview.objects.create(**validated_data)
         return review
 
+    def get_username(self, review):
+        return review.author.username
 
 class PlaceSerializer(serializers.ModelSerializer):
     uploaded_by = serializers.PrimaryKeyRelatedField(read_only=True)
