@@ -73,49 +73,52 @@
       </div>
 
       <div class="place-description" v-if="selectedPlace">
-        {% verbatim sidebar %}
-        <div class="description-logo"></div>
-        <h5 class="description-title" class="mb-3">{{ selectedPlace.title }}</h5>
-        <p class="description-text" v-html="selectedPlace.description"></p>
-        
-        <div class="ratings">
-          <div class="description-rating">
-            <span class="rate-value">{{ selectedPlace.rating }}/5</span>
-            <ul class="rate-icons stars">
-              <template v-for="star in Math.round(selectedPlace.rating)">
-                <li class="description-rating-stars active"></li>
-              </template>
-              <template v-for="inactiveStar in 5" v-if="inactiveStar > Math.round(selectedPlace.rating)">
-                <li class="description-rating-stars"></li>
-              </template>
-            </ul>
-            <p class="rating-category">rating review: <span id="description-rating-value">{{ selectedPlace.rating }}</span></p>
+        <div class="container">
+          {% verbatim sidebar %}
+          <div class="description-logo"></div>
+          <h5 class="description-title" class="mb-3">{{ selectedPlace.title }}</h5>
+          <p class="description-text" v-html="selectedPlace.description"></p>
+          
+          <div class="ratings">
+            <div class="description-rating">
+              <span class="rate-value">{{ selectedPlace.rating }}/5</span>
+              <ul class="rate-icons stars">
+                <template v-for="star in Math.round(selectedPlace.rating)">
+                  <li class="description-rating-stars active"></li>
+                </template>
+                <template v-for="inactiveStar in 5" v-if="inactiveStar > Math.round(selectedPlace.rating)">
+                  <li class="description-rating-stars"></li>
+                </template>
+              </ul>
+              <p class="rating-category">rating review: <span id="description-rating-value">{{ selectedPlace.rating }}</span></p>
+            </div>
+            <div class="description-police-rate">
+              <span class="rate-value">{{ selectedPlace.police_rating.charAt(0) }}/5</span>
+              <ul class="rate-icons warnings">
+                <template v-for="siren in parseInt(selectedPlace.police_rating.charAt(0))">
+                  <li class="description-rating-warnings active"></li>
+                </template>
+                <template v-for="inactiveSiren in 5" v-if="inactiveSiren > parseInt(selectedPlace.police_rating.charAt(0))">
+                  <li class="description-rating-warnings"></li>
+                </template>
+              </ul>
+              <p class="rating-category">police rating: <span id="description-police-rate-value">{{ selectedPlace.police_rating }}</span></p>
+            </div>
           </div>
-          <div class="description-police-rate">
-            <span class="rate-value">{{ selectedPlace.police_rating.charAt(0) }}/5</span>
-            <ul class="rate-icons warnings">
-              <template v-for="siren in parseInt(selectedPlace.police_rating.charAt(0))">
-                <li class="description-rating-warnings active"></li>
-              </template>
-              <template v-for="inactiveSiren in 5" v-if="inactiveSiren > parseInt(selectedPlace.police_rating.charAt(0))">
-                <li class="description-rating-warnings"></li>
-              </template>
-            </ul>
-            <p class="rating-category">police rating: <span id="description-police-rate-value">{{ selectedPlace.police_rating }}</span></p>
-          </div>
-        </div>
-        <hr>
-        <ul class="description-contacts">
-          <li><span class="icon-place"></span>{{ selectedPlace.address }}</li>
-          <li><span class="icon-time"></span>{{ selectedPlace.opening_hours }} - {{ selectedPlace.closing_hours }}</li>
-          <li><span class="icon-price"></span>¥{{ selectedPlace.average_price }}</li>
-          <li><span class="icon-phone"></span>13213238256</li>
-        </ul>
+          <hr>
+          <ul class="description-contacts">
+            <li><span class="icon-place"></span>{{ selectedPlace.address }}</li>
+            <li><span class="icon-time"></span>{{ selectedPlace.opening_hours }} - {{ selectedPlace.closing_hours }}</li>
+            <li><span class="icon-price"></span>¥{{ selectedPlace.average_price }}</li>
+            <li><span class="icon-phone"></span>13213238256</li>
+          </ul>
 
-        <!-- <p class="description-category">{{ selectedPlace.category }}</p> -->
-        <p class="description-address">{{ selectedPlace.address }}</p>
-        <p class="description-address-pinyin">({{ selectedPlace.pinyin_address }})</p>
-        {% endverbatim sidebar %}
+          <!-- <p class="description-category">{{ selectedPlace.category }}</p> -->
+          <p class="description-address">{{ selectedPlace.address }}</p>
+          <p class="description-address-pinyin">({{ selectedPlace.pinyin_address }})</p>
+          {% endverbatim sidebar %}
+        </div>
+        
 
         <div id="place-photos" class="carousel slide" data-ride="carousel" data-interval="5000">
           <ol class="carousel-indicators">
@@ -143,32 +146,35 @@
         </div>
 
 
-      {% verbatim reviews %}
-      <section id="reviews">
-        <h2 class="average-mark">Average mark
-          <span class="average-rating">{{ selectedPlace.rating }}/5</span>
-        </h2>
-        <div class="user-reviews">
-          <template v-for="review in selectedPlace.reviews">
-          <div class="review-card">
-            <div class="user-avatar"></div>
-            <div class="user-review">
-              <p class="name">{{ review.username }}</p>
-              <p class="text">{{ review.text }}</p>
+        {% verbatim reviews %}
+        <section id="reviews">
+          <h2 class="average-mark">Average mark
+            <span class="average-rating">{{ selectedPlace.rating }}/5</span>
+          </h2>
+          <div class="user-reviews">
+            <template v-for="review in selectedPlace.reviews">
+              <div class="review-card">
+                <div class="container">
+                  <div class="user-avatar"></div>
+                  <div class="user-review">
+                    <p class="name">{{ review.username }}</p>
+                    <p class="text">{{ review.text }}</p>
+                  </div>
+                </div>
+              </div>
+            </template>            
+          </div>
+          <div class="reviews-controls clearfix">
+            <button class="reviews-write">Write a review</button>
+            <div class="reviews-pages">
+              <a href="#">1</a>
+              <a href="#">2</a>
+              <a href="#">3</a>
+              <a href="#">…</a>
             </div>
           </div>
-          </template>
-        <div class="reviews-controls clearfix">
-          <button class="reviews-write">Write a review</button>
-          <div class="reviews-pages">
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">…</a>
-          </div>
-        </div>
-      </section>
-      {% endverbatim reviews %}
+        </section>
+        {% endverbatim reviews %}
       </div>
 
     </div>

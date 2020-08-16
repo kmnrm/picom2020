@@ -18,8 +18,9 @@ html, body, #map {
   height: 100%;
 }
 
-.place-description {
-  padding: 0 22px;
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .place-description img {
