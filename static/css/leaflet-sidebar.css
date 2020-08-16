@@ -10,7 +10,7 @@
   z-index: 2000;
 }
 .leaflet-sidebar.left {
-  left: calc(-36vw - 40px);
+  left: -700px;
   transition: left 0.5s, width 0.5s;
   padding-right: 0;
 }
@@ -255,7 +255,7 @@ width: 0px;
 
 @media (min-width: 768px) {
   .leaflet-sidebar {
-    min-width: 550px;
+    min-width: 450px;
     width: 36vw;
   }
   .leaflet-sidebar.left.visible ~ .leaflet-left {
