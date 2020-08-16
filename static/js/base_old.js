@@ -1,5 +1,5 @@
 var map = L.map('map', {zoomControl: false});
-map.setView([34.76, 113.71], 12);
+map.setView([34.76, 113.65], 11);
 
 /*L.tileLayer.provider('OpenStreetMap.Mapnik').addTo(map);*/
 var night = L.tileLayer.provider('Jawg.Dark', {
@@ -56,7 +56,6 @@ var control = L.Routing.control({
   routeWhileDragging: false,
   draggableWaypoints: false,
   reverseWaypoints: true,
-  geocoder: L.Control.Geocoder.nominatim(),
   // createMarker: function() { return null; },
   lineOptions : {
     addWaypoints: false,
@@ -83,7 +82,7 @@ function loadJSON(elementId){
 
 let places = loadJSON('places-geojson');
 
-var locations = L.geoJSON(places, {
+L.geoJSON(places, {
     pointToLayer: function(geoJsonPoint, latlng) {
       if (geoJsonPoint.geometry.type != "Point"){
         return
@@ -149,25 +148,6 @@ var locations = L.geoJSON(places, {
       return marker;
     }
 }).addTo(map);
-
-
-var searchControl = new L.Control.Search({
-  layer: locations,
-  propertyName: 'title',
-  position: 'topright',
-  marker: false
-});
-
-searchControl.on('search:locationfound', function(e) {
-  sidebar.show();
-  loadPlaceInfo(
-    e.layer.feature.properties.placeId,
-    e.layer.feature.properties.detailsUrl
-  );
-})
-
-map.addControl(searchControl);
-
 
 var sidebarApp = new Vue({
   el: '#sidebar-app',
