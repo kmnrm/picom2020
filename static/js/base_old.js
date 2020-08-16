@@ -164,6 +164,7 @@ searchControl.on('search:locationfound', function(e) {
     e.layer.feature.properties.placeId,
     e.layer.feature.properties.detailsUrl
   );
+  e.layer.openPopup();
 })
 
 map.addControl(searchControl);
