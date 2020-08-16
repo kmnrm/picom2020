@@ -106,10 +106,10 @@
         </div>
         <hr>
         <ul class="description-contacts">
-          <li><span class="icon-place"></span>street</li>
-          <li><span class="icon-time"></span>time</li>
-          <li><span class="icon-price"></span>price</li>
-          <li><span class="icon-phone"></span>phone</li>
+          <li><span class="icon-place"></span>{{ selectedPlace.address }}</li>
+          <li><span class="icon-time"></span>{{ selectedPlace.opening_hours }} - {{ selectedPlace.closing_hours }}</li>
+          <li><span class="icon-price"></span>¥{{ selectedPlace.average_price }}</li>
+          <li><span class="icon-phone"></span>13213238256</li>
         </ul>
 
         <!-- <p class="description-category">{{ selectedPlace.category }}</p> -->

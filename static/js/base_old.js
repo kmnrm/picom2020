@@ -241,6 +241,8 @@ async function loadPlaceInfo(placeId, detailsUrl){
       police_rating: data.police_rating,
       events: data.events,
       reviews: data.reviews,
+      opening_hours: data.opening_hours,
+      closing_hours: data.closing_hours
 
     };
   } finally {
