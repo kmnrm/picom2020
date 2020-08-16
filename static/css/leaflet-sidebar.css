@@ -179,13 +179,16 @@
 }
 
 .description-contacts li {
+  display: flex;
+  align-items: baseline;
   flex-basis: 50%;
   margin-bottom: 18px;
   font-size: 18px;
   line-height: 23px;
 }
 
-.description-contacts span {
+.description-contacts div {
+  flex-basis: 35px;
   position: relative;
   top: 12px;
   display: inline-block;
@@ -193,6 +196,10 @@
   width: 35px;
   height: 40px;
   margin-right: 20px;
+}
+
+.description-contacts p {
+  flex-basis: calc(100% - 60px);
 }
 
 .description-contacts .icon-place {

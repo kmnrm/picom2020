@@ -106,11 +106,23 @@
             </div>
           </div>
           <hr>
+
           <ul class="description-contacts">
-            <li><span class="icon-place"></span>{{ selectedPlace.address }}</li>
-            <li><span class="icon-time"></span>{{ selectedPlace.opening_hours }} - {{ selectedPlace.closing_hours }}</li>
-            <li><span class="icon-price"></span>¥{{ selectedPlace.average_price }}</li>
-            <li><span class="icon-phone"></span>13213238256</li>
+            <li><div class="icon-place"></div>
+              <p>{{ selectedPlace.address }}</p>
+            </li>
+            <li>
+              <div class="icon-time"></div>
+              <p>{{ selectedPlace.opening_hours }} - {{ selectedPlace.closing_hours }}</p>
+            </li>
+            <li>
+              <div class="icon-price"></div>
+              <p>¥{{ selectedPlace.average_price }}</p>
+            </li>
+            <li>
+              <div class="icon-phone"></div>
+              <p>13213238256</p>
+            </li>
           </ul>
 
           <!-- <p class="description-category">{{ selectedPlace.category }}</p> -->
