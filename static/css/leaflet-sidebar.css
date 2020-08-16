@@ -110,8 +110,15 @@
   justify-content: space-around;
 }
 
+.description-rating {
+  flex-basis: 55%;
+}
+.description-police-rate {
+  flex-basis: 45%;
+}
+
 .rating-category {
-  font-size: 18px;
+  font-size: 17px;
   line-height: 23px;
   color: #676767;
 } 
@@ -197,6 +204,90 @@
 .description-contacts .icon-phone {
   background-position: -105px 0; }
 
+
+#place-photos {
+  margin-bottom: 70px;
+}
+
+#reviews {
+  padding: 40px 0;
+}
+
+#reviews > h2,
+#reviews > .user-reviews > .review-card,
+#reviews > .reviews-controls {
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+#reviews .average-rating {
+  margin-left: 50px;
+  color: #868686;
+}
+
+.review-card:nth-child(odd) {
+  background-color: #F7F7F7;
+}
+
+.review-card {
+  display: flex;
+  justify-content: space-between;
+  margin: 17px 0;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+.review-card > .user-avatar {
+  flex-basis: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #666;
+}
+
+.review-card > .user-review {
+  flex-basis: calc(100% - 70px);
+}
+
+.review-card > .user-review .name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.review-card > .user-review .text {
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.reviews-controls .reviews-write { 
+  width: 191px;
+  height: 41px;
+  background: #C4C4C4;
+  border: none;
+  border-radius: 19px;
+}
+
+.reviews-controls .reviews-write:hover {
+  border: 1px solid black;
+  opacity: 0.8;
+}
+
+.reviews-controls .reviews-pages {
+  float: right;
+}
+
+.reviews-controls .reviews-pages a {
+  margin-left: 5px;
+  text-decoration: none;
+  font-size: 24px;
+  line-height: 31px;
+  color: #868686;
+}
+
+.reviews-controls .reviews-pages a:hover {
+  text-decoration: underline;
+}
+
+
 ::-webkit-scrollbar {
 width: 0px;
 }
@@ -234,23 +325,7 @@ width: 0px;
     border: 0;
   }
   /* Элементы */
-  .rate-value {
-    font-size: 36px;
-    line-height: 45px;
-  }
-  .rate-icons li {
-    width: 35px;
-    height: 35px;
-  }
-  .rate-icons.stars li {
-    background: url("../img/Star.png") no-repeat;
-  }
-  .rate-icons.warnings li {
-    background: url("../img/Police.png") no-repeat;
-  }
-  .rate-icons li.active {
-    background-position: -35px 0;
-  }
+
 }
 
 @media (min-width: 768px) {
@@ -284,4 +359,27 @@ width: 0px;
   .rate-icons li.active {
     background-position: -30px 0;
   }
+  .rating-category {
+    font-size: 16px;
+  }
+}
+
+
+.leaflet-popup-content {
+  width: 300px;
+}
+.leaflet-popup-content button {
+  font-size: 17px;
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(32% - 2px);
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin: 1px;
+}
+.leaflet-popup-close-button {
+  top: 3px;
+  right: 7px;
 }

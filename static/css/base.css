@@ -7,6 +7,12 @@ html, body, #map {
   height: 100%;
 }
 
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .sidebar-content {
   padding: 40px 0;
   height: 100%;

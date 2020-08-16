@@ -11,8 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
-  <link rel="stylesheet" href="{% static 'css/leaflet-sidebar.css' %}"/>
-  <link rel="stylesheet" href="{% static 'css/leaflet-search.css' %}"/>
+  
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/@ansur/leaflet-pulse-icon@0.1.1/dist/L.Icon.Pulse.css">
@@ -25,6 +24,8 @@
 
   <link rel="stylesheet" href="{% static 'css/leaflet-routing-machine.css' %}" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+  <link rel="stylesheet" href="{% static 'css/leaflet-search.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/leaflet-sidebar.css' %}" />
   <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
 
   {{ places_geojson|json_script:"places-geojson" }}
@@ -116,7 +117,7 @@
         <p class="description-address-pinyin">({{ selectedPlace.pinyin_address }})</p>
         {% endverbatim sidebar %}
 
-        <div id="place-photos" class="carousel slide mb-3" data-ride="carousel" data-interval="5000">
+        <div id="place-photos" class="carousel slide" data-ride="carousel" data-interval="5000">
           <ol class="carousel-indicators">
             <template v-for="(img, index) in carouselImages" :key="img">
               <li v-on:click="handlePhotosClick(index)" v-bind:class="{active: index==0}"></li>
@@ -147,6 +148,46 @@
         </template>
         {% endverbatim %}
       </div>
+
+      <section id="reviews">
+        <h2 class="average-mark">Average mark
+          <span class="average-rating">3/5</span>
+        </h2>
+        <div class="user-reviews">
+          <div class="review-card">
+            <div class="user-avatar"></div>
+            <div class="user-review">
+              <p class="name">Marina</p>
+              <p class="text">The most popular bar in Izhvesk. Popular Dj’s and artists are here!</p>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="user-avatar"></div>
+            <div class="user-review">
+              <p class="name">Marina</p>
+              <p class="text">The most popular bar in Izhvesk. Popular Dj’s and artists are here!</p>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="user-avatar"></div>
+            <div class="user-review">
+              <p class="name">Marina</p>
+              <p class="text">The most popular bar in Izhvesk. Popular Dj’s and artists are here!</p>
+            </div>
+          </div>
+        </div>
+        <div class="reviews-controls clearfix">
+          <button class="reviews-write">Write a review</button>
+          <div class="reviews-pages">
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">…</a>
+          </div>
+        </div>
+      </section>
+
+
     </div>
   </div>
 

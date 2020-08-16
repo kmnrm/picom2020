@@ -1,9 +1,7 @@
 
 
 .leaflet-routing-container, .leaflet-routing-error {
-    width: 320px;
-    background-color: white;
-    padding-top: 4px;
+    width: 400px;
     transition: all 0.2s ease;
     box-sizing: border-box;
 }
@@ -106,15 +104,18 @@
 }
 
 .leaflet-routing-geocoders input {
-    width: 303px;
-    width: calc(100% - 4px);
-    line-height: 1.67;
-    border: 1px solid #ccc;
+  font-size: 15px;
+  width: 100%;
+  padding: 7px 25px 7px 7px;
+  line-height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 18px;
+  background-color: #ECECEC;
 }
 
 .leaflet-routing-geocoders button {
     font: bold 18px 'Lucida Console', Monaco, monospace;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 4px;
     background-color: white;
     margin: 0;
@@ -174,6 +175,7 @@
 .leaflet-routing-remove-waypoint {
     background-color: transparent;
     display: inline-block;
+    margin-left: -5px;
     vertical-align: middle;
     cursor: pointer;
 }
@@ -195,7 +197,6 @@
     text-align: center;
     cursor: pointer;
     color: #ccc;
-    background: white;
     padding-bottom: 16px;
     margin-top: -16px;
     padding-right: 4px;
@@ -265,6 +266,9 @@
 }
 .leaflet-routing-geocoders {
   position: relative;
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
 }
 .leaflet-routing-geocoder {
   position: relative;
@@ -276,10 +280,10 @@
 }
 .leaflet-routing-add-waypoint {
   position: relative;
-  top: -27px;
+  top: -32px;
 }
 .leaflet-routing-reverse-waypoints {
   position: relative;
-  top: -61px;
-  left: 31px;
+  top: -77px;
+  left: 27px;
 }
