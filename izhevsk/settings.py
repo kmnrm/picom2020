@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = '0kgmk6i^y$ql%+86l!+wiu3kf7jtk3n30wvr&x!16_^e3v1+m='
 
 DEBUG = os.getenv("DEBUG") in ('1', 'true', 'True', 'TRUE')
 
