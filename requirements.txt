@@ -9,3 +9,4 @@ geopy~=2.0.0
 django-admin-sortable~=2.2.3
 python-dotenv~=0.14.0
 django-phonenumber-field~=4.0.0
+djangorestframework-simplejwt~=4.4.0
