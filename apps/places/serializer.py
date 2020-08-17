@@ -112,7 +112,7 @@ class PlaceSerializer(serializers.ModelSerializer):
             rate * count
             for rate, count in ratings.items()
         ) / total_ratings if total_ratings > 0 else None
-        return mean_rating
+        return round(mean_rating, 1)
 
     def get_average_price(self, place):
         return place.average_price
