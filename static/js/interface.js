@@ -30,3 +30,26 @@ function descriptionPoliceRate() {
     warnings[i].classList.add('active');
   }
 }
+
+function paginator() {
+  let elements = document.getElementsByClassName('review-card');
+  let pages = [];
+  for (let i = 0; i < elements.length / 3; i++) {
+    pages[i] = []
+  }
+  console.log(pages);
+
+  let pageNumber = 0;
+  for (let i = 0; i < elements.length; i++) {
+    if (i % 3 == 0) {
+      pageNumber += 1;
+      pages[pageNumber] = [];
+      pages[pageNumber].push(elements[i]);
+    } else {
+      pages[pageNumber].push(elements[i])
+    }
+  }
+  //   return pages;
+}
+
+paginator();
