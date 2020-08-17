@@ -380,10 +380,14 @@
   padding: 5px 10px;
   margin: 1px;
 }
-.leaflet-popup-close-button {
+.leaflet-container a.leaflet-popup-close-button {
   top: 3px;
-  right: 7px;
+  right: 5px;
 }
+.leaflet-control-layers-expanded {
+  padding: 7px 10px 1px 6px;
+}
+
 
 hr.hr2 {
   border: 1px solid #c4c4c4;

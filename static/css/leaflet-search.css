@@ -14,7 +14,7 @@
 }
 .leaflet-control-search.search-exp {/*expanded*/
 	background: #fff;
-	box-shadow: 0 0 5px #777;
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
 	background-clip: padding-box;	
 }
 .leaflet-control-search .search-input {
@@ -71,7 +71,7 @@
   background-size: 30px;
   background-position: 2px 3px;
 	border-radius: 5px;
-	box-shadow: 0 0 5px #777;
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
 }
 .leaflet-control-search .search-button:hover {
 	background-position: 2px -27px;

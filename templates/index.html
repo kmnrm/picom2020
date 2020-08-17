@@ -73,7 +73,7 @@
       </div>
 
       <div class="place-description" v-if="selectedPlace">
-        <div class="container">
+        <div class="wrapper">
           {% verbatim sidebar %}
           <div class="description-logo"></div>
           <h5 class="description-title" class="mb-3">{{ selectedPlace.title }}</h5>
@@ -169,7 +169,7 @@
           <div class="user-reviews">
             <template v-for="review in selectedPlace.reviews">
               <div class="review-card">
-                <div class="container">
+                <div class="wrapper">
                   <div class="user-avatar"></div>
                   <div class="user-review">
                     <p class="name">{{ review.username }}</p>
@@ -191,10 +191,10 @@
         </section>
         {% endverbatim reviews %}
 
-        <div class="container"><hr class="hr2"></div>
+        <div class="wrapper"><hr class="hr2"></div>
 
         <section id="facts">
-          <div class="container">
+          <div class="wrapper">
             <h2>Interesting facts</h2>
             <ul>
               <li>The most popular bar in Izhevsk. Popular Dj’s and artists are here!</li>
@@ -204,10 +204,10 @@
           </div>
         </section>
 
-        <div class="container"><hr class="hr2"></div>
+        <div class="wrapper"><hr class="hr2"></div>
 
         <section id="same-places">
-          <div class="container"><h2>Same requests</h2></div>
+          <div class="wrapper"><h2>Same requests</h2></div>
           <ul>
             <li class="place-card">
               <div class="place-image"></div>
