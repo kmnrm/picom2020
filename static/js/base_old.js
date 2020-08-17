@@ -242,7 +242,8 @@ async function loadPlaceInfo(placeId, detailsUrl){
       events: data.events,
       reviews: data.reviews,
       opening_hours: data.opening_hours,
-      closing_hours: data.closing_hours
+      closing_hours: data.closing_hours,
+      logo: data.logo,
 
     };
   } finally {

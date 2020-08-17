@@ -39,6 +39,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     def get_username(self, review):
         return review.author.username
 
+
 class PlaceSerializer(serializers.ModelSerializer):
     uploaded_by = serializers.PrimaryKeyRelatedField(read_only=True)
     coordinates = serializers.SerializerMethodField()
@@ -49,6 +50,7 @@ class PlaceSerializer(serializers.ModelSerializer):
     average_price = serializers.SerializerMethodField()
     pinyin_address = serializers.SerializerMethodField()
     reviews = ReviewSerializer(many=True, read_only=True)
+    logo = serializers.SerializerMethodField('get_logo_url')
 
     class Meta:
         model = Place
@@ -56,6 +58,7 @@ class PlaceSerializer(serializers.ModelSerializer):
             'id',
             'uploaded_by',
             'title',
+            'logo',
             'category',
             'address',
             'pinyin_address',
@@ -119,6 +122,9 @@ class PlaceSerializer(serializers.ModelSerializer):
 
     def get_images(self, place):
         return [image.image.url for image in place.images.all()]
+
+    def get_logo_url(self, place):
+        return place.logo_url()
 
 
 class DrinkSerializer(serializers.ModelSerializer):
