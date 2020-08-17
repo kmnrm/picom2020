@@ -4,6 +4,8 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 import pinyin
 from geopy.exc import GeocoderServiceError
+import phonenumbers
+from phonenumber_field.modelfields import PhoneNumberField
 
 from izhevsk.settings import BAIDUV3_GEOCODER_KEY
 from geopy.geocoders import BaiduV3
@@ -65,6 +67,7 @@ class Place(models.Model):
         null=True,
     )
     police_rating = models.CharField(max_length=3, choices=POLICE_RATING, default='PS1', blank=True, null=True)
+    phone_number = PhoneNumberField(blank=True, db_index=True)
     latitude = models.FloatField(
         blank=True,
         null=True,
@@ -84,6 +87,15 @@ class Place(models.Model):
             return self.logo.url
         else:
             return '/static/img/no_logo.jpg'
+
+    def standardize_phone_number(self):
+        empty_phone = ''
+        if self.phone_number == empty_phone:
+            return '-'
+        return phonenumbers.format_number(
+            self.phone_number,
+            phonenumbers.PhoneNumberFormat.NATIONAL
+        )
 
     def __str__(self):
         return f"{self.title}"

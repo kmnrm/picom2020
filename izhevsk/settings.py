@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'adminsortable2',
     'django_filters',
+    'phonenumber_field',
     'apps.places',
     'apps.users',
     'corsheaders',
@@ -161,3 +162,6 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': False,
     'SERIALIZERS': {'user_create': 'apps.users.serializer.UserRegistrationSerializer'},
 }
+
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'CN'

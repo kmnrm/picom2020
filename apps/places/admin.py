@@ -40,7 +40,7 @@ class PlaceAdmin(admin.ModelAdmin):
         ('Main Info', {
             'fields': (
                 'uploaded_by',
-                ('title', 'category', 'address', 'pinyin_address'),
+                ('title', 'category', 'address', 'pinyin_address', 'phone_number'),
                 ('logo', 'description'),
                 ('opening_hours', 'closing_hours'),
                 'police_rating',

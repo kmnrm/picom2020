@@ -51,6 +51,7 @@ class PlaceSerializer(serializers.ModelSerializer):
     pinyin_address = serializers.SerializerMethodField()
     reviews = ReviewSerializer(many=True, read_only=True)
     logo = serializers.SerializerMethodField('get_logo_url')
+    phone_number = serializers.SerializerMethodField()
 
     class Meta:
         model = Place
@@ -62,6 +63,7 @@ class PlaceSerializer(serializers.ModelSerializer):
             'category',
             'address',
             'pinyin_address',
+            'phone_number',
             'description',
             'average_price',
             'police_rating',
@@ -125,6 +127,9 @@ class PlaceSerializer(serializers.ModelSerializer):
 
     def get_logo_url(self, place):
         return place.logo_url()
+
+    def get_phone_number(self, place):
+        return place.standardize_phone_number()
 
 
 class DrinkSerializer(serializers.ModelSerializer):

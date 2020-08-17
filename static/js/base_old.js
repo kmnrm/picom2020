@@ -244,6 +244,7 @@ async function loadPlaceInfo(placeId, detailsUrl){
       opening_hours: data.opening_hours,
       closing_hours: data.closing_hours,
       logo: data.logo,
+      phone_number: data.phone_number,
 
     };
   } finally {
