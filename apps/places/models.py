@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 import pinyin
+from geopy.exc import GeocoderServiceError
+
 from izhevsk.settings import BAIDUV3_GEOCODER_KEY
 from geopy.geocoders import BaiduV3
 
@@ -95,9 +97,12 @@ def get_pinyin_address(sender, instance, **kwargs):
 
 @receiver(pre_save, sender=Place)
 def geocode_address(sender, instance, **kwargs):
-    instance.longitude, instance.latitude = fetch_address_coordinates(
-        instance.address
-    )
+    try:
+        instance.longitude, instance.latitude = fetch_address_coordinates(
+            instance.address
+        )
+    except GeocoderServiceError:
+        instance.longitude = instance.latitude = None
 
 
 class PlaceImage(models.Model):
