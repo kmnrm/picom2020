@@ -12,13 +12,11 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0kgmk6i^y$ql%+86l!+wiu3kf7jtk3n30wvr&x!16_^e3v1+m='
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG") in ('1', 'true', 'True', 'TRUE')
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.pythonanywhere']
 
 
 # Application definition
@@ -31,14 +29,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'djoser',
     'rest_framework.authtoken',
     'adminsortable2',
     'django_filters',
     'phonenumber_field',
     'apps.places',
     'apps.users',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -105,10 +101,6 @@ if not DEBUG:
         },
     ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Europe/Samara'
@@ -121,8 +113,6 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
@@ -151,17 +141,8 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20
 }
 
-
 if DEBUG:
     del REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES']
-
-DJOSER = {
-    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': '#/activate/{uid}/{token}',
-    'SEND_ACTIVATION_EMAIL': False,
-    'SERIALIZERS': {'user_create': 'apps.users.serializer.UserRegistrationSerializer'},
-}
 
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_REGION = 'CN'
