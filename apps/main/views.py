@@ -31,7 +31,6 @@ class MainViewSet(PlaceViewSet):
     ]
     template_name = 'index.html'
     pagination_class = None
-    #permission_classes = [IsAuthenticated, ]
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -49,39 +48,5 @@ class MainViewSet(PlaceViewSet):
         if request.accepted_renderer.format == 'html':
             return Response({
                 "places_geojson": places_geojson,
-                "registration_serializer": UserRegistrationSerializer
             })
         return Response(serializer.data)
-
-
-class UserRegistration(UserViewSet):
-    template_name = 'index.html'
-    renderer_classes = [
-        renderers.TemplateHTMLRenderer,
-
-    ]
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        if not serializer.is_valid():
-            return Response({'serializer': serializer})
-        serializer.save()
-        return HttpResponseRedirect(redirect_to='http://localhost:8000/')
-
-''' TO BE EDITED
-class LoginView(TemplateView):
-    template_name = "registration/login.html"
-
-    def dispatch(self, request, *args, **kwargs):
-        context = {}
-        if request.method == 'POST':
-            username = request.POST['username']
-            password = request.POST['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect("/")
-            else:
-                context['error'] = "Логин или пароль неправильные"
-        return render(request, self.template_name, context)
-'''
