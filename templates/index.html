@@ -75,7 +75,9 @@
       <div class="place-description" v-if="selectedPlace">
         <div class="container">
           {% verbatim sidebar %}
-          <div class="description-logo"></div>
+          <div class="description-logo">
+            <img v-bind:src="selectedPlace.logo">
+          </div>
           <h5 class="description-title" class="mb-3">{{ selectedPlace.title }}</h5>
           <p class="description-text" v-html="selectedPlace.description"></p>
           

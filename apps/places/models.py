@@ -52,6 +52,7 @@ class Place(models.Model):
         db_index=True
     )
     title = models.CharField(max_length=100)
+    logo = models.ImageField(upload_to='logos/', default='', blank=True)
     category = models.CharField(max_length=1, choices=CATEGORIES, default='O', blank=True, null=True)
     description = models.TextField(blank=True)
     address = models.CharField(max_length=200)
@@ -77,6 +78,12 @@ class Place(models.Model):
     likes = models.ManyToManyField(User, related_name="liked_places", blank=True)
     dislikes = models.ManyToManyField(User, related_name="disliked_places", blank=True)
     objects = PlaceQuerySet.as_manager()
+
+    def logo_url(self):
+        if self.logo and hasattr(self.logo, 'url'):
+            return self.logo.url
+        else:
+            return '/static/img/no_logo.jpg'
 
     def __str__(self):
         return f"{self.title}"
