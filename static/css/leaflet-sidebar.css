@@ -377,8 +377,12 @@
   height: 54px;
   border: none;
   border-radius: 10px;
+  border: 1px solid #ccc;
   padding: 5px 10px;
   margin: 1px;
+}
+.leaflet-popup-content button:hover {
+  background-color: #ddd;
 }
 .leaflet-container a.leaflet-popup-close-button {
   top: 3px;
