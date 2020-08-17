@@ -22,7 +22,7 @@ class PlaceQuerySet(models.QuerySet):
     def calculate_average_price(self):
         places = self.annotate(
             average_price_for_drink=models.Avg('drinks__price')
-        )
+        ).order_by('id')
         for place in places:
             price = place.average_price_for_drink
             place.average_price = int(price) if price else 0
