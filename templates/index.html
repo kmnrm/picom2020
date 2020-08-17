@@ -120,7 +120,8 @@
             </li>
             <li>
               <div class="icon-price"></div>
-              <p>¥{{ selectedPlace.average_price }}</p>
+              <p v-if="selectedPlace.average_price !== 0">¥{{ selectedPlace.average_price }}</p>
+              <p v-else>-</p>
             </li>
             <li>
               <div class="icon-phone"></div>
