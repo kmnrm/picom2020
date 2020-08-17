@@ -113,7 +113,10 @@
             </li>
             <li>
               <div class="icon-time"></div>
-              <p>{{ selectedPlace.opening_hours }} - {{ selectedPlace.closing_hours }}</p>
+              <p v-if="selectedPlace.opening_hours !== null && selectedPlace.closing_hours !== null">
+                {{ selectedPlace.opening_hours.slice(0, -3) }} - {{ selectedPlace.closing_hours.slice(0, -3) }}
+              </p>
+              <p v-else>-</p>
             </li>
             <li>
               <div class="icon-price"></div>
