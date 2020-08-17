@@ -91,16 +91,13 @@ var locations = L.geoJSON(places, {
 
       let color = geoJsonPoint.properties.color || 'red';
 
-      var pulsingIcon = L.icon.pulse({
-        iconSize: [8, 8],
-        color: color,
-        fillColor: color,
-        heartbeat: 2.5,
-      });
-
-      let marker = L.marker(latlng, {
-        icon: pulsingIcon,
-        riseOnHover: true,
+      let marker = L.circleMarker(latlng, {
+        color: '#FFF',
+        fillColor: '#000',
+        fillOpacity: 0.5,
+        radius: 6,
+        clickable: true,
+        riseOnHover: true
       });
 
       marker.bindTooltip(geoJsonPoint.properties.title);
