@@ -155,16 +155,14 @@
 .rate-icons.stars li {
   background: url("../img/Star.png") no-repeat;
 }
-
 .rate-icons.warnings li {
   background: url("../img/Police.png") no-repeat;
 }
-
 .rate-icons li.active {
   background-position: -35px 0;
 }
 
-.place-description hr {
+.place-description hr.hr1 {
   border: 1px solid #c4c4c4;
   margin-top: 1.5rem;
   margin-bottom: 2rem;
@@ -295,11 +293,6 @@
   text-decoration: underline;
 }
 
-
-::-webkit-scrollbar {
-width: 0px;
-}
-
 @media (max-width: 767px) {
   /* Сайдбар */
   .leaflet-sidebar {
@@ -381,7 +374,7 @@ width: 0px;
   display: inline-block;
   vertical-align: middle;
   width: calc(32% - 2px);
-  height: 50px;
+  height: 54px;
   border: none;
   border-radius: 10px;
   padding: 5px 10px;
@@ -390,4 +383,124 @@ width: 0px;
 .leaflet-popup-close-button {
   top: 3px;
   right: 7px;
+}
+
+hr.hr2 {
+  border: 1px solid #c4c4c4;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+#facts h2 {
+  margin-bottom: 30px;
+}
+
+#facts ul {
+  list-style: none;
+  padding: 0;
+
+}
+
+#facts ul li {
+  position: relative;
+  font-size: 18px;
+  line-height: 23px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+
+#facts ul li:last-child {
+  margin-bottom: 0;
+}
+
+#facts ul li::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #C4C4C4;
+}
+
+
+#same-places {
+  margin-bottom: 60px;
+}
+
+#same-places h2 {
+  margin-bottom: 30px;
+}
+
+#same-places ul {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#same-places .place-card {
+  flex: 0 0 auto;
+  /* display: inline-block; */
+  width: 200px;
+  padding: 25px;
+  margin: 0 10px;
+  background: #F7F7F7;
+  border-radius: 46px;
+}
+
+#same-places .place-card .place-image {
+  width: 100%;
+  height: 150px;
+  background: #DEDEDE;
+  border-radius: 46px;
+  margin-bottom: 10px;
+}
+
+#same-places .place-card .place-title {
+  font-weight: bold;
+  line-height: 40px;
+}
+
+#same-places .ratings {
+  display: block;
+}
+
+#same-places .rate-value {
+  position: relative;
+  top: -6px;
+  font-size: 18px;
+  line-height: 23px;
+  color: #C4C4C4;
+}
+
+#same-places .rate-icons {
+  display: inline-block;
+  list-style: none;
+  margin-left: 0;
+  padding: 0;
+}
+
+#same-places .rate-icons li {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  width: 19px;
+  height: 18px;
+}
+
+#same-places .rate-icons li:first-child {
+  margin-left: 5px;
+}
+
+#same-places .rate-icons.stars li {
+  background: url("../img/Star-19.png") no-repeat;
+}
+#same-places .rate-icons.warnings li {
+  background: url("../img/Police-19.png") no-repeat;
+}
+#same-places .rate-icons li.active {
+  background-position: -19px 0;
 }

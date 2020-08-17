@@ -105,7 +105,8 @@
               <p class="rating-category">police rating: <span id="description-police-rate-value">{{ selectedPlace.police_rating }}</span></p>
             </div>
           </div>
-          <hr>
+
+          <hr class="hr1">
 
           <ul class="description-contacts">
             <li><div class="icon-place"></div>
@@ -131,7 +132,6 @@
           {% endverbatim sidebar %}
         </div>
         
-
         <div id="place-photos" class="carousel slide" data-ride="carousel" data-interval="5000">
           <ol class="carousel-indicators">
             <template v-for="(img, index) in carouselImages" :key="img">
@@ -156,7 +156,6 @@
             </a>
           </template>
         </div>
-
 
         {% verbatim reviews %}
         <section id="reviews">
@@ -187,6 +186,55 @@
           </div>
         </section>
         {% endverbatim reviews %}
+
+        <div class="container"><hr class="hr2"></div>
+
+        <section id="facts">
+          <div class="container">
+            <h2>Interesting facts</h2>
+            <ul>
+              <li>The most popular bar in Izhevsk. Popular Dj’s and artists are here!</li>
+              <li>The most popular bar in Izhevsk. Popular Dj’s and artists are here!</li>
+              <li>The most popular bar in Izhevsk. Popular Dj’s and artists are here!</li>
+            </ul>
+          </div>
+        </section>
+
+        <div class="container"><hr class="hr2"></div>
+
+        <section id="same-places">
+          <div class="container"><h2>Same requests</h2></div>
+          <ul>
+            <li class="place-card">
+              <div class="place-image"></div>
+              <h5 class="place-title">Coyot</h5>
+              <div class="ratings">
+                <div class="description-rating">
+                  <span class="rate-value">4/5</span>
+                  <ul class="rate-icons stars">
+                      <li class="description-rating-stars active"></li>
+                      <li class="description-rating-stars"></li>
+                      <li class="description-rating-stars"></li>
+                      <li class="description-rating-stars"></li>
+                      <li class="description-rating-stars"></li>
+                  </ul>
+                </div>
+                <div class="description-police-rate">
+                  <span class="rate-value">1/5</span>
+                  <ul class="rate-icons warnings">
+                      <li class="description-rating-warnings active"></li>
+                      <li class="description-rating-warnings"></li>
+                      <li class="description-rating-warnings"></li>
+                      <li class="description-rating-warnings"></li>
+                      <li class="description-rating-warnings"></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+
+          </ul>
+        </section>
       </div>
 
     </div>

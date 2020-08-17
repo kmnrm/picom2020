@@ -13,6 +13,10 @@ html, body, #map {
   clear: both;
 }
 
+::-webkit-scrollbar {
+width: 10px;
+}
+
 .sidebar-content {
   padding: 40px 0;
   height: 100%;

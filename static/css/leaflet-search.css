@@ -1,14 +1,12 @@
  
 .leaflet-container .leaflet-control-search {
-	position:relative;
-	float:left;
+	float: right;
 	background:#fff;
 	color:#1978cf;
-	border: 2px solid rgba(0,0,0,0.2);
 	background-clip: padding-box;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
 	background-color: rgba(255, 255, 255, 0.8);
 	z-index:1000;	
 	margin-left: 10px;
@@ -16,7 +14,7 @@
 }
 .leaflet-control-search.search-exp {/*expanded*/
 	background: #fff;
-	border: 2px solid rgba(0,0,0,0.2);
+	box-shadow: 0 0 5px #777;
 	background-clip: padding-box;	
 }
 .leaflet-control-search .search-input {
@@ -24,12 +22,12 @@
 	float:left;
 	font-size: 15px;
 	background: #fff;
-	border:1px solid #666;
+	border:none;
 	border-radius:8px;
-	height:25px;
+	height:27px;
 	width: 250px;
 	padding:0 20px 0 5px;
-	margin:4px 0 4px 4px;
+	margin:4px;
 }
 .leaflet-control-search.search-load .search-input {
 	background: url('../img/loader.gif') no-repeat center right #fff;
@@ -43,9 +41,10 @@
 	height:22px;
 	position:absolute;
 	right:28px;
-	margin:6px 0;
-	background: url('../img/search-icon.png') no-repeat 0 -46px;
-	text-decoration:none;
+  margin: 6px 12px;
+  background: url(../img/search-icon-mobile.png) no-repeat -3px -64px;
+  background-size: 30px;
+	text-decoration: none;
 	filter: alpha(opacity=80);
 	opacity: 0.8;		
 }
@@ -66,15 +65,16 @@
 .leaflet-control-search .search-button {
 	display: block;
   float: left;
-  width: 32px;
-  height: 32px;
-  background: url(../img/search-icon.png) no-repeat 4px 4px #fff;
-  background-size: 23px;
-  border-radius: 5px;
+  width: 36px;
+  height: 35px;
+  background: url(../img/search-icon-mobile.png) no-repeat #fff;
+  background-size: 30px;
+  background-position: 2px 3px;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #777;
 }
 .leaflet-control-search .search-button:hover {
-	background: url('../img/search-icon.png') no-repeat 4px -24px #fafafa;
-  background-size: 23px;
+	background-position: 2px -27px;
 }
 .leaflet-control-search .search-tooltip {
 	position:absolute;
