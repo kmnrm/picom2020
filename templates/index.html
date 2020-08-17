@@ -32,6 +32,32 @@
 
 </head>
 <body>
+  <!-- <a href="">Войти</a> -->
+  <button id ="form-section-show" class="button" onclick="formShow()">Open form</button>
+  <section id="form-section" class="disabled">
+    <button id="form-section-hide" class="button" onclick="formHide()">
+      <img src="../static/img/close-window.png" alt="" >
+    </button>
+    <form action="{% url 'users-list' %}" id="registration-form" class="disabled" method="POST">
+      <h2>Sign up</h2>
+      <p>Already have an account? 
+        <a href="#" onclick="formChange()">Log in</a>
+      </p>
+      {% csrf_token %}
+      {% render_form registration_serializer template_pack='rest_framework/vertical' %}
+      <input type="submit" value="Sign Up">
+    </form>
+    <form action="{% url 'users-list' %}" id="autorization-form" method="POST">
+      <h2>Sign in</h2>
+      <p>Don't have an account yet? 
+        <a href="#" onclick="formChange()">Create one</a>
+      </p>
+      {% csrf_token %}
+      {% render_form registration_serializer template_pack='rest_framework/vertical' %}
+      <input type="submit" value="Sign in">
+    </form>
+  </section>
+
   <div id="sidebar">
     <div id="sidebar-app" v-bind:class="{'sidebar-content': 1, 'bg-white': selectedPlace, 'bg-secondary': !selectedPlace}">
 
