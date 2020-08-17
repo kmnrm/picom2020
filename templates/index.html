@@ -79,7 +79,7 @@
             <img v-bind:src="selectedPlace.logo">
           </div>
           <h5 class="description-title" class="mb-3">{{ selectedPlace.title }}</h5>
-          <p class="description-text" v-html="selectedPlace.description"></p>
+          <p class="description-text">{{ selectedPlace.description }}</p>
           
           <div class="ratings">
             <div class="description-rating">
@@ -131,10 +131,6 @@
               <p>{{ selectedPlace.phone_number }}</p>
             </li>
           </ul>
-
-          <!-- <p class="description-category">{{ selectedPlace.category }}</p> -->
-          <p class="description-address">{{ selectedPlace.address }}</p>
-          <p class="description-address-pinyin">({{ selectedPlace.pinyin_address }})</p>
           {% endverbatim sidebar %}
         </div>
         
