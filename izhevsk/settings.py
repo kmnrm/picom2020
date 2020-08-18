@@ -47,8 +47,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
-
 ROOT_URLCONF = 'izhevsk.urls'
 
 TEMPLATES = [
@@ -137,6 +135,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DATETIME_FORMAT': "%m.%d.%y at %H:%M",
     'PAGE_SIZE': 20
 }
 
