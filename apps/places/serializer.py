@@ -52,6 +52,7 @@ class PlaceSerializer(serializers.ModelSerializer):
     reviews = ReviewSerializer(many=True, read_only=True)
     logo = serializers.SerializerMethodField('get_logo_url')
     phone_number = serializers.SerializerMethodField()
+    similar_places = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Place
@@ -74,6 +75,7 @@ class PlaceSerializer(serializers.ModelSerializer):
             'images',
             'rating',
             'reviews',
+            'similar_places',
         )
 
     def create(self, validated_data):
@@ -130,6 +132,26 @@ class PlaceSerializer(serializers.ModelSerializer):
 
     def get_phone_number(self, place):
         return place.standardize_phone_number()
+
+    def get_similar_places(self, place):
+        similar_places = Place.objects.filter(category=place.category).exclude(id=place.id)
+        return [
+            RelatedPlaceSerializer(similar_place).data
+            for similar_place in similar_places
+        ]
+
+
+class RelatedPlaceSerializer(PlaceSerializer):
+    class Meta:
+        model = Place
+        fields = (
+            'id',
+            'title',
+            'rating',
+            'police_rating',
+            'category',
+            'logo',
+        )
 
 
 class DrinkSerializer(serializers.ModelSerializer):
