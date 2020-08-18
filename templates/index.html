@@ -32,11 +32,31 @@
 </head>
 <body>
   <div id="sidebar">
-    <div id="sidebar-app" v-bind:class="{'sidebar-content': 1, 'bg-white': selectedPlace, 'bg-secondary': !selectedPlace}">
-
-      <div v-if="promptVisible" class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
-        <img class="d-block select-place-prompt mb-4" src="{% static 'hand-pointer-regular.svg' %}" alt="Select place">
-        <h4>Выберите место на карте</h4>
+    <div id="sidebar-app">
+      <div v-if="promptVisible" class="main-page">
+        <div class="wrapper">
+          <h2>Where to go?</h2>
+          <form action="">
+            <input type="search" name="searchPlace" id="searchPlace" placeholder="Write a name...">
+          </form>
+          <ul class="places-list">
+            <li class="place">
+              <p class="place-name">Bar Svet</p>
+              <p class="place-rating">3.9<span></span></p>
+              <p class="place-police-rate">4.0<span></span></p>
+            </li>
+            <li class="place">
+              <p class="place-name">Bar Svet</p>
+              <p class="place-rating">3.9<span></span></p>
+              <p class="place-police-rate">4.0<span></span></p>
+            </li>
+            <li class="place">
+              <p class="place-name">Bar Svet</p>
+              <p class="place-rating">3.9<span></span></p>
+              <p class="place-police-rate">4.0<span></span></p>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="align-items-center justify-content-center d-flex" v-if="loading" style="height: 100%;">
@@ -81,7 +101,7 @@
             </div>
           </div>
 
-          <hr class="hr1">
+          <hr>
 
           <ul class="description-contacts">
             <li><div class="icon-place"></div>
@@ -152,7 +172,7 @@
           </div>
           <div class="reviews-controls clearfix">
             <button class="reviews-write">Write a review</button>
-            <div class="reviews-pages">
+            <div id="reviews-pages">
               <a href="#">1</a>
               <a href="#">2</a>
               <a href="#">3</a>
@@ -176,7 +196,7 @@
           </section>
         {% endverbatim events %}
 
-        <div class="wrapper"><hr class="hr2"></div>
+        <div class="wrapper"><hr></div>
         {% verbatim similar_places %}
           <section id="same-places">
             <div class="wrapper"><h2>Other {{selectedPlace.category}}s</h2></div>
