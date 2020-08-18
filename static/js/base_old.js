@@ -234,14 +234,19 @@ async function loadPlaceInfo(placeId, detailsUrl){
       address: data.address,
       pinyin_address: data.pinyin_address,
       average_price: data.average_price,
-      rating: data.rating,
+      rating: data.rating || 0,
+      rating_rounded: Math.round(data.rating),
       police_rating: data.police_rating,
+      police_rating_value: parseInt(data.police_rating.charAt(0)),
       events: data.events,
       reviews: data.reviews,
       opening_hours: data.opening_hours,
       closing_hours: data.closing_hours,
       logo: data.logo,
       phone_number: data.phone_number,
+
+      similar_place: data.similar_places[0],
+      similar_places: data.similar_places,
 
     };
   } finally {
