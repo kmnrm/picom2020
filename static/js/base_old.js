@@ -31,7 +31,6 @@ var lc = L.control.locate({
         popup: "Time to go somewhere, bro..."
     }
 }).addTo(map);
-lc.start();
 
 
 var sidebar = L.control.sidebar('sidebar', {
@@ -244,8 +243,6 @@ async function loadPlaceInfo(placeId, detailsUrl){
       closing_hours: data.closing_hours,
       logo: data.logo,
       phone_number: data.phone_number,
-
-      similar_place: data.similar_places[0],
       similar_places: data.similar_places.sort(function(){
         return .5 - Math.random()
       }).slice(0, 4),
