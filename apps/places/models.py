@@ -141,15 +141,17 @@ class Event(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField('Краткое описание', blank=True)
     image = models.ImageField(upload_to='events/', blank=True)
+    date = models.DateField(null=True)
+    time_from = models.TimeField(blank=True, null=True)
+    time_till = models.TimeField(blank=True, null=True)
     fee = models.DecimalField(
         decimal_places=2,
         max_digits=6,
         default=0,
     )
-    datetime = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.title} {self.datetime}"
+        return f"{self.title} {self.date} ({self.time_from} - {self.time_till})"
 
 
 class PlaceUserReview(models.Model):
