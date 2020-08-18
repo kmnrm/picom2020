@@ -246,7 +246,9 @@ async function loadPlaceInfo(placeId, detailsUrl){
       phone_number: data.phone_number,
 
       similar_place: data.similar_places[0],
-      similar_places: data.similar_places,
+      similar_places: data.similar_places.sort(function(){
+        return .5 - Math.random()
+      }).slice(0, 4),
 
     };
   } finally {
