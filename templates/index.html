@@ -189,7 +189,7 @@
               <h2>Events</h2>
               <ul>
                 <template v-for="event in selectedPlace.events">
-                  <li>{{ event.title }}. {{ event.description }} (Entrance: CNY{{ event.fee }})</li>
+                  <li>{{ event.date }} --- {{ event.title }} --- ({{ event.time_from }} - {{ event.time_till }})</li>
                 </template>
               </ul>
             </div>
@@ -201,30 +201,30 @@
           <section id="same-places">
             <div class="wrapper"><h2>Other {{selectedPlace.category}}s</h2></div>
             <ul>
-              <li class="place-card">
+              <li class="place-card" v-for="place in selectedPlace.similar_places">
                 <div class="place-image">
-                  <img v-bind:src="selectedPlace.similar_place.logo" v-bind:alt="selectedPlace.similar_place.title">
+                  <img v-bind:src="place.logo" v-bind:alt="place.title">
                 </div>
-                <h5 class="place-title">{{ selectedPlace.similar_place.title}}</h5>
+                <h5 class="place-title">{{ place.title}}</h5>
                 <div class="ratings">
                   <div class="description-rating">
-                    <span class="rate-value">{{ selectedPlace.similar_place.rating }}/5</span>
+                    <span class="rate-value">{{ place.rating }}/5</span>
                     <ul class="rate-icons stars">
-                      <template v-for="star in Math.round(selectedPlace.similar_place.rating)">
+                      <template v-for="star in Math.round(place.rating)">
                         <li class="description-rating-stars active"></li>
                       </template>
-                      <template v-for="inactiveStar in 5" v-if="inactiveStar > Math.round(selectedPlace.similar_place.rating)">
+                      <template v-for="inactiveStar in 5" v-if="inactiveStar > Math.round(place.rating)">
                         <li class="description-rating-stars"></li>
                       </template>
                     </ul>
                   </div>
                   <div class="description-police-rate">
-                    <span class="rate-value">{{ selectedPlace.similar_place.police_rating.charAt(0) }}/5</span>
+                    <span class="rate-value">{{ place.police_rating.charAt(0) }}/5</span>
                     <ul class="rate-icons warnings">
-                      <template v-for="siren in parseInt(selectedPlace.similar_place.police_rating.charAt(0))">
+                      <template v-for="siren in parseInt(place.police_rating.charAt(0))">
                         <li class="description-rating-warnings active"></li>
                       </template>
-                      <template v-for="inactiveSiren in 5" v-if="inactiveSiren > parseInt(selectedPlace.similar_place.police_rating.charAt(0))">
+                      <template v-for="inactiveSiren in 5" v-if="inactiveSiren > parseInt(place.police_rating.charAt(0))">
                         <li class="description-rating-warnings"></li>
                       </template>
                     </ul>

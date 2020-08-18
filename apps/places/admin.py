@@ -21,8 +21,8 @@ class EventInline(admin.StackedInline):
         ('Event Info', {
             'classes': ('collapse',),
             'fields': (
-                ('title', 'get_preview', 'fee', 'image',),
-                'datetime',
+                ('title', 'get_preview', 'fee', 'image', ),
+                ('date', 'time_from', 'time_till', ),
                 'description',
             )
         }),
