@@ -20,6 +20,7 @@ width: 10px;
 .sidebar-content {
   padding: 40px 0;
   height: 100%;
+  background-color: rgb(92, 92, 255);
 }
 
 .wrapper {

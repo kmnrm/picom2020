@@ -121,8 +121,8 @@
 	border-radius:.25em;
 }
 
-.leaflet-bar a,
-.leaflet-bar a:hover {
+.leaflet-top .leaflet-bar a,
+.leaflet-top .leaflet-bar a:hover {
 	width: 36px;
 	height: 30px;
 	line-height: 30px;

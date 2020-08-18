@@ -31,17 +31,34 @@ function descriptionPoliceRate() {
   }
 }
 
+
+function choosePage() { }
+
 function paginator() {
+  let createPageButton = function (num) {
+    let buttons = document.getElementById('reviews-pages');
+    let button = document.createElement('a');
+    button.className = 'page-number';
+    if (isFinite(num)) {
+      let text = document.createTextNode(num + 1);
+      button.appendChild(text);
+      button.href = '#';
+      button.setAttribute('onclick', 'choosePage(num + 1)');
+      buttons.appendChild(button);
+    }
+  }
+
   let elements = document.getElementsByClassName('review-card');
   let pages = [];
   for (let i = 0; i < elements.length / 3; i++) {
-    pages[i] = []
+    pages[i] = [];
+    createPageButton(i);
   }
   console.log(pages);
 
   let pageNumber = 0;
   for (let i = 0; i < elements.length; i++) {
-    if (i % 3 == 0) {
+    if (i % 3 == 0 && i != 0) {
       pageNumber += 1;
       pages[pageNumber] = [];
       pages[pageNumber].push(elements[i]);
@@ -49,7 +66,14 @@ function paginator() {
       pages[pageNumber].push(elements[i])
     }
   }
-  //   return pages;
+
+  for (let page of pages) {
+    for (let element of page) {
+      element.style.display = 'none';
+    }
+  }
+
+  createPageButton();
 }
 
-paginator();
+paginator()
