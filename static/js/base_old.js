@@ -18,11 +18,11 @@ var overlays = {
 
 L.control.layers(null, overlays).addTo(map);
 L.control.zoom({
-    position: 'topright'
+    position: 'bottomright'
 }).addTo(map);
 
 var lc = L.control.locate({
-    position: 'topright',
+    position: 'topleft',
     clickBehavior: {inView: 'setView'},
     setView: false,
     cacheLocation: false,
@@ -51,7 +51,7 @@ function createButton(label, container) {
 
 
 var control = L.Routing.control({
-
+  position: 'topleft',
   routeWhileDragging: false,
   draggableWaypoints: false,
   reverseWaypoints: true,
@@ -150,7 +150,7 @@ var locations = L.geoJSON(places, {
 var searchControl = new L.Control.Search({
   layer: locations,
   propertyName: 'title',
-  position: 'topright',
+  position: 'topleft',
   marker: false
 });
 

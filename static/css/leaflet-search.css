@@ -1,6 +1,6 @@
  
 .leaflet-container .leaflet-control-search {
-	float: right;
+	float: left;
 	background:#fff;
 	color:#1978cf;
 	background-clip: padding-box;
@@ -22,13 +22,20 @@
 	float:left;
 	font-size: 15px;
 	background: #fff;
-	border:none;
+	border:1px solid transparent;
 	border-radius:8px;
 	height:27px;
 	width: 250px;
 	padding:0 20px 0 5px;
 	margin:4px;
 }
+
+.leaflet-control-search .search-input:focus,
+.leaflet-control-search .search-input:hover {
+	outline: none;
+	border: 1px solid #999;
+}
+
 .leaflet-control-search.search-load .search-input {
 	background: url('../img/loader.gif') no-repeat center right #fff;
 }
@@ -121,9 +128,30 @@
 	border-radius:.25em;
 }
 
+
+.leaflet-bottom .leaflet-bar {
+	box-shadow: none;
+}
+
 .leaflet-top .leaflet-bar a,
 .leaflet-top .leaflet-bar a:hover {
 	width: 36px;
 	height: 30px;
 	line-height: 30px;
+}
+
+.leaflet-bottom .leaflet-bar a,
+.leaflet-bottom .leaflet-bar a:hover {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	width: 46px;
+	height: 46px;
+	border-radius: 23px;
+	font-size: 35px;
+	line-height: 46px;
+	margin-bottom: 10px;
+	color: #999;
+}
+.leaflet-bottom .leaflet-bar a:hover {
+	color: #666;
+	background-color: #eee;
 }
