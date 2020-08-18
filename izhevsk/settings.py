@@ -135,7 +135,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'DATETIME_FORMAT': "%m.%d.%y at %H:%M",
+    'DATE_FORMAT': "%m/%d",
     'PAGE_SIZE': 20
 }
 

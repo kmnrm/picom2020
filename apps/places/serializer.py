@@ -7,10 +7,25 @@ from apps.places.models import (Place,
 from collections import Counter
 
 
+def format_time(time):
+    time_hh_mm = str(time)[:-3]
+    return time_hh_mm[1:] if time_hh_mm.startswith('0') \
+        else time_hh_mm
+
+
 class EventSerializer(serializers.ModelSerializer):
+    time_from = serializers.SerializerMethodField()
+    time_till = serializers.SerializerMethodField()
+
     class Meta:
         model = Event
         fields = '__all__'
+
+    def get_time_from(self, event):
+        return format_time(event.time_from)
+
+    def get_time_till(self, event):
+        return format_time(event.time_till)
 
 
 class PlaceImageSerializer(serializers.ModelSerializer):
