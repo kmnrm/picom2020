@@ -1,11 +1,8 @@
-from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from rest_framework import renderers
 from rest_framework.response import Response
 
-from apps.users.serializer import UserRegistrationSerializer
-from apps.users.views import UserViewSet
 from apps.places.views import PlaceViewSet
 
 
