@@ -159,7 +159,14 @@
             <h2>Events</h2>
             <ul>
               <template v-for="event in selectedPlace.events">
-                <li>{{ event.date }} --- {{ event.title }} --- ({{ event.time_from }} - {{ event.time_till }})</li>
+                <div class="wrapper">
+                  <li>
+                    <p class="event-date">{{ event.date }}</p>
+                    <p class="event-name">{{ event.title }}</p>
+                    <p class="event-time">({{ event.time_from }} - {{ event.time_till }})</p>
+                  </li>
+                </div>
+               
               </template>
             </ul>
           </div>
@@ -214,9 +221,13 @@
 
         {% verbatim reviews %}
         <section id="reviews">
-          <h2 class="average-mark">Average rate
-            <span class="average-rating">{{ selectedPlace.rating }}/5</span>
-          </h2>
+          <div class="wrapper">
+            <div class="reviews-head">
+              <h2 class="reviews-title">Reviews</h2>
+              <p class="reviews-average-rating">{{ selectedPlace.rating }}/5 <span>Average mark</span></p>
+            </div>
+          </div>
+                  
           <div class="user-reviews">
             <template v-for="review in selectedPlace.reviews">
               <div class="review-card">
@@ -230,15 +241,18 @@
               </div>
             </template>            
           </div>
-          <div class="reviews-controls clearfix">
-            <button class="reviews-write">Write a review</button>
-            <div id="reviews-pages">
-              <a href="#">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">…</a>
+          <div class="wrapper">
+            <div class="reviews-controls clearfix">
+              <button class="reviews-write">Write a review</button>
+              <div id="reviews-pages">
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">…</a>
+              </div>
             </div>
           </div>
+          
         </section>
         {% endverbatim reviews %}
         

@@ -105,7 +105,7 @@
 
 .leaflet-routing-geocoders input {
   font-size: 15px;
-  width: 100%;
+  width: calc(100% - 50px);
   padding: 7px 25px 7px 7px;
   line-height: 20px;
   border: 2px solid transparent;
@@ -271,25 +271,23 @@
   display: none;
 }
 .leaflet-routing-geocoders {
-  position: relative;
   background-color: white;
   padding: 20px;
   border-radius: 20px;
 }
-.leaflet-routing-geocoder {
-  position: relative;
-  width: 90%;
-}
-.leaflet-routing-geocoder {
-  position: relative;
-  width: 90%;
-}
 .leaflet-routing-add-waypoint {
-  position: relative;
-  top: -32px;
+  display: none;
 }
-.leaflet-routing-reverse-waypoints {
-  position: relative;
-  top: -77px;
-  left: 27px;
+.leaflet-routing-geocoder {
+  align-items: baseline;
+  display: flex;
+}
+.leaflet-routing-geocoder > p {
+  font-size: 18px;
+  line-height: 23px;
+  flex-basis: 45px;
+  margin-right: 15px;
+}
+.leaflet-routing-geocoder > input {
+  flex-basis: calc(100% - 60px);
 }

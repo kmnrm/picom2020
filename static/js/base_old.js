@@ -57,7 +57,7 @@ var control = L.Routing.control({
   position: 'topleft',
   routeWhileDragging: false,
   draggableWaypoints: false,
-  reverseWaypoints: true,
+  reverseWaypoints: false,
   geocoder: L.Control.Geocoder.nominatim({
     reverseQueryParams: {
       zoom: 0

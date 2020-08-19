@@ -309,16 +309,19 @@ hr {
   margin: 40px 0;
 }
 
-#reviews h2,
-#reviews .user-reviews .review-card,
-#reviews .reviews-controls {
-  padding-left: 22px;
-  padding-right: 22px;
+.reviews-head {
+  display: flex;
 }
 
-#reviews .average-rating {
-  margin-left: 50px;
-  color: #868686;
+.reviews-head > * {
+  flex-basis: 50%;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.reviews-average-rating span {
+  font-size: 18px;
+  line-height: 22px;
 }
 
 .review-card {
@@ -463,14 +466,14 @@ hr {
 
 
 .leaflet-popup-content {
-  width: 300px;
+  width: 286px;
 }
 .leaflet-popup-content button {
-  font-size: 17px;
+  font-size: 15px;
   display: inline-block;
   vertical-align: middle;
-  width: calc(32% - 2px);
-  height: 54px;
+  width: 140px;
+  height: 52px;
   border: none;
   border-radius: 10px;
   border: 1px solid #ccc;
@@ -480,6 +483,11 @@ hr {
 .leaflet-popup-content button:hover {
   background-color: #ddd;
 }
+.leaflet-popup-content button:nth-child(1),
+.leaflet-popup-content button:nth-child(3) {
+  width: 70px;
+}
+
 .leaflet-container a.leaflet-popup-close-button {
   top: 3px;
   right: 5px;
@@ -501,31 +509,38 @@ hr {
 #events ul {
   list-style: none;
   padding: 0;
-
 }
 
-#events ul li {
-  position: relative;
+#events li {
+  display: flex;
   font-size: 18px;
   line-height: 23px;
-  margin-left: 40px;
+  margin-left: 20px;
   margin-bottom: 20px;
 }
 
-#events ul li:last-child {
+#events li:last-child {
   margin-bottom: 0;
 }
 
-#events ul li::before {
-  content: "";
-  position: absolute;
-  left: -40px;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  background-color: #C4C4C4;
+#events li .event-date {
+  flex-basis: 60px;
+  font-size: 18px;
+  line-height: 23px;
+  font-weight: bold;
 }
-
+#events li .event-name {
+  margin-left: 20px;
+  flex-basis: calc(100% - 180px);
+  font-size: 18px;
+  line-height: 23px;
+}
+#events li .event-time {
+  flex-basis: 120px;
+  font-size: 18px;
+  line-height: 23px;
+  font-weight: bold;
+}
 
 #same-places {
   margin-top: 60px;
