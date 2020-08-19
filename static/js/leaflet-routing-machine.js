@@ -18428,7 +18428,7 @@ module.exports = L.Routing = {
 
 			for (i = this._waypoints.length - 1; i >= 0; i--) {
 				geocoderElem = this._createGeocoder(i);
-				this._geocoderContainer.insertBefore(geocoderElem.getContainer(), this._geocoderContainer.firstChild);
+				this._geocoderContainer.appendChild(geocoderElem.getContainer());
 				elems.push(geocoderElem);
 			}
 
