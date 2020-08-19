@@ -108,9 +108,15 @@
   width: 100%;
   padding: 7px 25px 7px 7px;
   line-height: 20px;
-  border: 1px solid #ccc;
+  border: 2px solid transparent;
   border-radius: 18px;
   background-color: #ECECEC;
+}
+
+.leaflet-routing-geocoders input:hover,
+.leaflet-routing-geocoders input:focus {
+    outline: none;
+    border: 2px solid #ccc;
 }
 
 .leaflet-routing-geocoders button {

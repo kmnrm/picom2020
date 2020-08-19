@@ -108,17 +108,18 @@
               <p>{{ selectedPlace.address }}</p>
             </li>
             <li>
+              <div class="icon-price"></div>
+              <p v-if="selectedPlace.average_price !== 0">¥{{ selectedPlace.average_price }}</p>
+              <p v-else>-</p>
+            </li>
+            <li>
               <div class="icon-time"></div>
               <p v-if="selectedPlace.opening_hours !== null && selectedPlace.closing_hours !== null">
                 {{ selectedPlace.opening_hours.slice(0, -3) }} - {{ selectedPlace.closing_hours.slice(0, -3) }}
               </p>
               <p v-else>-</p>
             </li>
-            <li>
-              <div class="icon-price"></div>
-              <p v-if="selectedPlace.average_price !== 0">¥{{ selectedPlace.average_price }}</p>
-              <p v-else>-</p>
-            </li>
+            
             <li>
               <div class="icon-phone"></div>
               <p>{{ selectedPlace.phone_number }}</p>
@@ -152,6 +153,65 @@
           </template>
         </div>
 
+        {% verbatim events %}
+        <section id="events">
+          <div class="wrapper">
+            <h2>Events</h2>
+            <ul>
+              <template v-for="event in selectedPlace.events">
+                <li>{{ event.date }} --- {{ event.title }} --- ({{ event.time_from }} - {{ event.time_till }})</li>
+              </template>
+            </ul>
+          </div>
+        </section>
+        {% endverbatim events %}
+
+        <div class="wrapper"><hr></div>
+
+        {% verbatim similar_places %}
+        <section id="same-places">
+          <div class="wrapper">
+            <h2>Other {{selectedPlace.category}}s</h2>
+          </div>
+          <ul>
+            <li class="place-card" v-for="place in selectedPlace.similar_places">
+              <div class="place-image">
+                <img v-bind:src="place.logo" v-bind:alt="place.title">
+              </div>
+              <h5 class="place-title">{{ place.title}}</h5>
+              <div class="ratings">
+                <div class="description-rating">
+                  <span class="rate-value">{{ place.rating }}/5</span>
+                  <ul class="rate-icons stars">
+                    <template v-for="star in Math.round(place.rating)">
+                      <li class="description-rating-stars active"></li>
+                    </template>
+                    <template v-for="inactiveStar in 5" v-if="inactiveStar > Math.round(place.rating)">
+                      <li class="description-rating-stars"></li>
+                    </template>
+                  </ul>
+                </div>
+                <div class="description-police-rate">
+                  <span class="rate-value">{{ place.police_rating.charAt(0) }}/5</span>
+                  <ul class="rate-icons warnings">
+                    <template v-for="siren in parseInt(place.police_rating.charAt(0))">
+                      <li class="description-rating-warnings active"></li>
+                    </template>
+                    <template v-for="inactiveSiren in 5" v-if="inactiveSiren > parseInt(place.police_rating.charAt(0))">
+                      <li class="description-rating-warnings"></li>
+                    </template>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+        {% endverbatim similar_places %}
+
+        <div class="wrapper">
+          <hr>
+        </div>
+
         {% verbatim reviews %}
         <section id="reviews">
           <h2 class="average-mark">Average rate
@@ -181,59 +241,7 @@
           </div>
         </section>
         {% endverbatim reviews %}
-
-        <div class="wrapper"><hr class="hr2"></div>
-        {% verbatim events %}
-          <section id="facts">
-            <div class="wrapper">
-              <h2>Events</h2>
-              <ul>
-                <template v-for="event in selectedPlace.events">
-                  <li>{{ event.date }} --- {{ event.title }} --- ({{ event.time_from }} - {{ event.time_till }})</li>
-                </template>
-              </ul>
-            </div>
-          </section>
-        {% endverbatim events %}
-
-        <div class="wrapper"><hr></div>
-        {% verbatim similar_places %}
-          <section id="same-places">
-            <div class="wrapper"><h2>Other {{selectedPlace.category}}s</h2></div>
-            <ul>
-              <li class="place-card" v-for="place in selectedPlace.similar_places">
-                <div class="place-image">
-                  <img v-bind:src="place.logo" v-bind:alt="place.title">
-                </div>
-                <h5 class="place-title">{{ place.title}}</h5>
-                <div class="ratings">
-                  <div class="description-rating">
-                    <span class="rate-value">{{ place.rating }}/5</span>
-                    <ul class="rate-icons stars">
-                      <template v-for="star in Math.round(place.rating)">
-                        <li class="description-rating-stars active"></li>
-                      </template>
-                      <template v-for="inactiveStar in 5" v-if="inactiveStar > Math.round(place.rating)">
-                        <li class="description-rating-stars"></li>
-                      </template>
-                    </ul>
-                  </div>
-                  <div class="description-police-rate">
-                    <span class="rate-value">{{ place.police_rating.charAt(0) }}/5</span>
-                    <ul class="rate-icons warnings">
-                      <template v-for="siren in parseInt(place.police_rating.charAt(0))">
-                        <li class="description-rating-warnings active"></li>
-                      </template>
-                      <template v-for="inactiveSiren in 5" v-if="inactiveSiren > parseInt(place.police_rating.charAt(0))">
-                        <li class="description-rating-warnings"></li>
-                      </template>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </section>
-        {% endverbatim similar_places %}
+        
       </div>
 
     </div>

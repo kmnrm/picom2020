@@ -167,14 +167,14 @@
 }
 
 .description-title {
-  margin-left: 120px;
+  margin-left: 140px;
   margin-bottom: 25px;
   font-weight: bold;
   font-size: 36px;
   line-height: 36px;
 }
 .description-text {
-  margin-left: 120px;
+  margin-left: 140px;
   font-size: 18px;
   line-height: 1.2;
   
@@ -193,14 +193,15 @@
 
 .ratings {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
 .description-rating {
-  flex-basis: 55%;
+  flex: 1 0 250px;
 }
 .description-police-rate {
-  flex-basis: 45%;
+  flex: 1 0 250px;
 }
 
 .rating-category {
@@ -262,13 +263,14 @@ hr {
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
+  margin-top: 30px;
   margin-bottom: 50px;
 }
 
 .description-contacts li {
+  flex: 1 0 250px;
   display: flex;
   align-items: baseline;
-  flex-basis: 50%;
   margin-bottom: 18px;
   font-size: 18px;
   line-height: 23px;
@@ -304,7 +306,7 @@ hr {
 }
 
 #reviews {
-  padding: 40px 0;
+  margin: 40px 0;
 }
 
 #reviews h2,
@@ -380,6 +382,11 @@ hr {
 
 .reviews-controls #reviews-pages a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .ratings > * { flex-basis: 100%; }
+  .description-contacts > * { flex-basis: 100%; }
 }
 
 @media (max-width: 767px) {
@@ -482,17 +489,22 @@ hr {
 }
 
 
-#facts h2 {
+#events { 
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+#events h2 {
   margin-bottom: 30px;
 }
 
-#facts ul {
+#events ul {
   list-style: none;
   padding: 0;
 
 }
 
-#facts ul li {
+#events ul li {
   position: relative;
   font-size: 18px;
   line-height: 23px;
@@ -500,11 +512,11 @@ hr {
   margin-bottom: 20px;
 }
 
-#facts ul li:last-child {
+#events ul li:last-child {
   margin-bottom: 0;
 }
 
-#facts ul li::before {
+#events ul li::before {
   content: "";
   position: absolute;
   left: -40px;
@@ -514,6 +526,10 @@ hr {
   background-color: #C4C4C4;
 }
 
+
+#same-places {
+  margin-top: 60px;
+}
 
 #same-places h2 {
   margin-bottom: 30px;
@@ -531,8 +547,8 @@ hr {
 #same-places .place-card {
   flex: 0 0 auto;
   /* display: inline-block; */
-  width: 200px;
-  padding: 25px;
+  width: 247px;
+  padding: 29px;
   margin: 0 10px;
   background: #F7F7F7;
   border-radius: 46px;

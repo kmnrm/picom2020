@@ -16,20 +16,10 @@ var overlays = {
     "Light Theme": daytime
 };
 
+
 L.control.layers(null, overlays).addTo(map);
 L.control.zoom({
     position: 'bottomright'
-}).addTo(map);
-
-var lc = L.control.locate({
-    position: 'topleft',
-    clickBehavior: {inView: 'setView'},
-    setView: false,
-    cacheLocation: false,
-    strings: {
-        title: "Show me where I am, yo!",
-        popup: "Time to go somewhere, bro..."
-    }
 }).addTo(map);
 
 
@@ -61,6 +51,8 @@ function loadJSON(elementId){
 
 let places = loadJSON('places-geojson');
 
+
+/* ======--Routing Machine--======*/
 var control = L.Routing.control({
   position: 'topleft',
   routeWhileDragging: false,
@@ -90,12 +82,12 @@ var control = L.Routing.control({
     }
     return 'My location'
   }
-})
+}).addTo(map);
 
 map.on('click', function(){
   if(control){
     control.setWaypoints(null);
-    map.removeControl(control);
+    // map.removeControl(control);
   }
 })
 
@@ -137,19 +129,19 @@ var locations = L.geoJSON(places, {
           .openOn(map);
 
         L.DomEvent.on(startBtn, 'click', function() {
-            map.addControl(control);
+            // map.addControl(control);
             control.spliceWaypoints(0, 1, event.latlng);
             map.closePopup();
         });
 
         L.DomEvent.on(destBtn, 'click', function() {
-            map.addControl(control);
+            // map.addControl(control);
             control.spliceWaypoints(control.getWaypoints().length - 1, 1, event.latlng);
             map.closePopup();
         });
 
         L.DomEvent.on(fromMyLoc, 'click', function(){
-          map.addControl(control);
+          // map.addControl(control);
           lc.stop();
           lc.start();
           map.on('locationfound', function(e){
@@ -162,17 +154,19 @@ var locations = L.geoJSON(places, {
       });
       return marker;
     }
-}).addTo(map);
+});
+/* ================================*/
 
 
+/* ======--Search--======*/
 var searchControl = new L.Control.Search({
   layer: locations,
   propertyName: 'title',
   position: 'topleft',
   marker: false
-});
+}).addTo(map);
 
-searchControl.on('search:locationfound', function(e) {
+searchControl.on('search:locationfound', function (e) {
   sidebar.show();
   loadPlaceInfo(
     e.layer.feature.properties.placeId,
@@ -180,8 +174,20 @@ searchControl.on('search:locationfound', function(e) {
   );
   e.layer.openPopup();
 })
+/* ================================*/
 
-map.addControl(searchControl);
+/* ======--Location--======*/
+var lc = L.control.locate({
+  position: 'topleft',
+  clickBehavior: { inView: 'setView' },
+  setView: false,
+  cacheLocation: false,
+  strings: {
+    title: "Show me where I am, yo!",
+    popup: "Time to go somewhere, bro..."
+  }
+}).addTo(map);
+/* ================================*/
 
 
 var sidebarApp = new Vue({
