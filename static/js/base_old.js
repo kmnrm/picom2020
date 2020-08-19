@@ -231,6 +231,17 @@ map.on('click', function () {
   sidebarApp.loadingPlaceId = null;
 })
 
+
+var nullToZeros = function (arr) {
+  for (const obj of arr) {
+    if (obj.rating === null) {
+      obj.rating = 0;
+    }
+  }
+  return arr
+}
+
+
 async function loadPlaceInfo(placeId, detailsUrl){
   sidebarApp.selectedPlace = null;
   sidebarApp.loadingPlaceId = placeId;
@@ -267,9 +278,9 @@ async function loadPlaceInfo(placeId, detailsUrl){
       closing_hours: data.closing_hours,
       logo: data.logo,
       phone_number: data.phone_number,
-      similar_places: data.similar_places.sort(function(){
+      similar_places: nullToZeros(data.similar_places.sort(function(){
         return .5 - Math.random()
-      }).slice(0, 4),
+      }).slice(0, 4)),
 
     };
   } finally {
