@@ -49,27 +49,6 @@ function createButton(label, container) {
   return btn;
 }
 
-
-var control = L.Routing.control({
-  position: 'topleft',
-  routeWhileDragging: false,
-  draggableWaypoints: false,
-  reverseWaypoints: true,
-  geocoder: L.Control.Geocoder.nominatim(),
-  // createMarker: function() { return null; },
-  lineOptions : {
-    addWaypoints: false,
-  }
-})
-
-map.on('click', function(){
-  if(control){
-    control.setWaypoints(null);
-    map.removeControl(control);
-  }
-})
-
-
 function loadJSON(elementId){
   let element = document.getElementById(elementId);
 
@@ -81,6 +60,45 @@ function loadJSON(elementId){
 }
 
 let places = loadJSON('places-geojson');
+
+var control = L.Routing.control({
+  position: 'topleft',
+  routeWhileDragging: false,
+  draggableWaypoints: false,
+  reverseWaypoints: true,
+  geocoder: L.Control.Geocoder.nominatim({
+    reverseQueryParams: {
+      zoom: 0
+    }
+  }),
+  lineOptions : {
+    addWaypoints: false,
+  },
+
+  waypointNameFallback: function(latLng) {
+    var featureIndex,
+      waypointLngLat = [latLng.lng, latLng.lat],
+      locs = places.features;
+    for (featureIndex = 0; featureIndex <locs.length; featureIndex++) {
+      if (waypointLngLat.every(
+        function(value, index){
+          return value === locs[featureIndex].geometry.coordinates[index]
+        })
+      ){
+        return locs[featureIndex].properties.title;
+      }
+    }
+    return 'My location'
+  }
+})
+
+map.on('click', function(){
+  if(control){
+    control.setWaypoints(null);
+    map.removeControl(control);
+  }
+})
+
 
 var locations = L.geoJSON(places, {
     pointToLayer: function(geoJsonPoint, latlng) {
