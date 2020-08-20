@@ -498,7 +498,7 @@ hr {
 
 @media (min-width: 768px) {
   .leaflet-sidebar {
-    min-width: 450px;
+    min-width: 400px;
     width: 33vw;
   }
   .leaflet-sidebar.left.visible ~ .leaflet-left {
@@ -508,7 +508,11 @@ hr {
     right: 33vw;
   }
 }
-
+@media (max-width: 1200px) {
+  .leaflet-sidebar.left.visible ~ .leaflet-left {
+    left: 400px;
+  }
+}
 @media (max-width: 1599px) {
   .rate-value {
     font-size: 30px;

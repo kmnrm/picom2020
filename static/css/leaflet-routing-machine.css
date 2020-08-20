@@ -328,3 +328,9 @@
   outline: none;
   border: 2px solid #666;
 }
+
+@media (max-width: 1200px) {
+    .leaflet-routing-container, .leaflet-routing-error {
+    width: 350px;
+}
+}
