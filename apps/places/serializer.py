@@ -4,7 +4,6 @@ from apps.places.models import (Place,
                                 Event,
                                 PlaceUserReview,
                                 Drink)
-from collections import Counter
 
 
 def format_time(time):
@@ -61,7 +60,6 @@ class PlaceSerializer(serializers.ModelSerializer):
     events = EventSerializer(many=True, read_only=True)
     images = serializers.SerializerMethodField()
     police_rating = serializers.ChoiceField(choices=Place.POLICE_RATING)
-    rating = serializers.SerializerMethodField()
     average_price = serializers.SerializerMethodField()
     pinyin_address = serializers.SerializerMethodField()
     reviews = ReviewSerializer(many=True, read_only=True)
@@ -122,16 +120,6 @@ class PlaceSerializer(serializers.ModelSerializer):
             if key == ret['category']
         ][0]
         return ret
-
-    def get_rating(self, place):
-        ratings = PlaceUserReview.objects.filter(place=place, rating__gt=0)
-        ratings = Counter(ratings.values_list("rating", flat=True))
-        total_ratings = sum(ratings.values())
-        mean_rating = sum(
-            rate * count
-            for rate, count in ratings.items()
-        ) / total_ratings if total_ratings > 0 else None
-        return round(mean_rating, 1) if mean_rating else None
 
     def get_average_price(self, place):
         return place.average_price

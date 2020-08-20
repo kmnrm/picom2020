@@ -1,3 +1,5 @@
+from collections import Counter
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
@@ -29,6 +31,18 @@ class PlaceQuerySet(models.QuerySet):
             price = place.average_price_for_drink
             place.average_price = int(price) if price else 0
         return places
+
+    def calculate_rating(self):
+        for place in self:
+            ratings = PlaceUserReview.objects.filter(place=place, rating__gt=0)
+            ratings = Counter(ratings.values_list("rating", flat=True))
+            total_ratings = sum(ratings.values())
+            mean_rating = sum(
+                rate * count
+                for rate, count in ratings.items()
+            ) / total_ratings if total_ratings != 0 else 0
+            place.rating = round(mean_rating, 1)
+        return self
 
 
 class Place(models.Model):
@@ -78,8 +92,7 @@ class Place(models.Model):
         null=True,
         help_text="Longitude coordinate related to the address."
     )
-    likes = models.ManyToManyField(User, related_name="liked_places", blank=True)
-    dislikes = models.ManyToManyField(User, related_name="disliked_places", blank=True)
+    rating = models.FloatField(default=0.0)
     objects = PlaceQuerySet.as_manager()
 
     def logo_url(self):

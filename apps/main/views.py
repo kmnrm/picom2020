@@ -38,12 +38,20 @@ class MainViewSet(PlaceViewSet):
             "features": [],
         }
 
+        top_places = sorted(
+            serializer.data,
+            key=lambda k: k['rating'],
+            reverse=True
+        )[:3]
+
+        for place in top_places:
+            place['police_rating'] = int(place['police_rating'][0])
+
         for order_in_queryset, place in enumerate(queryset):
             feature = make_feature_for_geojson(place)
             places_geojson["features"].append(feature)
 
-        if request.accepted_renderer.format == 'html':
-            return Response({
-                "places_geojson": places_geojson,
-            })
-        return Response(serializer.data)
+        return Response({
+            "places_geojson": places_geojson,
+            "top_places": top_places,
+        })

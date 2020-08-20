@@ -40,21 +40,13 @@
             <input type="search" name="searchPlace" id="searchPlace" placeholder="Write a name...">
           </form>
           <ul class="places-list">
+            {% for place in top_places %}
             <li class="place">
-              <p class="place-name">Bar Svet</p>
-              <p class="place-rating">3.9<span></span></p>
-              <p class="place-police-rate">4.0<span></span></p>
+              <p class="place-name">{{ place.title }}</p>
+              <p class="place-rating">{{ place.rating }}<span></span></p>
+              <p class="place-police-rate">{{ place.police_rating }}<span></span></p>
             </li>
-            <li class="place">
-              <p class="place-name">Bar Svet</p>
-              <p class="place-rating">3.9<span></span></p>
-              <p class="place-police-rate">4.0<span></span></p>
-            </li>
-            <li class="place">
-              <p class="place-name">Bar Svet</p>
-              <p class="place-rating">3.9<span></span></p>
-              <p class="place-police-rate">4.0<span></span></p>
-            </li>
+            {% endfor %}
           </ul>
         </div>
       </div>
@@ -163,7 +155,7 @@
                   <li>
                     <p class="event-date">{{ event.date }}</p>
                     <p class="event-name">{{ event.title }}</p>
-                    <p class="event-time">({{ event.time_from }} - {{ event.time_till }})</p>
+                    <p class="event-time">{{ event.time_from }} - {{ event.time_till }}</p>
                   </li>
                 </div>
                
