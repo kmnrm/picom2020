@@ -85,12 +85,34 @@ var control = L.Routing.control({
 control.addTo(map);
 control.htmlAddress = document.getElementsByClassName("leaflet-routing-geocoders")[0];
 
-map.on('click', function(){
+control.hide();
+
+var clearWaypoints = function(){
   if(control){
     control.setWaypoints(null);
-    // map.removeControl(control);
-  }
-})
+    control.hide();
+  }};
+
+map.on('click', clearWaypoints);
+
+var itineraryShown = false,
+    controlContainer = control.getContainer(),
+    showGeocoderBtn = document.createElement("button");
+
+showGeocoderBtn.classList.add('123');
+showGeocoderBtn.textContent = 'VLAD HELP ME!!!';
+controlContainer.appendChild(showGeocoderBtn);
+
+showGeocoderBtn.onclick = function() {
+ if (itineraryShown) {
+   clearWaypoints();
+   control.hide();
+   itineraryShown = !itineraryShown;
+ } else {
+   control.show();
+   itineraryShown = !itineraryShown;
+}};
+
 
 
 var locations = L.geoJSON(places, {
@@ -133,19 +155,19 @@ var locations = L.geoJSON(places, {
           .openOn(map);
 
         L.DomEvent.on(startBtn, 'click', function() {
-            // map.addControl(control);
+            control.show();
             control.spliceWaypoints(0, 1, event.latlng);
             map.closePopup();
         });
 
         L.DomEvent.on(destBtn, 'click', function() {
-            // map.addControl(control);
+            control.show();
             control.spliceWaypoints(control.getWaypoints().length - 1, 1, event.latlng);
             map.closePopup();
         });
 
         L.DomEvent.on(fromMyLoc, 'click', function(){
-          // map.addControl(control);
+          control.show();
           lc.stop();
           lc.start();
           map.on('locationfound', function(e){
