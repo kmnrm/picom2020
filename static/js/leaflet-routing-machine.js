@@ -18363,16 +18363,18 @@ module.exports = L.Routing = {
 
 		createGeocoders: function() {
 			var container = L.DomUtil.create('div', 'leaflet-routing-geocoders ' + this.options.geocodersClassName),
-				gTitle,
+                gTitle,
+                gButton,
 				waypoints = this._waypoints,
 			    reverseBtn;
 
-			this._geocoderContainer = container;
-			this._geocoderElems = [];
-
+            this._geocoderContainer = container;
             gTitle = L.DomUtil.create('h4', '', container);
             gTitle.textContent = 'Where to go?';
-            
+            gButton = L.DomUtil.create('button','', container);
+            gButton.textContent = 'Set a route';
+			this._geocoderElems = [];
+
 			if (this.options.reverseWaypoints) {
 				reverseBtn = L.DomUtil.create('button', 'leaflet-routing-reverse-waypoints', container);
 				reverseBtn.setAttribute('type', 'button');
@@ -18428,7 +18430,7 @@ module.exports = L.Routing = {
 
 			for (i = this._waypoints.length - 1; i >= 0; i--) {
 				geocoderElem = this._createGeocoder(i);
-				this._geocoderContainer.appendChild(geocoderElem.getContainer());
+				this._geocoderContainer.insertBefore(geocoderElem.getContainer(), this._geocoderContainer.firstChild);
 				elems.push(geocoderElem);
 			}
 

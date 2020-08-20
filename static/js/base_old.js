@@ -32,9 +32,9 @@ map.addControl(sidebar);
 
 sidebar.show();
 
-function createButton(label, container) {
+function createButton(label, container, elemClass) {
   var btn = L.DomUtil.create('button', '', container);
-  btn.setAttribute('type', 'button');
+  btn.setAttribute('class', elemClass);
   btn.innerHTML = label;
   return btn;
 }
@@ -51,6 +51,33 @@ function loadJSON(elementId){
 
 let places = loadJSON('places-geojson');
 
+/* ======--Button--======*/
+function navigateButtonClk() {
+  // document
+  //   .getElementsByClassName("leaflet-routing-container")[0]
+  //   .classList.toggle("disabled");
+  // document
+  //   .getElementsByClassName("leaflet-control-search")[0]
+  //   .classList.toggle("disabled");
+  // document
+  //   .getElementsByClassName("leaflet-control-locate")[0]
+  //   .classList.toggle("disabled");
+  // document
+  //   .getElementsByClassName("navigate-button")[0]
+  //   .classList.toggle("disabled");
+  // navigateButton.options.buttonClicked = true;
+}
+
+var navigateButton = new L.Control.Button("", {
+  position: "topleft",
+  className: "navigate-button",
+  buttonClicked: false,
+});
+navigateButton.addTo(map);
+navigateButton.on('click', function () {
+  navigateButtonClk();
+});
+/* ================================*/
 
 /* ======--Routing Machine--======*/
 var control = L.Routing.control({
@@ -118,11 +145,11 @@ var locations = L.geoJSON(places, {
         sidebar.show();
         loadPlaceInfo(geoJsonPoint.properties.placeId, geoJsonPoint.properties.detailsUrl);
 
-        var container = L.DomUtil.create('div', 'leaflet-popup-content'),
+        var container = L.DomUtil.create('div'),
           placeTitle = L.DomUtil.create('p', '', container),
-          startBtn = createButton('Start', container),
-          destBtn = createButton('Go', container);
-          fromMyLoc = createButton('Get here now', container),
+          startBtn = createButton('Start', container, 'leaflet-route-start'),
+          fromMyLoc = createButton('Get here now', container, 'leaflet-route-get-here'),
+          destBtn = createButton('Go', container, 'leaflet-route-go');
           
           placeTitle.textContent = geoJsonPoint.properties.title;
 

@@ -465,28 +465,47 @@ hr {
 }
 
 
-.leaflet-popup-content {
-  width: 286px;
+.leaflet-popup-content { 
+  width: 300px;
+  /* margin: 0; */
+}
+
+.leaflet-popup-content > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.leaflet-popup-content  p {
+  flex-basis: 100%;
+  order: 0;
+  font-size: 18px;
+  line-height: 23px;
 }
 .leaflet-popup-content button {
   font-size: 15px;
-  display: inline-block;
   vertical-align: middle;
-  width: 140px;
   height: 52px;
   border: none;
   border-radius: 10px;
   border: 1px solid #ccc;
-  padding: 5px 10px;
   margin: 1px;
 }
 .leaflet-popup-content button:hover {
   background-color: #ddd;
 }
-.leaflet-popup-content button:nth-child(1),
-.leaflet-popup-content button:nth-child(3) {
-  width: 70px;
+.leaflet-popup-content .leaflet-route-start {
+  flex-basis: 25%;
+  order: 1;
 }
+.leaflet-popup-content .leaflet-route-get-here {
+  flex-basis: calc(50% - 6px);
+  order: 2;
+}
+.leaflet-popup-content .leaflet-route-go{
+  flex-basis: 25%;
+  order: 3;
+}
+
 
 .leaflet-container a.leaflet-popup-close-button {
   top: 3px;

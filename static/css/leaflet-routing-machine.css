@@ -271,16 +271,33 @@
   display: none;
 }
 .leaflet-routing-geocoders {
+  display: flex;
+  flex-direction: column;
+  /* flex-direction: column-reverse; */
   background-color: white;
-  padding: 20px;
+  padding: 0;
   border-radius: 20px;
+}
+.leaflet-routing-geocoders h4 {
+  order: 0;
+  margin: 26px 28px;
 }
 .leaflet-routing-add-waypoint {
   display: none;
 }
+.leaflet-routing-remove-waypoint {
+  position: relative;
+  top: -3px;
+  left: -8px;
+}
 .leaflet-routing-geocoder {
+  order: 1;
   align-items: baseline;
   display: flex;
+  margin: -3px 28px;
+}
+.leaflet-routing-geocoder:nth-child(2){
+  margin-bottom: 15px;
 }
 .leaflet-routing-geocoder > p {
   font-size: 18px;
@@ -290,4 +307,24 @@
 }
 .leaflet-routing-geocoder > input {
   flex-basis: calc(100% - 60px);
+}
+.leaflet-routing-geocoders button {
+  order: 2;
+  height: 44px;
+  margin: 0;
+  font-size: 20px;
+  line-height: 44px;
+  background-color: #9A9A9A;
+  color: white;
+  border: 2px solid transparent;
+  border-radius: none;
+}
+.leaflet-routing-geocoders button:hover {
+  border: 2px solid #666;
+  background-color: #888;
+  opacity: 0.8;
+}
+.leaflet-routing-geocoders button:focus {
+  outline: none;
+  border: 2px solid #666;
 }

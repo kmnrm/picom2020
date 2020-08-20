@@ -104,3 +104,25 @@ width: 0px;
 .carousel-inner {
   /* height: 400px; */
 }
+
+.leaflet-top > .navigate-button {
+  width: 100px;
+  height: 100px;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+  background: #fff url('../img/route.png') no-repeat center;
+  background-size: 80%;
+}
+.leaflet-top > .navigate-button { 
+  display: none;
+}
+.leaflet-top > .navigate-button:focus {
+  outline: none;
+}
+
+/* .leaflet-routing-container,
+.leaflet-control-search,
+.leaflet-control-locate {
+  display: none; */
+}
