@@ -113,6 +113,9 @@ class Place(models.Model):
     def __str__(self):
         return f"{self.title}"
 
+    class Meta:
+        ordering = ['title']
+
 
 @receiver(pre_save, sender=Place)
 def get_pinyin_address(sender, instance, **kwargs):
