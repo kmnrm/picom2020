@@ -118,10 +118,13 @@ var locations = L.geoJSON(places, {
         sidebar.show();
         loadPlaceInfo(geoJsonPoint.properties.placeId, geoJsonPoint.properties.detailsUrl);
 
-        var container = L.DomUtil.create('div'),
+        var container = L.DomUtil.create('div', 'leaflet-popup-content'),
+          placeTitle = L.DomUtil.create('p', '', container),
           startBtn = createButton('Start', container),
-          fromMyLoc = createButton('Get here now', container),
           destBtn = createButton('Go', container);
+          fromMyLoc = createButton('Get here now', container),
+          
+          placeTitle.textContent = geoJsonPoint.properties.title;
 
         L.popup()
           .setContent(container)
