@@ -10,7 +10,7 @@
   z-index: 2000;
 }
 .leaflet-sidebar.left {
-  left: -700px;
+  left: -670px;
   transition: left 0.5s, width 0.5s;
   padding-right: 0;
 }
@@ -82,7 +82,11 @@
   margin-bottom: 1.5rem;
 }
 
-#searchPlace {
+.main-page form {
+  position: relative;
+}
+
+.main-page form input {
   width: 100%;
   padding: 11px 15px;
   border: 2px solid transparent;
@@ -93,10 +97,28 @@
   margin-bottom: 3rem;
 }
 
-#searchPlace:hover,
-#searchPlace:focus {
+.main-page form input:hover,
+.main-page form input:focus {
   outline: none;
   border: 2px solid #999;
+}
+
+.main-page form a {
+  padding: 7px 15px 7px 7px;
+  border: 2px solid transparent;
+  border-radius: 5px 20px 20px 5px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.main-page form a:hover {
+  border: 2px solid #999;
+}
+
+.main-page form img {
+  width: 27px;
+  height: 29px;
+  background: url("../img/Search.svg") no-repeat;
 }
 
 .places-list {
@@ -104,58 +126,104 @@
 }
 
 .places-list .place {
-  justify-content: space-between;
-  display: flex;
+  list-style: none;
   margin-bottom: 22px;
-  padding: 15px 15px;
+  padding: 20px;
   border-radius: 20px;
   background: #ECECEC;
 }
 
-.laces-list .place:last-child {
-  margin: 0;
-}
-
-.places-list .place > * {
-  width: 100%;
-  margin: 0;
-  flex-grow: 0;
-  font-size: 20px;
-  line-height: 20px;
+.places-list .place:last-child {
+  margin-bottom: 0;
 }
 
 .places-list .place-name {
-  flex-basis: calc(100% - 150px);
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: bold;
 }
-.places-list .place-rating {
-  position: relative;
-  flex-basis: 30px;
-  margin-right: 30px;
+
+.places-list .place-ratings { 
+  display: flex;
 }
-.places-list .place-rating:after {
+
+.place-ratings .rating {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.place-ratings .rating:after {
   content: "";
   position: absolute; 
   left: 35px;
   width: 20px;
   height: 20px;
+}
+
+.place-ratings .rating .value {
+  position: relative;
+  width: 80px;    
+  font-size: 25px;
+  line-height: 25px;
+  margin-bottom: 0;
+}
+.places-list .rating .value:after {
+  content: "";
+  position: absolute; 
+  width: 20px;
+  height: 20px;
+  margin-bottom: 0;
+}
+.places-list .rating.star .value:after {
+  left: 45px;
+  top: 3px;
   background: url("../img/Star-19.png") no-repeat;
   background-position: -19px 0px;
 }
-
-.places-list .place-police-rate {
-  position: relative;
-  flex-basis: 30px;
-  margin-right: 30px;
-}
-.places-list .place-police-rate:after {
-  content: "";
-  position: absolute; 
-  left: 35px;
-  width: 20px;
-  height: 20px;
+.places-list .rating.warning .value:after {
+  left: 25px;
+  top: 3px;
   background: url("../img/Police-19.png") no-repeat;
   background-position: -19px 0px;
 }
+
+.place-ratings .rating .label {
+  flex-basis: 100%;
+  font-size: 14px;
+  line-height: 17px;
+  color: #676767;
+}
+
+.place-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+.place-info .category {
+  flex: 1;
+} 
+.place-info .category img {
+  width: 30px;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.place-info .category p {
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 0;
+}
+
+@media (max-width: 450px) {
+  .place-info .category {
+    height: 50px;
+    flex-basis: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .place-info .category img { margin-right: 15px; }
+  .main-page form input { margin-bottom: 1.5rem; }
+}
+
 /* ======================================== */
 .description-logo {
   position: absolute;
@@ -431,13 +499,13 @@ hr {
 @media (min-width: 768px) {
   .leaflet-sidebar {
     min-width: 450px;
-    width: 36vw;
+    width: 33vw;
   }
   .leaflet-sidebar.left.visible ~ .leaflet-left {
-    left: 36vw;
+    left: 33vw;
   }
   .leaflet-sidebar.right.visible ~ .leaflet-right {
-    right: 36vw;
+    right: 33vw;
   }
 }
 

@@ -51,34 +51,6 @@ function loadJSON(elementId){
 
 let places = loadJSON('places-geojson');
 
-/* ======--Button--======*/
-function navigateButtonClk() {
-  // document
-  //   .getElementsByClassName("leaflet-routing-container")[0]
-  //   .classList.toggle("disabled");
-  // document
-  //   .getElementsByClassName("leaflet-control-search")[0]
-  //   .classList.toggle("disabled");
-  // document
-  //   .getElementsByClassName("leaflet-control-locate")[0]
-  //   .classList.toggle("disabled");
-  // document
-  //   .getElementsByClassName("navigate-button")[0]
-  //   .classList.toggle("disabled");
-  // navigateButton.options.buttonClicked = true;
-}
-
-var navigateButton = new L.Control.Button("", {
-  position: "topleft",
-  className: "navigate-button",
-  buttonClicked: false,
-});
-navigateButton.addTo(map);
-navigateButton.on('click', function () {
-  navigateButtonClk();
-});
-/* ================================*/
-
 /* ======--Routing Machine--======*/
 var control = L.Routing.control({
   position: 'topleft',
@@ -109,7 +81,9 @@ var control = L.Routing.control({
     }
     return 'My location'
   }
-}).addTo(map);
+});
+control.addTo(map);
+control.htmlAddress = document.getElementsByClassName("leaflet-routing-geocoders")[0];
 
 map.on('click', function(){
   if(control){
@@ -194,7 +168,9 @@ var searchControl = new L.Control.Search({
   propertyName: 'title',
   position: 'topleft',
   marker: false
-}).addTo(map);
+});
+searchControl.addTo(map);
+searchControl.htmlAddress = document.getElementsByClassName("leaflet-control-search")[0];
 
 searchControl.on('search:locationfound', function (e) {
   sidebar.show();
@@ -216,9 +192,31 @@ var lc = L.control.locate({
     title: "Show me where I am, yo!",
     popup: "Time to go somewhere, bro..."
   }
-}).addTo(map);
+});
+lc.addTo(map);
+lc.htmlAddress = document.getElementsByClassName("leaflet-control-locate")[0];
 /* ================================*/
 
+var controlsHtml = [control.htmlAddress, searchControl.htmlAddress, lc.htmlAddress];
+controlsHtml.forEach(item => { item.classList.add('disabled') });
+
+/* ======--Button--======*/
+var navigateButton = new L.Control.Button("", {
+  position: "topleft",
+  className: "navigate-button",
+});
+navigateButton.addTo(map);
+navigateButton.htmlAddress = document.getElementsByClassName('navigate-button')[0];
+
+navigateButton.on('click', function() {
+  controlsHtml.forEach(item => {
+    item.classList.toggle('disabled');
+    navigateButton.htmlAddress.classList.toggle('disabled');
+    }
+  );
+  // return controlsHtml;
+});
+/* ================================*/
 
 var sidebarApp = new Vue({
   el: '#sidebar-app',
@@ -259,8 +257,14 @@ var sidebarApp = new Vue({
 map.on('click', function () {
   sidebarApp.selectedPlace = null;
   sidebarApp.loadingPlaceId = null;
+  // if (navigateButton.htmlAddress.classList.contains('disabled')) {
+  //   [navigateButton, ...controlsHtml].forEach(item => {
+  //     console.log(item);
+  //     item.classList.toggle('disabled')
+  //     }
+  //   );
+  // }
 })
-
 
 var nullToZeros = function (arr) {
   for (const obj of arr) {

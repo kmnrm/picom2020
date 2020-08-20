@@ -115,14 +115,8 @@ width: 0px;
   background-size: 80%;
 }
 .leaflet-top > .navigate-button { 
-  display: none;
+  /* display: none; */
 }
 .leaflet-top > .navigate-button:focus {
   outline: none;
-}
-
-/* .leaflet-routing-container,
-.leaflet-control-search,
-.leaflet-control-locate {
-  display: none; */
 }

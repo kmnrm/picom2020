@@ -38,13 +38,36 @@
           <h2>Where to go?</h2>
           <form action="">
             <input type="search" name="searchPlace" id="searchPlace" placeholder="Write a name...">
+            <a href=""><img src="../static/img/Search.svg" alt=""></a>
           </form>
           <ul class="places-list">
             {% for place in top_places %}
             <li class="place">
               <p class="place-name">{{ place.title }}</p>
-              <p class="place-rating">{{ place.rating }}<span></span></p>
-              <p class="place-police-rate">{{ place.police_rating }}<span></span></p>
+              <div class=place-ratings>
+                <div class="rating star">
+                  <p class="value">{{ place.rating }}</p>
+                  <p class="label">Nice</p>
+                </div>
+                <div class="rating warning">
+                  <p class="value">{{ place.police_rating }}</p>
+                  <p class="label">Bad</p>
+                </div>
+              </div>
+              <div class="place-info">
+                <div class="category time">
+                  <img src="../static/img/time.svg" alt="">
+                  <p>time</p>
+                </div>
+                <div class="category phone">
+                  <img src="../static/img/phone.svg" alt="">
+                  <p>phone</p>
+                </div>
+                <div class="category location">
+                  <img src="../static/img/marker.svg" alt="">
+                  <p>location</p>
+                </div>
+              </div>
             </li>
             {% endfor %}
           </ul>
