@@ -93,7 +93,7 @@ var clearWaypoints = function(){
     control.hide();
   }};
 
-map.on('click', clearWaypoints);
+
 
 var itineraryShown = false,
     controlContainer = control.getContainer(),
@@ -105,22 +105,20 @@ showGeocoderBtn.classList.add('route-button');
 //  "width: 100px;height: 100px;border-radius: 50%;background: #fff url('static/img/route.png') no-repeat center;background-size: 80%;");
 showGeocoderBtn.setAttribute(
   "style",
-  "border-radius: 50%;background-color:white;")
+  "border-radius: 50%;background-color:white;");
 
 showGeocoderBtn.innerHTML = '<img src="static/img/route.png" />'
 controlContainer.appendChild(showGeocoderBtn);
 
 showGeocoderBtn.onclick = function() {
- if (itineraryShown) {
-   clearWaypoints();
-   control.hide();
-   itineraryShown = !itineraryShown;
- } else {
    control.show();
-   itineraryShown = !itineraryShown;
-}};
+   showGeocoderBtn.style.visibility = "hidden";
+};
 
-
+map.on('click', function() {
+  clearWaypoints();
+  showGeocoderBtn.style.visibility = "visible";
+});
 
 var locations = L.geoJSON(places, {
     pointToLayer: function(geoJsonPoint, latlng) {
