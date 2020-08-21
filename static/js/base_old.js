@@ -116,13 +116,13 @@ var locations = L.geoJSON(places, {
           startBtn = createButton('Start', container, 'leaflet-route-start'),
           fromMyLoc = createButton('Get here now', container, 'leaflet-route-get-here'),
           destBtn = createButton('Go', container, 'leaflet-route-go');
-          
           placeTitle.textContent = geoJsonPoint.properties.title;
 
         L.popup()
           .setContent(container)
           .setLatLng(event.latlng)
           .openOn(map);
+
 
         L.DomEvent.on(startBtn, 'click', function() {
             control.show();
@@ -288,6 +288,25 @@ var nullToZeros = function (arr) {
   return arr
 }
 
+
+var loadClickedPlace = function(place){
+
+   var container = L.DomUtil.create('div'),
+       placeTitle = L.DomUtil.create('p', '', container);
+
+   placeTitle.textContent = place.title;
+   placeLatLng = L.latLng(
+     place.coordinates.latitude,
+     place.coordinates.longitude
+   )
+   L.popup()
+     .setContent(container)
+     .setLatLng(placeLatLng)
+     .openOn(map);
+
+   loadPlaceInfo(place.id, place.detailsUrl);
+
+};
 
 async function loadPlaceInfo(placeId, detailsUrl){
   sidebarApp.selectedPlace = null;

@@ -64,15 +64,11 @@ class MainViewSet(PlaceViewSet):
             serializer.data,
             key=lambda k: k['rating'],
             reverse=True
-        )[:3]
+        )[:4]
 
         top_places = [to_dict(place) for place in top_places]
 
         for place in top_places:
-            place["detailsUrl"] = reverse(
-                'places-detail',
-                args=[place["id"]]
-            )
             place["police_rating"] = place["police_rating"][0]
             place["police_rating_status"] = place["police_rating"][4:]
             place["opening_hours"] = format_time(place["opening_hours"])

@@ -66,6 +66,7 @@ class PlaceSerializer(serializers.ModelSerializer):
     logo = serializers.SerializerMethodField('get_logo_url')
     phone_number = serializers.SerializerMethodField()
     similar_places = serializers.SerializerMethodField(read_only=True)
+    detailsUrl = serializers.HyperlinkedIdentityField(view_name="places-detail", lookup_field='pk')
 
     class Meta:
         model = Place
@@ -89,6 +90,7 @@ class PlaceSerializer(serializers.ModelSerializer):
             'rating',
             'reviews',
             'similar_places',
+            'detailsUrl',
         )
 
     def create(self, validated_data):
@@ -145,7 +147,7 @@ class PlaceSerializer(serializers.ModelSerializer):
 
 
 class RelatedPlaceSerializer(PlaceSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name="places-detail", lookup_field='pk')
+    detailsUrl = serializers.HyperlinkedIdentityField(view_name="places-detail", lookup_field='pk')
 
     class Meta:
         model = Place
@@ -156,7 +158,8 @@ class RelatedPlaceSerializer(PlaceSerializer):
             'police_rating',
             'category',
             'logo',
-            'url',
+            'coordinates',
+            'detailsUrl',
         )
 
 
