@@ -42,30 +42,30 @@
           </form>
           <ul class="places-list">
             {% for place in top_places %}
-            <li class="place">
+            <li class="place" onclick="loadPlaceInfo({{ place.id }}, '{{ place.detailsUrl }}')">
               <p class="place-name">{{ place.title }}</p>
               <div class=place-ratings>
                 <div class="rating star">
                   <p class="value">{{ place.rating }}</p>
-                  <p class="label">Nice</p>
+                  <p class="label">{{ place.rating_status }}</p>
                 </div>
                 <div class="rating warning">
                   <p class="value">{{ place.police_rating }}</p>
-                  <p class="label">Bad</p>
+                  <p class="label">{{ place.police_rating_status }}</p>
                 </div>
               </div>
               <div class="place-info">
                 <div class="category time">
                   <img src="../static/img/time.svg" alt="">
-                  <p>time</p>
+                  <p>{{ place.opening_hours }}-{{ place.closing_hours }}</p>
                 </div>
                 <div class="category phone">
                   <img src="../static/img/phone.svg" alt="">
-                  <p>phone</p>
+                  <p>{{ place.phone_number }}</p>
                 </div>
                 <div class="category location">
                   <img src="../static/img/marker.svg" alt="">
-                  <p>location</p>
+                  <p>{{ place.address }}</p>
                 </div>
               </div>
             </li>
@@ -197,32 +197,34 @@
           </div>
           <ul>
             <li class="place-card" v-for="place in selectedPlace.similar_places">
-              <div class="place-image">
-                <img v-bind:src="place.logo" v-bind:alt="place.title">
-              </div>
-              <h5 class="place-title">{{ place.title}}</h5>
-              <div class="ratings">
-                <div class="description-rating">
-                  <span class="rate-value">{{ place.rating }}/5</span>
-                  <ul class="rate-icons stars">
-                    <template v-for="star in Math.round(place.rating)">
-                      <li class="description-rating-stars active"></li>
-                    </template>
-                    <template v-for="inactiveStar in 5" v-if="inactiveStar > Math.round(place.rating)">
-                      <li class="description-rating-stars"></li>
-                    </template>
-                  </ul>
+              <div v-on:click="loadPlaceInfo(place.id, place.url)">
+                <div class="place-image">
+                  <img v-bind:src="place.logo" v-bind:alt="place.title">
                 </div>
-                <div class="description-police-rate">
-                  <span class="rate-value">{{ place.police_rating.charAt(0) }}/5</span>
-                  <ul class="rate-icons warnings">
-                    <template v-for="siren in parseInt(place.police_rating.charAt(0))">
-                      <li class="description-rating-warnings active"></li>
-                    </template>
-                    <template v-for="inactiveSiren in 5" v-if="inactiveSiren > parseInt(place.police_rating.charAt(0))">
-                      <li class="description-rating-warnings"></li>
-                    </template>
-                  </ul>
+                <h5 class="place-title">{{ place.title }}</h5>
+                <div class="ratings">
+                  <div class="description-rating">
+                    <span class="rate-value">{{ place.rating }}/5</span>
+                    <ul class="rate-icons stars">
+                      <template v-for="star in Math.round(place.rating)">
+                        <li class="description-rating-stars active"></li>
+                      </template>
+                      <template v-for="inactiveStar in 5" v-if="inactiveStar > Math.round(place.rating)">
+                        <li class="description-rating-stars"></li>
+                      </template>
+                    </ul>
+                  </div>
+                  <div class="description-police-rate">
+                    <span class="rate-value">{{ place.police_rating.charAt(0) }}/5</span>
+                    <ul class="rate-icons warnings">
+                      <template v-for="siren in parseInt(place.police_rating.charAt(0))">
+                        <li class="description-rating-warnings active"></li>
+                      </template>
+                      <template v-for="inactiveSiren in 5" v-if="inactiveSiren > parseInt(place.police_rating.charAt(0))">
+                        <li class="description-rating-warnings"></li>
+                      </template>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </li>

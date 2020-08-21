@@ -139,12 +139,14 @@ class PlaceSerializer(serializers.ModelSerializer):
     def get_similar_places(self, place):
         similar_places = Place.objects.filter(category=place.category).exclude(id=place.id)
         return [
-            RelatedPlaceSerializer(similar_place).data
+            RelatedPlaceSerializer(similar_place, context=self.context).data
             for similar_place in similar_places
         ]
 
 
 class RelatedPlaceSerializer(PlaceSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name="places-detail", lookup_field='pk')
+
     class Meta:
         model = Place
         fields = (
@@ -154,6 +156,7 @@ class RelatedPlaceSerializer(PlaceSerializer):
             'police_rating',
             'category',
             'logo',
+            'url',
         )
 
 
