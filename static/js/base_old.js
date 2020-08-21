@@ -99,8 +99,15 @@ var itineraryShown = false,
     controlContainer = control.getContainer(),
     showGeocoderBtn = document.createElement("button");
 
-showGeocoderBtn.classList.add('123');
-showGeocoderBtn.textContent = 'VLAD HELP ME!!!';
+showGeocoderBtn.classList.add('route-button');
+//showGeocoderBtn.setAttribute(
+//  "style",
+//  "width: 100px;height: 100px;border-radius: 50%;background: #fff url('static/img/route.png') no-repeat center;background-size: 80%;");
+showGeocoderBtn.setAttribute(
+  "style",
+  "border-radius: 50%;background-color:white;")
+
+showGeocoderBtn.innerHTML = '<img src="static/img/route.png" />'
 controlContainer.appendChild(showGeocoderBtn);
 
 showGeocoderBtn.onclick = function() {
