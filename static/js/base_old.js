@@ -83,42 +83,7 @@ var control = L.Routing.control({
   }
 });
 control.addTo(map);
-control.htmlAddress = document.getElementsByClassName("leaflet-routing-geocoders")[0];
-
 control.hide();
-
-var clearWaypoints = function(){
-  if(control){
-    control.setWaypoints(null);
-    control.hide();
-  }};
-
-
-
-var itineraryShown = false,
-    controlContainer = control.getContainer(),
-    showGeocoderBtn = document.createElement("button");
-
-showGeocoderBtn.classList.add('route-button');
-//showGeocoderBtn.setAttribute(
-//  "style",
-//  "width: 100px;height: 100px;border-radius: 50%;background: #fff url('static/img/route.png') no-repeat center;background-size: 80%;");
-showGeocoderBtn.setAttribute(
-  "style",
-  "border-radius: 50%;background-color:white;");
-
-showGeocoderBtn.innerHTML = '<img src="static/img/route.png" />'
-controlContainer.appendChild(showGeocoderBtn);
-
-showGeocoderBtn.onclick = function() {
-   control.show();
-   showGeocoderBtn.style.visibility = "hidden";
-};
-
-map.on('click', function() {
-  clearWaypoints();
-  showGeocoderBtn.style.visibility = "visible";
-});
 
 var locations = L.geoJSON(places, {
     pointToLayer: function(geoJsonPoint, latlng) {
@@ -161,18 +126,25 @@ var locations = L.geoJSON(places, {
 
         L.DomEvent.on(startBtn, 'click', function() {
             control.show();
+            map.addControl(searchControl);
+            showGeocoderBtn.style.display = "none";
             control.spliceWaypoints(0, 1, event.latlng);
             map.closePopup();
         });
 
         L.DomEvent.on(destBtn, 'click', function() {
             control.show();
+            map.addControl(searchControl);
+            showGeocoderBtn.style.display = "none";
             control.spliceWaypoints(control.getWaypoints().length - 1, 1, event.latlng);
             map.closePopup();
         });
 
         L.DomEvent.on(fromMyLoc, 'click', function(){
           control.show();
+          map.addControl(lc);
+          map.addControl(searchControl);
+          showGeocoderBtn.style.display = "none";
           lc.stop();
           lc.start();
           map.on('locationfound', function(e){
@@ -186,6 +158,7 @@ var locations = L.geoJSON(places, {
       return marker;
     }
 });
+map.addLayer(locations);
 /* ================================*/
 
 
@@ -196,8 +169,6 @@ var searchControl = new L.Control.Search({
   position: 'topleft',
   marker: false
 });
-searchControl.addTo(map);
-searchControl.htmlAddress = document.getElementsByClassName("leaflet-control-search")[0];
 
 searchControl.on('search:locationfound', function (e) {
   sidebar.show();
@@ -220,30 +191,41 @@ var lc = L.control.locate({
     popup: "Time to go somewhere, bro..."
   }
 });
-lc.addTo(map);
-lc.htmlAddress = document.getElementsByClassName("leaflet-control-locate")[0];
-/* ================================*/
 
-var controlsHtml = [control.htmlAddress, searchControl.htmlAddress, lc.htmlAddress];
-controlsHtml.forEach(item => { item.classList.add('disabled') });
 
-/* ======--Button--======*/
-var navigateButton = new L.Control.Button("", {
-  position: "topleft",
-  className: "navigate-button",
-});
-navigateButton.addTo(map);
-navigateButton.htmlAddress = document.getElementsByClassName('navigate-button')[0];
+var clearWaypoints = function(){
+  if(control){
+    control.setWaypoints(null);
+    control.hide();
+  }};
 
-navigateButton.on('click', function() {
-  controlsHtml.forEach(item => {
-    item.classList.toggle('disabled');
-    navigateButton.htmlAddress.classList.toggle('disabled');
-    }
-  );
-  // return controlsHtml;
-});
-/* ================================*/
+
+var controlContainer = control.getContainer(),
+  showGeocoderBtn = document.createElement("button");
+
+var setGeocoderBtn = function() {
+
+  showGeocoderBtn.classList.add('leaflet-geocoders-toggler');
+  controlContainer.appendChild(showGeocoderBtn);
+  showGeocoderBtnHTML = document.getElementsByClassName('leaflet-geocoders-toggler')[0];
+  showGeocoderBtn.style.display = "block";
+  showGeocoderBtnHTML.innerHTML = `
+    <svg width="83" height="39" viewBox="0 0 83 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 26.9487V21.5046C2 14.5985 7.59851 9 14.5046 9V9C21.4107 9 27.0093 14.5985 27.0093 21.5046V23.9815C27.0093 31.1714 32.8378 37 40.0278 37V37C47.2177 37 53.0463 31.1714 53.0463 23.9815V23C53.0463 15.268 59.3143 9 67.0463 9H76" stroke="black" stroke-width="4"/>
+    <path d="M68 2L79 10L68 18" stroke="black" stroke-width="4"/>
+    </svg>
+  `;
+};
+
+setGeocoderBtn();
+
+showGeocoderBtn.onclick = function () {
+    control.show();
+    lc.addTo(map);
+    searchControl.addTo(map);
+    controlContainer.removeChild(showGeocoderBtn);
+};
+
 
 var sidebarApp = new Vue({
   el: '#sidebar-app',
@@ -281,16 +263,20 @@ var sidebarApp = new Vue({
   },
 });
 
+
 map.on('click', function () {
   sidebarApp.selectedPlace = null;
   sidebarApp.loadingPlaceId = null;
-  // if (navigateButton.htmlAddress.classList.contains('disabled')) {
-  //   [navigateButton, ...controlsHtml].forEach(item => {
-  //     console.log(item);
-  //     item.classList.toggle('disabled')
-  //     }
-  //   );
-  // }
+
+  if (lc._map){
+    map.removeControl(lc);
+  }
+  if (searchControl._map){
+    map.removeControl(searchControl);
+  }
+
+  clearWaypoints();
+  setGeocoderBtn();
 })
 
 var nullToZeros = function (arr) {
