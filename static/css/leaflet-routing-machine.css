@@ -328,6 +328,19 @@
   outline: none;
   border: 2px solid #666;
 }
+.leaflet-geocoders-toggler {
+  width: 100px;
+  height: 100px;
+  border: none;
+  border-radius: 50px;
+  background-color: #fff;
+  border: 2px solid transparent;
+}
+.leaflet-geocoders-toggler:hover,
+.leaflet-geocoders-toggler:focus {
+  outline: none;
+  border: 2px solid #666;
+}
 
 @media (max-width: 1200px) {
     .leaflet-routing-container, .leaflet-routing-error {
