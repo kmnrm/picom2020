@@ -11,3 +11,4 @@ python-dotenv~=0.14.0
 django-phonenumber-field~=4.0.0
 djangorestframework-simplejwt~=4.4.0
 Pillow~=7.2.0
+drf-yasg==1.17.1

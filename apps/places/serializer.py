@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from drf_yasg import openapi
 from apps.places.models import (Place,
                                 PlaceImage,
                                 Event,
@@ -10,6 +11,23 @@ def format_time(time):
     time_hh_mm = str(time)[:-3]
     return time_hh_mm[1:] if time_hh_mm.startswith('0') \
         else time_hh_mm
+
+
+class CoordinatesField(serializers.SerializerMethodField):
+    class Meta:
+        swagger_schema_fields = {
+            "type": openapi.TYPE_OBJECT,
+            "properties": {
+                "longitude": openapi.Schema(
+                    title="Address longitude coordinate. Set automatically via Baidu API.",
+                    type=openapi.TYPE_NUMBER,
+                ),
+                "latitude": openapi.Schema(
+                    title="Address latitude coordinate. Set automatically via Baidu API.",
+                    type=openapi.TYPE_NUMBER,
+                ),
+            }
+         }
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -56,7 +74,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 class PlaceSerializer(serializers.ModelSerializer):
     uploaded_by = serializers.PrimaryKeyRelatedField(read_only=True)
-    coordinates = serializers.SerializerMethodField()
+    coordinates = CoordinatesField()
     events = EventSerializer(many=True, read_only=True)
     images = serializers.SerializerMethodField()
     police_rating = serializers.ChoiceField(choices=Place.POLICE_RATING)

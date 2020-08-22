@@ -45,11 +45,13 @@ def get_rating_status(rating):
 
 
 class MainViewSet(PlaceViewSet):
+    swagger_schema = None
     renderer_classes = [
         renderers.TemplateHTMLRenderer
     ]
     template_name = 'index.html'
     pagination_class = None
+    filter_backends = []
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())

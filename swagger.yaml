@@ -1,0 +1,837 @@
+swagger: '2.0'
+info:
+  title: Zhengzhou places API
+  description: Web-application backend of nearby bars, clubs and pubs. Places may
+    hold events, have a bar card and be reviewed by users.
+  termsOfService: https://www.google.com/policies/terms/
+  contact:
+    email: we_never_respond@justdrink.me
+  license:
+    name: BSD License
+  version: v1
+host: localhost:8000
+schemes:
+  - http
+basePath: /api
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Basic:
+    type: basic
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+  - Basic: []
+  - Bearer: []
+paths:
+  /drinks/:
+    get:
+      operationId: drinks_list
+      description: ''
+      parameters:
+        - name: place
+          in: query
+          description: ''
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: A page number within the paginated result set.
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+              - count
+              - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Drink'
+      tags:
+        - drinks
+    post:
+      operationId: drinks_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Drink'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Drink'
+      tags:
+        - drinks
+    parameters: []
+  /drinks/{id}/:
+    get:
+      operationId: drinks_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Drink'
+      tags:
+        - drinks
+    put:
+      operationId: drinks_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Drink'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Drink'
+      tags:
+        - drinks
+    patch:
+      operationId: drinks_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Drink'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Drink'
+      tags:
+        - drinks
+    delete:
+      operationId: drinks_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - drinks
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this drink.
+        required: true
+        type: integer
+  /events/:
+    get:
+      operationId: events_list
+      description: ''
+      parameters:
+        - name: place
+          in: query
+          description: ''
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: A page number within the paginated result set.
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+              - count
+              - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Event'
+      tags:
+        - events
+    post:
+      operationId: events_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Event'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Event'
+      tags:
+        - events
+    parameters: []
+  /events/{id}/:
+    get:
+      operationId: events_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Event'
+      tags:
+        - events
+    put:
+      operationId: events_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Event'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Event'
+      tags:
+        - events
+    patch:
+      operationId: events_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Event'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Event'
+      tags:
+        - events
+    delete:
+      operationId: events_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - events
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this event.
+        required: true
+        type: integer
+  /places/:
+    get:
+      operationId: places_list
+      description: ''
+      parameters:
+        - name: uploaded_by
+          in: query
+          description: ''
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: A page number within the paginated result set.
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+              - count
+              - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Place'
+      tags:
+        - places
+    post:
+      operationId: places_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Place'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Place'
+      tags:
+        - places
+    parameters: []
+  /places/{id}/:
+    get:
+      operationId: places_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Place'
+      tags:
+        - places
+    put:
+      operationId: places_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Place'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Place'
+      tags:
+        - places
+    patch:
+      operationId: places_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Place'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Place'
+      tags:
+        - places
+    delete:
+      operationId: places_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - places
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this place.
+        required: true
+        type: integer
+  /reviews/:
+    get:
+      operationId: reviews_list
+      description: ''
+      parameters:
+        - name: place
+          in: query
+          description: ''
+          required: false
+          type: string
+        - name: rating
+          in: query
+          description: ''
+          required: false
+          type: string
+        - name: author
+          in: query
+          description: ''
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: A page number within the paginated result set.
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+              - count
+              - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Review'
+      tags:
+        - reviews
+    post:
+      operationId: reviews_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Review'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Review'
+      tags:
+        - reviews
+    parameters: []
+  /reviews/{id}/:
+    get:
+      operationId: reviews_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Review'
+      tags:
+        - reviews
+    put:
+      operationId: reviews_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Review'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Review'
+      tags:
+        - reviews
+    patch:
+      operationId: reviews_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Review'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Review'
+      tags:
+        - reviews
+    delete:
+      operationId: reviews_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - reviews
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this place user review.
+        required: true
+        type: integer
+  /token/:
+    post:
+      operationId: token_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/TokenObtainPair'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/TokenObtainPair'
+      tags:
+        - token
+    parameters: []
+  /token/refresh/:
+    post:
+      operationId: token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/TokenRefresh'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/TokenRefresh'
+      tags:
+        - token
+    parameters: []
+  /users/:
+    post:
+      operationId: users_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/UserRegistration'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/UserRegistration'
+      tags:
+        - users
+    parameters: []
+definitions:
+  Drink:
+    required:
+      - title
+      - place
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      title:
+        title: Title
+        description: The drink title, as it is in a place bar card.
+        type: string
+        maxLength: 100
+        minLength: 1
+      price:
+        title: Price
+        description: Price in CNY from CNY0 to CNY9999.99
+        type: string
+        format: decimal
+      place:
+        title: Place
+        type: integer
+  Event:
+    required:
+      - title
+      - place
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      time_from:
+        title: Time from
+        type: string
+        readOnly: true
+      time_till:
+        title: Time till
+        type: string
+        readOnly: true
+      title:
+        title: Title
+        type: string
+        maxLength: 100
+        minLength: 1
+      description:
+        title: Description
+        description: Event description.
+        type: string
+      image:
+        title: Image
+        type: string
+        readOnly: true
+        format: uri
+      date:
+        title: Date
+        type: string
+        format: date
+        x-nullable: true
+      fee:
+        title: Fee
+        description: Entrance fee.
+        type: string
+        format: decimal
+      place:
+        title: Place
+        type: integer
+  Review:
+    required:
+      - text
+      - place
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      author:
+        title: Author
+        type: integer
+        readOnly: true
+      username:
+        title: Username
+        type: string
+        readOnly: true
+      rating:
+        title: Rating
+        description: |-
+          Rate from 1 (Poor) to 5 (Excellent) set by a user (review author).
+          Takes 0 (not rated), if the author has not rated the place.
+        type: integer
+        enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+      text:
+        title: Text
+        description: Review content.
+        type: string
+        minLength: 1
+      published_at:
+        title: Published at
+        description: Set automatically as the current time by the time of a POST request.
+        type: string
+        format: date-time
+        readOnly: true
+      place:
+        title: Place
+        type: integer
+  Place:
+    required:
+      - title
+      - address
+      - police_rating
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      uploaded_by:
+        title: Uploaded by
+        type: integer
+        readOnly: true
+      title:
+        title: Title
+        description: Place title.
+        type: string
+        maxLength: 100
+        minLength: 1
+      logo:
+        title: Logo
+        type: string
+        readOnly: true
+      category:
+        title: Category
+        description: 'Place category. May be one of five: Pub, Club, Eatery, Bar,
+          or Others (by default).'
+        type: string
+        enum:
+          - P
+          - C
+          - E
+          - B
+          - O
+      address:
+        title: Address
+        type: string
+        maxLength: 200
+        minLength: 1
+      pinyin_address:
+        title: Pinyin address
+        type: string
+        readOnly: true
+      phone_number:
+        title: Phone number
+        type: string
+        readOnly: true
+      description:
+        title: Description
+        type: string
+      average_price:
+        title: Average price
+        type: string
+        readOnly: true
+      police_rating:
+        title: Police rating
+        type: string
+        enum:
+          - PS1
+          - PS2
+          - PS3
+          - PS4
+          - PS5
+      opening_hours:
+        title: Opening hours
+        type: string
+        x-nullable: true
+      closing_hours:
+        title: Closing hours
+        type: string
+        x-nullable: true
+      coordinates:
+        title: Coordinates
+        type: object
+        readOnly: true
+        properties:
+          longitude:
+            title: Address longitude coordinate. Set automatically via Baidu API.
+            type: number
+          latitude:
+            title: Address latitude coordinate. Set automatically via Baidu API.
+            type: number
+      events:
+        type: array
+        items:
+          $ref: '#/definitions/Event'
+        readOnly: true
+      images:
+        title: Images
+        type: string
+        readOnly: true
+      rating:
+        title: Rating
+        description: Automatically calculated as mean of users rates given to a place.
+        type: number
+      reviews:
+        type: array
+        items:
+          $ref: '#/definitions/Review'
+        readOnly: true
+      similar_places:
+        title: Similar places
+        type: string
+        readOnly: true
+      detailsUrl:
+        title: Detailsurl
+        type: string
+        format: uri
+        readOnly: true
+  TokenObtainPair:
+    required:
+      - username
+      - password
+    type: object
+    properties:
+      username:
+        title: Username
+        type: string
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        minLength: 1
+  TokenRefresh:
+    required:
+      - refresh
+    type: object
+    properties:
+      refresh:
+        title: Refresh
+        type: string
+        minLength: 1
+  UserRegistration:
+    required:
+      - username
+      - password
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+          only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        minLength: 1
+      group:
+        title: Group
+        type: string
+        readOnly: true

@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'adminsortable2',
     'django_filters',
     'phonenumber_field',
+    'drf_yasg',
     'apps.places',
     'apps.users',
 ]
@@ -144,3 +145,19 @@ if DEBUG:
 
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_REGION = 'CN'
+
+
+SWAGGER_SETTINGS = {
+   'SECURITY_DEFINITIONS': {
+      'Basic': {
+            'type': 'basic'
+      },
+      'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+   },
+    'USE_SESSION_AUTH': False,
+}
+
