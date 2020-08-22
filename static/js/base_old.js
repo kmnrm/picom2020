@@ -54,6 +54,7 @@ let places = loadJSON('places-geojson');
 /* ======--Routing Machine--======*/
 var control = L.Routing.control({
   position: 'topleft',
+  autoRoute: false,
   routeWhileDragging: false,
   draggableWaypoints: false,
   reverseWaypoints: false,
@@ -84,6 +85,18 @@ var control = L.Routing.control({
 });
 control.addTo(map);
 control.hide();
+
+/* ======--Set A Route Button--======*/
+var setRouteBtn = control.getPlan()._geocoderContainer.lastElementChild;
+
+setRouteBtn.addEventListener('click', function() {
+  control.getWaypoints().every(function(wp, wpIndex) {
+    if(wp.latLng) {
+      control.route()
+    }
+  })
+});
+/* ========================*/
 
 var locations = L.geoJSON(places, {
     pointToLayer: function(geoJsonPoint, latlng) {
@@ -167,7 +180,8 @@ var searchControl = new L.Control.Search({
   layer: locations,
   propertyName: 'title',
   position: 'topleft',
-  marker: false
+  marker: false,
+  autoResize: false,
 });
 
 searchControl.on('search:locationfound', function (e) {
@@ -289,24 +303,7 @@ var nullToZeros = function (arr) {
 }
 
 
-var loadClickedPlace = function(place){
 
-   var container = L.DomUtil.create('div'),
-       placeTitle = L.DomUtil.create('p', '', container);
-
-   placeTitle.textContent = place.title;
-   placeLatLng = L.latLng(
-     place.coordinates.latitude,
-     place.coordinates.longitude
-   )
-   L.popup()
-     .setContent(container)
-     .setLatLng(placeLatLng)
-     .openOn(map);
-
-   loadPlaceInfo(place.id, place.detailsUrl);
-
-};
 
 async function loadPlaceInfo(placeId, detailsUrl){
   sidebarApp.selectedPlace = null;
@@ -355,3 +352,23 @@ async function loadPlaceInfo(placeId, detailsUrl){
     }
   }
 }
+
+
+function loadClickedPlace(place){
+
+   var container = L.DomUtil.create('div'),
+       placeTitle = L.DomUtil.create('p', '', container);
+
+   placeTitle.textContent = place.title;
+   placeLatLng = L.latLng(
+     place.coordinates.latitude,
+     place.coordinates.longitude
+   )
+   L.popup()
+     .setContent(container)
+     .setLatLng(placeLatLng)
+     .openOn(map);
+
+   loadPlaceInfo(place.id, place.detailsUrl);
+
+};

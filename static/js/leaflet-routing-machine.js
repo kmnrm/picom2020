@@ -18371,7 +18371,8 @@ module.exports = L.Routing = {
             this._geocoderContainer = container;
             gTitle = L.DomUtil.create('h4', '', container);
             gTitle.textContent = 'Where to go?';
-            gButton = L.DomUtil.create('button','', container);
+            gButton = L.DomUtil.create('button', '', container);
+            gButton.setAttribute('type', 'buttton');
             gButton.textContent = 'Set a route';
 			this._geocoderElems = [];
 
