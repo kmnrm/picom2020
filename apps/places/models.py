@@ -1,4 +1,3 @@
-from collections import Counter
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
@@ -22,6 +21,11 @@ def fetch_address_coordinates(address):
     return location.longitude, location.latitude
 
 
+class Round(models.Func):
+    function = 'ROUND'
+    template='%(function)s(%(expressions)s, 1)'
+
+
 class PlaceQuerySet(models.QuerySet):
     def calculate_average_price(self):
         places = self.annotate(
@@ -33,16 +37,18 @@ class PlaceQuerySet(models.QuerySet):
         return places
 
     def calculate_rating(self):
-        for place in self:
-            ratings = PlaceUserReview.objects.filter(place=place, rating__gt=0)
-            ratings = Counter(ratings.values_list("rating", flat=True))
-            total_ratings = sum(ratings.values())
-            mean_rating = sum(
-                rate * count
-                for rate, count in ratings.items()
-            ) / total_ratings if total_ratings != 0 else 0
-            place.rating = round(mean_rating, 1)
-        return self
+        places = self.annotate(
+            avg_rating=Round(
+                models.Avg(
+                    'reviews__rating',
+                    filter=models.Q(reviews__rating__gt=0)
+                )
+            )
+        )
+        for place in places:
+            rating = place.avg_rating
+            place.rating = rating if rating else 0.0
+        return places
 
 
 class Place(models.Model):

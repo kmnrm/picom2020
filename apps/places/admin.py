@@ -39,7 +39,7 @@ class PlaceAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Main Info', {
             'fields': (
-                'uploaded_by',
+                'uploaded_by', 'rating',
                 ('title', 'category', 'address', 'pinyin_address', 'phone_number'),
                 ('logo', 'description'),
                 ('opening_hours', 'closing_hours'),
@@ -51,7 +51,7 @@ class PlaceAdmin(admin.ModelAdmin):
             'fields': ('average_price', ('latitude', 'longitude',),)
         }),
     )
-    readonly_fields = ('average_price', 'pinyin_address')
+    readonly_fields = ('average_price', 'pinyin_address', 'rating', 'latitude', 'longitude', )
     radio_fields = {"police_rating": admin.VERTICAL}
     inlines = [
         PlaceImageInline,

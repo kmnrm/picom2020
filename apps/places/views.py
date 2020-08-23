@@ -40,7 +40,13 @@ class PlaceViewSet(ModelViewSet):
         return obj
 
     def get_queryset(self):
-        return Place.objects.calculate_average_price().calculate_rating()
+        return Place.objects.prefetch_related(
+            'images',
+            'events',
+            'reviews',
+            'reviews__author'
+        ).calculate_average_price().\
+            calculate_rating()
 
 
 class EventViewSet(ModelViewSet):
