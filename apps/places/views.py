@@ -15,9 +15,9 @@ class OwnerPlaceFilter(DjangoFilterBackend):
     def filter_queryset(self, request, queryset, view):
         if 'uploaded_by' in request.query_params:
             uploaded_by = request.query_params['uploaded_by']
-            return queryset.filter(uploaded_by=uploaded_by)\
-                .calculate_average_price()\
-                .calculate_rating()
+            return queryset.filter(
+                uploaded_by=uploaded_by
+            ).calculate_auto_fill_fields()
         return queryset
 
     class Meta:
@@ -36,7 +36,7 @@ class PlaceViewSet(ModelViewSet):
         place_id = super(PlaceViewSet, self).get_object().id
         obj = Place.objects.filter(
             id=place_id
-        ).calculate_average_price().calculate_rating()[0]
+        ).prefetch_related('reviews__author').calculate_auto_fill_fields()[0]
         return obj
 
     def get_queryset(self):
@@ -45,8 +45,7 @@ class PlaceViewSet(ModelViewSet):
             'events',
             'reviews',
             'reviews__author'
-        ).calculate_average_price().\
-            calculate_rating()
+        ).calculate_auto_fill_fields()
 
 
 class EventViewSet(ModelViewSet):

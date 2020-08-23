@@ -27,16 +27,7 @@ class Round(models.Func):
 
 
 class PlaceQuerySet(models.QuerySet):
-    def calculate_average_price(self):
-        places = self.annotate(
-            average_price_for_drink=models.Avg('drinks__price')
-        ).order_by('id')
-        for place in places:
-            price = place.average_price_for_drink
-            place.average_price = int(price) if price else 0
-        return places
-
-    def calculate_rating(self):
+    def calculate_auto_fill_fields(self):
         places = self.annotate(
             avg_rating=Round(
                 models.Avg(
@@ -44,10 +35,16 @@ class PlaceQuerySet(models.QuerySet):
                     filter=models.Q(reviews__rating__gt=0)
                 )
             )
-        )
+        ).annotate(
+            average_price_for_drink=models.Avg('drinks__price')
+        ).order_by('id')
+
         for place in places:
+            price = place.average_price_for_drink
+            place.average_price = int(price) if price else 0
             rating = place.avg_rating
             place.rating = rating if rating else 0.0
+
         return places
 
 
