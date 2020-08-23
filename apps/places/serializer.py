@@ -7,6 +7,14 @@ from apps.places.models import (Place,
                                 Drink)
 
 
+def represent_choices(ret, choices_field_name, choices):
+    return [
+        value
+        for key, value in choices
+        if key == ret[choices_field_name]
+    ][0]
+
+
 def format_time(time):
     time_hh_mm = str(time)[:-3]
     return time_hh_mm[1:] if time_hh_mm.startswith('0') \
@@ -129,16 +137,8 @@ class PlaceSerializer(serializers.ModelSerializer):
 
     def to_representation(self, place):
         ret = super().to_representation(place)
-        ret['police_rating'] = [
-            value
-            for key, value in Place.POLICE_RATING
-            if key == ret['police_rating']
-        ][0]
-        ret['category'] = [
-            value
-            for key, value in Place.CATEGORIES
-            if key == ret['category']
-        ][0]
+        ret['police_rating'] = represent_choices(ret, 'police_rating', Place.POLICE_RATING)
+        ret['category'] = represent_choices(ret, 'category', Place.CATEGORIES)
         return ret
 
     def get_average_price(self, place):

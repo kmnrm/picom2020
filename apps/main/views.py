@@ -66,7 +66,7 @@ class MainViewSet(PlaceViewSet):
             serializer.data,
             key=lambda k: k['rating'],
             reverse=True
-        )[:4]
+        )[:3]
 
         top_places = [to_dict(place) for place in top_places]
 
