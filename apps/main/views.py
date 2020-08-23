@@ -71,8 +71,8 @@ class MainViewSet(PlaceViewSet):
         top_places = [to_dict(place) for place in top_places]
 
         for place in top_places:
-            place["police_rating"] = place["police_rating"][0]
             place["police_rating_status"] = place["police_rating"][4:]
+            place["police_rating"] = place["police_rating"][0]
             place["opening_hours"] = format_time(place["opening_hours"])
             place["closing_hours"] = format_time(place["closing_hours"])
             place["rating_status"] = get_rating_status(place["rating"])

@@ -33,13 +33,10 @@
 <body>
   <div id="sidebar">
     <div id="sidebar-app">
+      <div id="search"></div>
       <div v-if="promptVisible" class="main-page">
         <div class="wrapper">
           <h2>Where to go?</h2>
-          <form action="">
-            <input type="search" name="searchPlace" id="searchPlace" placeholder="Write a name...">
-            <a href=""><img src="../static/img/Search.svg" alt=""></a>
-          </form>
           <ul class="places-list">
             {% for place in top_places %}
             <li class="place" type="button" onclick="loadClickedPlace({{ place }})">

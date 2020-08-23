@@ -139,7 +139,7 @@ var locations = L.geoJSON(places, {
 
         L.DomEvent.on(startBtn, 'click', function() {
             control.show();
-            map.addControl(searchControl);
+
             showGeocoderBtn.style.display = "none";
             control.spliceWaypoints(0, 1, event.latlng);
             map.closePopup();
@@ -147,7 +147,7 @@ var locations = L.geoJSON(places, {
 
         L.DomEvent.on(destBtn, 'click', function() {
             control.show();
-            map.addControl(searchControl);
+
             showGeocoderBtn.style.display = "none";
             control.spliceWaypoints(control.getWaypoints().length - 1, 1, event.latlng);
             map.closePopup();
@@ -156,7 +156,7 @@ var locations = L.geoJSON(places, {
         L.DomEvent.on(fromMyLoc, 'click', function(){
           control.show();
           map.addControl(lc);
-          map.addControl(searchControl);
+
           showGeocoderBtn.style.display = "none";
           lc.stop();
           lc.start();
@@ -177,11 +177,14 @@ map.addLayer(locations);
 
 /* ======--Search--======*/
 var searchControl = new L.Control.Search({
+  container: 'search',
   layer: locations,
   propertyName: 'title',
   position: 'topleft',
   marker: false,
-  autoResize: false,
+  collapsed: false,
+  textPlaceholder: 'Where to go?',
+  firstTipSubmit: true,
 });
 
 searchControl.on('search:locationfound', function (e) {
@@ -236,7 +239,7 @@ showGeocoderBtn.onclick = function () {
     control.show();
     lc.addTo(map);
     lc.stop();
-    searchControl.addTo(map);
+
     controlContainer.removeChild(showGeocoderBtn);
 };
 
@@ -277,17 +280,19 @@ var sidebarApp = new Vue({
   },
 });
 
+map.addControl(searchControl);
 
 map.on('click', function () {
   sidebarApp.selectedPlace = null;
   sidebarApp.loadingPlaceId = null;
 
+  if (!searchControl._map) {
+    map.addControl(searchControl);
+  }
+
   if (lc._map){
     lc.stop();
     map.removeControl(lc);
-  }
-  if (searchControl._map){
-    map.removeControl(searchControl);
   }
 
   clearWaypoints();
@@ -309,6 +314,7 @@ var nullToZeros = function (arr) {
 async function loadPlaceInfo(placeId, detailsUrl){
   sidebarApp.selectedPlace = null;
   sidebarApp.loadingPlaceId = placeId;
+
 
   try {
     let response = await fetch(detailsUrl);
@@ -351,6 +357,9 @@ async function loadPlaceInfo(placeId, detailsUrl){
     if (sidebarApp.loadingPlaceId == placeId){
       sidebarApp.loadingPlaceId = null;
     }
+    if (searchControl._map) {
+      map.removeControl(searchControl);
+    }
   }
 }
 
@@ -371,5 +380,6 @@ function loadClickedPlace(place){
      .openOn(map);
 
    loadPlaceInfo(place.id, place.detailsUrl);
+
 
 };
