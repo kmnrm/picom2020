@@ -1,16 +1,15 @@
  
 .leaflet-container .leaflet-control-search {
-	float: left;
-	background:#fff;
+	/* float: left; */
 	color:#1978cf;
 	background-clip: padding-box;
-	-moz-border-radius: 6px;
+	/* -moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	background-color: rgba(255, 255, 255, 0.8);
+	background-color: rgba(255, 255, 255, 0.8); */
 	z-index:1000;	
-	margin-left: 10px;
-	margin-top: 10px;
+	/* margin-left: 10px;
+	margin-top: 10px; */
 }
 .leaflet-control-search.search-exp {/*expanded*/
 	background: #fff;
@@ -27,7 +26,7 @@
 	height:27px;
 	width: 250px;
 	padding:0 20px 0 5px;
-	margin:4px;
+	/* margin:4px; */
 }
 
 .leaflet-control-search .search-input:focus,
@@ -47,7 +46,8 @@
 	width:22px;
 	height:22px;
 	position:absolute;
-	right:28px;
+	top: 3px;
+  left: -5px;
   margin: 6px 12px;
   background: url(../img/search-icon-mobile.png) no-repeat -3px -64px;
   background-size: 30px;
@@ -74,11 +74,11 @@
   float: left;
   width: 36px;
   height: 35px;
-  background: url(../img/search-icon-mobile.png) no-repeat #fff;
+  background: url(../img/search-icon-mobile.png) no-repeat;
   background-size: 30px;
   background-position: 2px 3px;
 	border-radius: 5px;
-	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	/* box-shadow: 0 1px 5px rgba(0,0,0,0.4); */
 }
 .leaflet-control-search .search-button:hover {
 	background-position: 2px -27px;

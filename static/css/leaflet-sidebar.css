@@ -71,7 +71,9 @@
 }
 /* ======================================== */
 
-.main-page {}
+#sidebar-app {
+  margin: 70px 0;
+}
 
 .main-page .wrapper {
   padding-left: 40px;
@@ -82,13 +84,28 @@
   margin-bottom: 1.5rem;
 }
 
-.main-page form {
+#search {
+  margin-left: 40px;
+  margin-right: 40px;
+} 
+
+#search .leaflet-control-search {
   position: relative;
+  width: 100%;
+  background: none;
+  box-shadow: none;
 }
 
-.main-page form input {
+#search .leaflet-control-search .search-button {
+  position: absolute;
+  top: 2px;
+  right: 6px;  
+}
+
+#search .leaflet-control-search input {
+  box-sizing: border-box;
   width: 100%;
-  padding: 11px 15px;
+  padding: 18px 35px;
   border: 2px solid transparent;
   border-radius: 20px;
   background: #ECECEC;
@@ -97,29 +114,12 @@
   margin-bottom: 3rem;
 }
 
-.main-page form input:hover,
-.main-page form input:focus {
+#search .leaflet-control-searchinput:hover,
+#search .leaflet-control-search input:focus {
   outline: none;
   border: 2px solid #999;
 }
 
-.main-page form a {
-  padding: 7px 15px 7px 7px;
-  border: 2px solid transparent;
-  border-radius: 5px 20px 20px 5px;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-}
-.main-page form a:hover {
-  border: 2px solid #999;
-}
-
-.main-page form img {
-  width: 27px;
-  height: 29px;
-  background: url("../img/Search.svg") no-repeat;
-}
 
 .places-list {
   padding: 0;
@@ -225,10 +225,11 @@
 }
 
 /* ======================================== */
+.place-description .wrapper { position: relative; }
+
 .description-logo {
   position: absolute;
-  top: 50px;
-  left: 20px;
+  top: 0;
   width: 100px;
   height: 100px;
   background-color: #999;
@@ -256,6 +257,21 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@media (max-width: 1399px) {
+  .description-logo {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+  .description-title {
+    margin-left: 0;
+  }
+  .description-text {
+    margin-left: 0;
+  }
+}
+
 .description-address {}
 .description-address-pinyin {}
 
@@ -315,11 +331,6 @@
 }
 .rate-icons li.active {
   background-position: -35px 0;
-}
-
-.place-description {
-  padding-top: 50px;
-  padding-bottom: 50px;
 }
 
 hr {
