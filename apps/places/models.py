@@ -8,12 +8,12 @@ from geopy.exc import GeocoderServiceError
 import phonenumbers
 from phonenumber_field.modelfields import PhoneNumberField
 
-from izhevsk.settings import BAIDUV3_GEOCODER_KEY
+from izhevsk.settings import BAIDUV3_GEOCODER_KEY, BAIDU_SECURITY_KEY
 from geopy.geocoders import BaiduV3
 
 
 def fetch_address_coordinates(address):
-    locator = BaiduV3(api_key=BAIDUV3_GEOCODER_KEY)
+    locator = BaiduV3(api_key=BAIDUV3_GEOCODER_KEY, security_key=BAIDU_SECURITY_KEY)
     location = locator.geocode(
         address,
         timeout=300
