@@ -1,0 +1,1 @@
+web: gunicorn izhevsk.wsgi --log-file -
