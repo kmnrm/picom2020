@@ -124,56 +124,57 @@ var locations = L.geoJSON(places, {
       marker.on('click', function(event){
         sidebar.show();
         loadPlaceInfo(geoJsonPoint.properties.placeId, geoJsonPoint.properties.detailsUrl);
-
-        var container = L.DomUtil.create('div'),
-          placeTitle = L.DomUtil.create('p', '', container),
-          startBtn = createButton('Start', container, 'leaflet-route-start'),
-          fromMyLoc = createButton('Get here now', container, 'leaflet-route-get-here'),
-          destBtn = createButton('Go', container, 'leaflet-route-go');
-          placeTitle.textContent = geoJsonPoint.properties.title;
-
-        L.popup()
-          .setContent(container)
-          .setLatLng(event.latlng)
-          .openOn(map);
-
-
-        L.DomEvent.on(startBtn, 'click', function() {
-            control.show();
-
-            showGeocoderBtn.style.display = "none";
-            control.spliceWaypoints(0, 1, event.latlng);
-            map.closePopup();
-        });
-
-        L.DomEvent.on(destBtn, 'click', function() {
-            control.show();
-
-            showGeocoderBtn.style.display = "none";
-            control.spliceWaypoints(control.getWaypoints().length - 1, 1, event.latlng);
-            map.closePopup();
-        });
-
-        L.DomEvent.on(fromMyLoc, 'click', function(){
-          control.show();
-          map.addControl(lc);
-
-          showGeocoderBtn.style.display = "none";
-          lc.stop();
-          lc.start();
-          map.on('locationfound', function(e){
-            control.spliceWaypoints(0, 1, e.latlng);
-            control.spliceWaypoints(control.getWaypoints().length - 1, 1, event.latlng);
-
-          });
-        });
-
+        addPopUpRoutingBtns(event.latlng, geoJsonPoint.properties.title);
       });
       return marker;
     }
 });
 map.addLayer(locations);
 /* ================================*/
+
+
+
+
+var addPopUpRoutingBtns = function(locationLatLng, locationTitle) {
+  var container = L.DomUtil.create('div'),
+    placeTitle = L.DomUtil.create('p', '', container),
+    startBtn = createButton('Start', container, 'leaflet-route-start'),
+    fromMyLoc = createButton('Get here now', container, 'leaflet-route-get-here'),
+    destBtn = createButton('Go', container, 'leaflet-route-go');
+    placeTitle.textContent = locationTitle;
+
+    L.popup()
+      .setContent(container)
+      .setLatLng(locationLatLng)
+      .openOn(map);
+
+    L.DomEvent.on(startBtn, 'click', function() {
+      control.show();
+      showGeocoderBtn.style.display = "none";
+      control.spliceWaypoints(0, 1, locationLatLng);
+      map.closePopup();
+    });
+
+    L.DomEvent.on(destBtn, 'click', function() {
+      control.show();
+      showGeocoderBtn.style.display = "none";
+      control.spliceWaypoints(control.getWaypoints().length - 1, 1, locationLatLng);
+      map.closePopup();
+    });
+
+    L.DomEvent.on(fromMyLoc, 'click', function(){
+      control.show();
+      map.addControl(lc);
+      showGeocoderBtn.style.display = "none";
+      lc.stop();
+      lc.start();
+      map.on('locationfound', function(e){
+        control.spliceWaypoints(0, 1, e.latlng);
+        control.spliceWaypoints(control.getWaypoints().length - 1, 1, locationLatLng);
+      });
+    });
+}
+
 
 
 /* ======--Search--======*/
@@ -314,8 +315,6 @@ var nullToZeros = function (arr) {
 }
 
 
-
-
 async function loadPlaceInfo(placeId, detailsUrl){
   sidebarApp.selectedPlace = null;
   sidebarApp.loadingPlaceId = placeId;
@@ -368,23 +367,11 @@ async function loadPlaceInfo(placeId, detailsUrl){
   }
 }
 
-
 function loadClickedPlace(place){
-
-   var container = L.DomUtil.create('div'),
-       placeTitle = L.DomUtil.create('p', '', container);
-
-   placeTitle.textContent = place.title;
-   placeLatLng = L.latLng(
-     place.coordinates.latitude,
-     place.coordinates.longitude
-   )
-   L.popup()
-     .setContent(container)
-     .setLatLng(placeLatLng)
-     .openOn(map);
-
-   loadPlaceInfo(place.id, place.detailsUrl);
-
-
+  var placeLatLng = L.latLng(
+    place.coordinates.latitude,
+    place.coordinates.longitude
+  )
+  addPopUpRoutingBtns(placeLatLng, place.title)
+  loadPlaceInfo(place.id, place.detailsUrl);
 };
