@@ -191,11 +191,11 @@ var searchControl = new L.Control.Search({
 
 searchControl.on('search:locationfound', function (e) {
   sidebar.show();
+  addPopUpRoutingBtns(e.latlng, e.layer.feature.properties.title);
   loadPlaceInfo(
     e.layer.feature.properties.placeId,
     e.layer.feature.properties.detailsUrl
   );
-  e.layer.openPopup();
 })
 /* ================================*/
 
@@ -369,6 +369,6 @@ function loadClickedPlace(place){
     place.coordinates.latitude,
     place.coordinates.longitude
   )
-  addPopUpRoutingBtns(placeLatLng, place.title)
+  addPopUpRoutingBtns(placeLatLng, place.title);
   loadPlaceInfo(place.id, place.detailsUrl);
 };
