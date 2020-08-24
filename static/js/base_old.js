@@ -361,9 +361,6 @@ async function loadPlaceInfo(placeId, detailsUrl){
     if (sidebarApp.loadingPlaceId == placeId){
       sidebarApp.loadingPlaceId = null;
     }
-    if (searchControl._map) {
-      map.removeControl(searchControl);
-    }
   }
 }
 
