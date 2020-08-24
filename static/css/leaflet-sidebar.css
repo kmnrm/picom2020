@@ -76,7 +76,7 @@
 /* ======================================== */
 
 #sidebar-app {
-  margin: 70px 0;
+  margin: 30px 0;
 }
 
 .main-page .wrapper {
@@ -250,7 +250,7 @@
 
 .description-logo {
   position: absolute;
-  top: 0;
+  top: 80px;
   width: 100px;
   height: 100px;
   margin-bottom: 20px;

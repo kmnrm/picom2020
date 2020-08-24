@@ -49,11 +49,6 @@ width: 0px;
   background-color: white;
 }
 
-#form-section form {
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-}
-
 #form-section form > * {
   padding: 5px 10px;
   margin: 5px;
