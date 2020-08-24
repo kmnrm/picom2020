@@ -87,7 +87,8 @@ control.addTo(map);
 control.hide();
 
 /* ======--Set A Route Button--======*/
-var setRouteBtn = control.getPlan()._geocoderContainer.lastElementChild;
+var setRouteBtn = control.getPlan()._geocoderContainer.querySelector('.btnSetRoute');
+var closeRoutingControlBtn = control.getPlan()._geocoderContainer.querySelector('.btnClose');
 
 setRouteBtn.addEventListener('click', function() {
   control.getWaypoints().every(function(wp, wpIndex) {
@@ -236,13 +237,25 @@ var setGeocoderBtn = function() {
 setGeocoderBtn();
 
 showGeocoderBtn.onclick = function () {
-    control.show();
-    lc.addTo(map);
-    lc.stop();
-
-    controlContainer.removeChild(showGeocoderBtn);
+  control.show();
+  lc.addTo(map);
+  lc.stop();
+  controlContainer.removeChild(showGeocoderBtn);
 };
 
+var closeRoutingControl = function () {
+  if (lc._map){
+    lc.stop();
+    map.removeControl(lc);
+  }
+
+  clearWaypoints();
+  setGeocoderBtn();
+}
+
+closeRoutingControlBtn.onclick = function () {
+  closeRoutingControl()
+}
 
 var sidebarApp = new Vue({
   el: '#sidebar-app',
@@ -289,14 +302,6 @@ map.on('click', function () {
   if (!searchControl._map) {
     map.addControl(searchControl);
   }
-
-  if (lc._map){
-    lc.stop();
-    map.removeControl(lc);
-  }
-
-  clearWaypoints();
-  setGeocoderBtn();
 })
 
 var nullToZeros = function (arr) {
