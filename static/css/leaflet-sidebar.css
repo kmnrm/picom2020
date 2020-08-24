@@ -212,12 +212,29 @@
   line-height: 22px;
   margin-bottom: 0;
 }
+.place-info .category.time {
+  flex-basis: 120px;
+}
+.place-info .category.phone {
+  flex-basis: 140px;
+}
+.place-info .category.location {
+  flex-basis: 210px;
+}
 
 @media (max-width: 450px) {
+  #search {
+    margin-left: 20px;
+    margin-right: 20px;
+  } 
+  .main-page .wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   .place-info .category {
-    height: 50px;
+    height: 80px;
     flex-basis: 100%;
-    display: flex;
+    /* display: flex; */
     align-items: center;
   }
   .place-info .category img { margin-right: 15px; }
@@ -232,7 +249,8 @@
   top: 0;
   width: 100px;
   height: 100px;
-  background-color: #999;
+  margin-bottom: 20px;
+  background-color: #fff;
 }
 
 .description-title {
@@ -523,6 +541,22 @@ hr {
   .leaflet-sidebar.left.visible ~ .leaflet-left {
     left: 400px;
   }
+  #search {
+    margin-left: 20px;
+    margin-right: 20px;
+  } 
+  .main-page .wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .place-info .category {
+    height: 80px;
+    flex-basis: 100%;
+    /* display: flex; */
+    align-items: center;
+  }
+  .place-info .category img { margin-right: 15px; }
+  .main-page form input { margin-bottom: 1.5rem; }
 }
 @media (max-width: 1599px) {
   .rate-value {
