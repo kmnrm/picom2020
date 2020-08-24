@@ -79,6 +79,19 @@
   margin: 30px 0;
 }
 
+#sidebar,
+#sidebar-app,
+.place-description {
+  scrollbar-width: none; /* Also needed to disable scrollbar Firefox */
+  -ms-overflow-style: none;  /* Disable scrollbar IE 10+ */
+  /* overflow-y: scroll; */
+  scrollbar-color: transparent transparent;
+}
+*::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Disable scrollbar Chrome/Safari/Webkit */
+}
+
 .main-page .wrapper {
   padding-left: 40px;
   padding-right: 40px;

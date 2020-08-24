@@ -14,10 +14,6 @@ html, body, #map {
   clear: both;
 }
 
-::-webkit-scrollbar {
-width: 0px;
-}
-
 .sidebar-content {
   padding: 40px 0;
   height: 100%;
