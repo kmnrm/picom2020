@@ -1,5 +1,9 @@
 /* Source code from leaflet-sidebar plugin https://github.com/Turbo87/leaflet-sidebar/ */
 
+.leaflet-sidebar .close {
+  display: none;
+}
+
 .leaflet-sidebar {
   position: absolute;
   height: 100%;
