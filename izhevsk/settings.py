@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BAIDUV3_GEOCODER_KEY = os.getenv('BAIDUV3_GEOCODER_KEY')
+BAIDU_SECURITY_KEY = os.getenv('BAIDU_SECURITY_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
