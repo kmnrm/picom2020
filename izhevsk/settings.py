@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django_filters',
     'phonenumber_field',
     'drf_yasg',
+    'stdimage',
     'apps.places',
     'apps.users',
 ]

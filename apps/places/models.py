@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
+from stdimage import StdImageField
 import pinyin
 from geopy.exc import GeocoderServiceError
 import phonenumbers
@@ -71,7 +72,20 @@ class Place(models.Model):
         db_index=True
     )
     title = models.CharField(max_length=100, help_text="Place title.")
-    logo = models.ImageField(upload_to='logos/', default='', blank=True)
+    # logo = models.ImageField(upload_to='logos/', default='', blank=True)
+    logo = StdImageField(
+        upload_to='logos/',
+        default='',
+        blank=True,
+        delete_orphans=True,
+        variations={
+            'thumbnail': {
+                "width": 100,
+                "height": 100,
+                "crop": False
+            }
+        }
+    )
     category = models.CharField(
         max_length=1,
         choices=CATEGORIES,
@@ -124,7 +138,7 @@ class Place(models.Model):
 
     def logo_url(self):
         if self.logo and hasattr(self.logo, 'url'):
-            return self.logo.url
+            return self.logo.thumbnail.url
         else:
             return '/static/img/no_logo.jpg'
 
