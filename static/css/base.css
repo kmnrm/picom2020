@@ -8,6 +8,10 @@ html, body, #map {
   height: 100%;
 }
 
+[type="button"], [type="reset"], [type="submit"], button {
+  -webkit-appearance: auto;
+}
+
 .clearfix::after {
   content: "";
   display: table;

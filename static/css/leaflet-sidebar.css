@@ -108,7 +108,7 @@
 
 #search .leaflet-control-search {
   position: relative;
-  width: 100%;
+  width: 100%;media
   background: none;
   box-shadow: none;
 }
@@ -296,14 +296,13 @@
 @media (max-width: 1399px) {
   .description-logo {
     position: static;
-    width: 100%;
-    height: auto;
   }
   .description-title {
-    margin-left: 0;
+    position: relative;
   }
   .description-text {
     margin-left: 0;
+    margin-top: 60px;
   }
 }
 
@@ -542,6 +541,9 @@ hr {
     border: 0;
   }
   /* Элементы */
+  #search .leaflet-control-search .search-button {
+    right: 49px;  
+  }
 
 }
 
