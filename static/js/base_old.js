@@ -203,7 +203,8 @@ searchControl.on('search:locationfound', function (e) {
 var lc = L.control.locate({
   position: 'topleft',
   clickBehavior: { inView: 'setView' },
-  setView: 'always',
+  setView: 'once',
+  initialZoomLevel: 17,
   strings: {
     title: "Show me where I am, yo!",
     popup: "Time to go somewhere, bro..."
