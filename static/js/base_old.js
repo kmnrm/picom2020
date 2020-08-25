@@ -94,7 +94,10 @@ var closeRoutingControlBtn = control.getPlan()._geocoderContainer.querySelector(
 setRouteBtn.addEventListener('click', function() {
   control.getWaypoints().every(function(wp, wpIndex) {
     if(wp.latLng) {
-      control.route()
+      control.route();
+      control.hide();
+      map.removeControl(lc);
+      setGeocoderBtn();
     }
   })
 });
