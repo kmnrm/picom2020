@@ -219,11 +219,12 @@
 
 .leaflet-routing-collapse-btn {
     position: absolute;
-    top: 0;
-    right: 6px;
-    font-size: 24px;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
     color: #ccc;
     font-weight: bold;
+    display: none;
 }
 
 .leaflet-routing-collapse-btn:after {
@@ -238,6 +239,7 @@
     width: 26px;
     height: 23px;
     background-image: url('../img/routing-icon.png');
+    display: none;
 }
 
 .leaflet-routing-container-hide .leaflet-routing-collapse-btn:after {

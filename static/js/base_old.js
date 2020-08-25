@@ -16,6 +16,10 @@ var overlays = {
     "Light Theme": daytime
 };
 
+function sidebarToggle() { 
+  var sidebar = document.getElementsByClassName('leaflet-sidebar')[0];
+  sidebar.classList.toggle('visible');
+}
 
 L.control.layers(null, overlays).addTo(map);
 L.control.zoom({

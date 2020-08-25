@@ -4,6 +4,10 @@
   display: none;
 }
 
+.sidebar-swipe-btn {
+  display: none;
+}
+
 .leaflet-sidebar {
   position: absolute;
   height: 100%;
@@ -76,7 +80,7 @@
 /* ======================================== */
 
 #sidebar-app {
-  margin: 30px 0;
+  margin: 40px 0;
 }
 
 #sidebar,
@@ -126,8 +130,8 @@
   border: 2px solid transparent;
   border-radius: 20px;
   background: #ECECEC;
-  font-size: 18px;
-  line-height: 18px;
+  font-size: 1rem;
+  line-height: 1.2;
   margin-bottom: 3rem;
 }
 
@@ -155,8 +159,8 @@
 }
 
 .places-list .place-name {
-  font-size: 30px;
-  line-height: 36px;
+  font-size: 2rem;
+  line-height: 1.2;
   font-weight: bold;
 }
 
@@ -180,8 +184,8 @@
 .place-ratings .rating .value {
   position: relative;
   width: 80px;    
-  font-size: 25px;
-  line-height: 25px;
+  font-size: 1.4rem;
+  line-height: 1.2;
   margin-bottom: 0;
 }
 .places-list .rating .value:after {
@@ -206,8 +210,8 @@
 
 .place-ratings .rating .label {
   flex-basis: 100%;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 0.9rem;
+  line-height: 1.2;
   color: #676767;
 }
 
@@ -225,8 +229,8 @@
   margin-bottom: 10px;
 }
 .place-info .category p {
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 1rem;
+  line-height: 1.2;
   margin-bottom: 0;
 }
 .place-info .category.time {
@@ -239,24 +243,6 @@
   flex-basis: 210px;
 }
 
-@media (max-width: 450px) {
-  #search {
-    margin-left: 20px;
-    margin-right: 20px;
-  } 
-  .main-page .wrapper {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .place-info .category {
-    height: 80px;
-    flex-basis: 100%;
-    /* display: flex; */
-    align-items: center;
-  }
-  .place-info .category img { margin-right: 15px; }
-  .main-page form input { margin-bottom: 1.5rem; }
-}
 
 /* ======================================== */
 .place-description .wrapper { position: relative; }
@@ -274,18 +260,18 @@
   margin-left: 140px;
   margin-bottom: 25px;
   font-weight: bold;
-  font-size: 36px;
-  line-height: 36px;
+  font-size: 2rem;
+  line-height: 1.2;
 }
 .description-text {
   margin-left: 140px;
-  font-size: 18px;
+  font-size: 1rem;
   line-height: 1.2;
   
   display: block;
   display: -webkit-box;
   max-width: 100%;
-  height: 62px;
+  height: 3.6rem;
   margin-bottom: 34px;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -306,9 +292,6 @@
   }
 }
 
-.description-address {}
-.description-address-pinyin {}
-
 .ratings {
   display: flex;
   flex-wrap: wrap;
@@ -323,16 +306,16 @@
 }
 
 .rating-category {
-  font-size: 17px;
-  line-height: 23px;
+  font-size: 0.95rem;
+  line-height: 1.2;
   color: #676767;
 } 
 
 .rate-value {
   position: relative;
   top: -3px;
-  font-size: 36px;
-  line-height: 45px;
+  font-size: 2rem;
+  line-height: 1.4;
   color: #C4C4C4;
 }
 
@@ -346,11 +329,10 @@
 
 .rate-icons li {
   margin: 0;
-  margin-left: -2px;
   padding: 0;
   display: inline-block;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
 }
 
 .rate-icons li:first-child {
@@ -358,13 +340,13 @@
 }
 
 .rate-icons.stars li {
-  background: url("../img/Star.png") no-repeat;
+  background: url("../img/Star-small.png") no-repeat;
 }
 .rate-icons.warnings li {
-  background: url("../img/Police.png") no-repeat;
+  background: url("../img/Police-small.png") no-repeat;
 }
 .rate-icons li.active {
-  background-position: -35px 0;
+  background-position: -30px 0;
 }
 
 hr {
@@ -385,8 +367,8 @@ hr {
   display: flex;
   align-items: baseline;
   margin-bottom: 18px;
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 1rem;
+  line-height: 1.2;
 }
 
 .description-contacts div {
@@ -428,13 +410,13 @@ hr {
 
 .reviews-head > * {
   flex-basis: 50%;
-  font-size: 30px;
-  line-height: 30px;
+  font-size: 1.6rem;
+  line-height: 1.2;
 }
 
 .reviews-average-rating span {
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 1rem;
+  line-height: 1.2;
 }
 
 .review-card {
@@ -461,19 +443,19 @@ hr {
 }
 
 .review-card .user-review .name {
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: bold;
 }
 
 .review-card .user-review .text {
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 1rem;
+  line-height: 1.2;
 }
 
 .reviews-controls .reviews-write { 
   width: 191px;
   height: 41px;
-  font-size: 18px;
+  font-size: 1rem;
   background: #C4C4C4;
   border: none;
   border-radius: 19px;
@@ -491,8 +473,8 @@ hr {
 .reviews-controls #reviews-pages a{
   margin-left: 5px;
   text-decoration: none;
-  font-size: 24px;
-  line-height: 31px;
+  font-size: 1.5;
+  line-height: 1.2;
   color: #868686;
 }
 
@@ -505,7 +487,7 @@ hr {
   .description-contacts > * { flex-basis: 100%; }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 451px) and (max-width: 767px) {
   /* Сайдбар */
   .leaflet-sidebar .close {
     display: block;
@@ -517,20 +499,11 @@ hr {
   .leaflet-sidebar.left.visible ~ .leaflet-left {
     left: 100%;
   }
-  .leaflet-sidebar.right.visible ~ .leaflet-right {
-    right: 100%;
-  }
   .leaflet-sidebar.left {
     left: -100%;
   }
   .leaflet-sidebar.left.visible {
     left: 0;
-  }
-  .leaflet-sidebar.right {
-    right: -100%;
-  }
-  .leaflet-sidebar.right.visible {
-    right: 0;
   }
   .leaflet-sidebar > .leaflet-control {
     box-shadow: none;
@@ -544,19 +517,19 @@ hr {
   #search .leaflet-control-search .search-button {
     right: 49px;  
   }
-
 }
 
 @media (min-width: 768px) {
   .leaflet-sidebar {
     min-width: 400px;
-    width: 33vw;
+    max-width: 620px;
+    width: 29vw;
   }
   .leaflet-sidebar.left.visible ~ .leaflet-left {
-    left: 33vw;
+    left: 29vw;
   }
   .leaflet-sidebar.right.visible ~ .leaflet-right {
-    right: 33vw;
+    right: 29vw;
   }
 }
 @media (max-width: 1200px) {
@@ -582,27 +555,17 @@ hr {
 }
 @media (max-width: 1599px) {
   .rate-value {
-    font-size: 30px;
-    line-height: 36px;
+    font-size: 1.6rem;
+    line-height: 1.2;
   }
   .rate-icons li {
     width: 30px;
     height: 30px;
   }
-  .rate-icons.stars li {
-    background: url("../img/Star-small.png") no-repeat;
-  }
-  .rate-icons.warnings li {
-    background: url("../img/Police-small.png") no-repeat;
-  }
-  .rate-icons li.active {
-    background-position: -30px 0;
-  }
   .rating-category {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
-
 
 .leaflet-popup-content { 
   width: 300px;
@@ -617,11 +580,11 @@ hr {
 .leaflet-popup-content  p {
   flex-basis: 100%;
   order: 0;
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 1rem;
+  line-height: 1.2;
 }
 .leaflet-popup-content button {
-  font-size: 15px;
+  font-size: 0.95rem;
   vertical-align: middle;
   height: 52px;
   border: none;
@@ -671,8 +634,8 @@ hr {
 
 #events li {
   display: flex;
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 1rem;
+  line-height: 1.2rem;
   margin-left: 20px;
   margin-bottom: 20px;
 }
@@ -683,20 +646,20 @@ hr {
 
 #events li .event-date {
   flex-basis: 60px;
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 1rem;
+  line-height: 1.2;
   font-weight: bold;
 }
 #events li .event-name {
   margin-left: 20px;
   flex-basis: calc(100% - 180px);
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 1rem;
+  line-height: 1.2;
 }
 #events li .event-time {
   flex-basis: 120px;
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 1rem;
+  line-height: 1.2;
   font-weight: bold;
 }
 
@@ -737,7 +700,7 @@ hr {
 
 #same-places .place-card .place-title {
   font-weight: bold;
-  line-height: 40px;
+  line-height: 2.5rem;
 }
 
 #same-places .ratings {
@@ -747,8 +710,8 @@ hr {
 #same-places .rate-value {
   position: relative;
   top: -6px;
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 1rem;
+  line-height: 1.2;
   color: #C4C4C4;
 }
 
@@ -779,4 +742,135 @@ hr {
 }
 #same-places .rate-icons li.active {
   background-position: -19px 0;
+}
+
+@media (max-width: 450px) {
+  html { font-size: 14px; }
+  .leaflet-sidebar {
+    padding: 0 12px;
+  }
+  .leaflet-sidebar.left.visible ~ .leaflet-left {
+    left: 0;
+  }
+  .leaflet-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .leaflet-sidebar.left {
+    transition: all 0.3s;
+    padding-right: 0;
+    left: 0;
+    width: calc(100% - 12px);
+    bottom: 0;
+    height: 70vh;
+  }
+
+  .leaflet-sidebar.left.visible {
+    bottom: 0;
+  }
+  .leaflet-sidebar .sidebar-swipe-btn {
+    display: block;
+    position: absolute;
+    top: 3px;
+    padding: 1px;
+    left: 30%;
+    width: 40%;
+    background-clip: padding-box;
+    background-color: #000;
+    border: 15px solid transparent;
+  }
+  .sidebar-swipe-btn:focus {
+    outline: 1px dotted #666;
+  }
+  .leaflet-sidebar > .leaflet-control {
+    border-radius: 25px 25px 0 0;
+    -webkit-border-radius: 25px 25px 0 0;
+  }
+
+  .leaflet-sidebar.left.visible {
+    left: 0;
+    height: 105px;
+    overflow: hidden;
+  }
+  .leaflet-sidebar.left.visible > .leaflet-control {
+    overflow: hidden;
+  }
+
+  .leaflet-touch .leaflet-sidebar > .leaflet-control {
+    border: 0;
+  }
+  .leaflet-routing-container, .leaflet-routing-error {
+    width: calc(100% - 12px);
+  }
+  .leaflet-routing-collapsible .leaflet-routing-geocoders {
+    margin-top: 0;
+  }
+  .leaflet-routing-geocoder {
+    margin: -5px 10px;
+  }
+  .leaflet-routing-geocoder:nth-child(2) {
+    margin-bottom: 0px;
+  }
+  .leaflet-routing-geocoders h4 {
+    margin: 18px;
+  }
+  .leaflet-bottom .leaflet-control {
+    margin-bottom: 50px;
+  }
+  .leaflet-geocoders-toggler {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    box-shadow: 0 0 9px #666;
+    -moz-box-shadow: 0 0 9px #666;
+  }
+  .leaflet-geocoders-toggler svg {
+    width: 65px;
+    height: 30px;
+  }
+
+  #search {
+    margin-left: 20px;
+    margin-right: 20px;
+  } 
+  .main-page .wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .place-info .category {
+    height: 80px;
+    flex-basis: 100%;
+    /* display: flex; */
+    align-items: center;
+  }
+  .place-info .category img { margin-right: 15px; }
+  .main-page form input { margin-bottom: 1.5rem; }
+  .description-title {
+    margin-left: 0;
+    font-size: 1.8rem;
+    line-height: 30px;
+  }
+  .description-logo {
+    width: auto;
+    height: auto;
+  }
+  .description-text {
+    margin-left: 0;
+    margin-top: 20px;
+    font-size: 1rem;
+    height: 3.6rem;
+  }
+  #events li .event-date {
+    flex-basis: 30px;
+  }
+  #events li .event-name {
+    flex-basis: calc(100% - 120px);
+  }
+  #events li .event-time {
+    flex-basis: 90px;
+  }
+  .leaflet-popup-content {
+    width: 250px;
+  }
 }

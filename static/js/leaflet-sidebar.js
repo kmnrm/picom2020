@@ -122,11 +122,12 @@ L.Control.Sidebar = L.Control.extend({
     if (!this.isVisible()) {
       L.DomUtil.addClass(this._container, 'visible');
       if (this.options.autoPan) {
-        this._map.panBy([-this.getOffset() / 2, 0], {
+        // this._map.panBy([-this.getOffset() / 2, 0], {
+        this._map.panBy([0, 0], {
             duration: 0.5
         });
       }
-      this.fire('show');
+      // this.fire('show');
     }
   },
 
@@ -134,11 +135,12 @@ L.Control.Sidebar = L.Control.extend({
     if (this.isVisible()) {
       L.DomUtil.removeClass(this._container, 'visible');
       if (this.options.autoPan) {
-        this._map.panBy([this.getOffset() / 2, 0], {
+        // this._map.panBy([this.getOffset() / 2, 0], {
+        this._map.panBy([0, 0], {
             duration: 0.5
         });
       }
-      this.fire('hide');
+      // this.fire('hide');
     }
     if(e) {
       L.DomEvent.stopPropagation(e);
@@ -147,9 +149,9 @@ L.Control.Sidebar = L.Control.extend({
 
   toggle: function () {
     if (this.isVisible()) {
-      this.hide();
+      // this.hide();
     } else {
-      this.show();
+      // this.show();
     }
   },
 
