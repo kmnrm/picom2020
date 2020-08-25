@@ -310,7 +310,7 @@
 .leaflet-routing-geocoder > input {
   flex-basis: calc(100% - 60px);
 }
-.leaflet-routing-geocoders button {
+.leaflet-routing-geocoders .btnSetRoute {
   order: 2;
   height: 44px;
   margin: 0;
@@ -321,12 +321,12 @@
   border: 2px solid transparent;
   border-radius: none;
 }
-.leaflet-routing-geocoders button:hover {
+.leaflet-routing-geocoders .btnSetRoute:hover {
   border: 2px solid #666;
   background-color: #888;
   opacity: 0.8;
 }
-.leaflet-routing-geocoders button:focus {
+.leaflet-routing-geocoders .btnSetRoute:focus {
   outline: none;
   border: 2px solid #666;
 }
@@ -346,8 +346,8 @@
 
 .leaflet-routing-geocoders .btnClose {
   position: absolute;
-  top: 15px;
-  right: 20px;
+  top: 30px;
+  right: 15px;
   width: 30px;
   height: 30px;
   background: none;
@@ -356,6 +356,13 @@
   color: #666;
 }
 .leaflet-routing-geocoders .btnClose:hover {
+  background: none;
+}
+
+.leaflet-routing-geocoders .leaflet-routing-reverse-waypoints {
+    right: -1px;
+  position: absolute;
+  top: 92px;
   background: none;
 }
 

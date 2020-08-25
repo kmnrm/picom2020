@@ -18,7 +18,7 @@
   z-index: 2000;
 }
 .leaflet-sidebar.left {
-  left: -670px;
+  left: -590px;
   transition: left 0.5s, width 0.5s;
   padding-right: 0;
 }
@@ -112,7 +112,7 @@
 
 #search .leaflet-control-search {
   position: relative;
-  width: 100%;media
+  width: 100%;
   background: none;
   box-shadow: none;
 }
@@ -532,7 +532,7 @@ hr {
     right: 29vw;
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1380px) {
   .leaflet-sidebar.left.visible ~ .leaflet-left {
     left: 400px;
   }
@@ -815,8 +815,8 @@ hr {
   .leaflet-routing-geocoders h4 {
     margin: 18px;
   }
-  .leaflet-bottom .leaflet-control {
-    margin-bottom: 50px;
+  .leaflet-bottom .leaflet-bar {
+    margin-bottom: 89px;
   }
   .leaflet-geocoders-toggler {
     width: 80px;
@@ -872,5 +872,30 @@ hr {
   }
   .leaflet-popup-content {
     width: 250px;
+  }
+  .leaflet-routing-geocoders .btnClose {
+    top: 10px;
+    right: 15px;
+  }
+  .leaflet-routing-geocoder > p {
+    margin-right: 10px;
+  }
+  .leaflet-routing-geocoders input {
+    padding: 5px 20px 5px 7px;
+  }
+  .leaflet-routing-remove-waypoint:after {
+    right: -4px;
+  }
+  .leaflet-bottom .leaflet-bar a, .leaflet-bottom .leaflet-bar a:hover {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+  }
+  .leaflet-routing-geocoder > input {
+  flex-basis: calc(100% - 70px);
+  }
+  .leaflet-routing-geocoders .leaflet-routing-reverse-waypoints {
+    right: -3px;
+    top: 71px;
   }
 }

@@ -62,7 +62,7 @@ var control = L.Routing.control({
   autoRoute: false,
   routeWhileDragging: false,
   draggableWaypoints: false,
-  reverseWaypoints: false,
+  reverseWaypoints: true,
   geocoder: L.Control.Geocoder.zzgo(),
   lineOptions : {
     addWaypoints: false,
