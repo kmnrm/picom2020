@@ -51,6 +51,30 @@ function loadJSON(elementId){
 
 let places = loadJSON('places-geojson');
 
+/*
+var ZZGo = L.Class.extend({
+  geocode: function(query, cb, context) {
+    var params = {
+        title: query
+      };
+
+    getJSON(
+      window.location.href + 'api/places.json',
+      L.extend(params, this.options.geocodingQueryParams),
+      function(data) {
+        var results = [],
+          loc,
+          latLng,
+          latLngBounds;}
+
+
+    )
+  }
+});
+*/
+
+
+
 /* ======--Routing Machine--======*/
 var control = L.Routing.control({
   position: 'topleft',
@@ -58,11 +82,8 @@ var control = L.Routing.control({
   routeWhileDragging: false,
   draggableWaypoints: false,
   reverseWaypoints: false,
-  geocoder: L.Control.Geocoder.nominatim({
-    reverseQueryParams: {
-      zoom: 0
-    }
-  }),
+  // geocoder: ZZGo,
+  geocoder: L.Control.Geocoder.nominatim(),
   lineOptions : {
     addWaypoints: false,
   },
@@ -131,7 +152,6 @@ var locations = L.geoJSON(places, {
 });
 map.addLayer(locations);
 /* ================================*/
-
 
 
 
@@ -305,13 +325,22 @@ map.on('click', function () {
   }
 })
 
-var nullToZeros = function (arr) {
-  for (const obj of arr) {
-    if (obj.rating === null) {
-      obj.rating = 0;
+if (!Array.prototype.last){
+    Array.prototype.last = function(){
+        return this[this.length - 1];
+    };
+};
+
+var getSimilarPlaces = function (parentPlaceId, placeCategory, placesGeoJson, setSize) {
+  var similarPlaces = [],
+    places = placesGeoJson.features;
+  for (i = 0; i < places.length; i++){
+    if (places[i].properties.category === placeCategory && places[i].properties.placeId !== parentPlaceId) {
+      similarPlaces.push(places[i].properties);
+      similarPlaces.last().coordinates = places[i].geometry.coordinates
     }
   }
-  return arr
+  return (similarPlaces.sort(() => 0.5 - Math.random())).slice(0, setSize)
 }
 
 
@@ -352,10 +381,7 @@ async function loadPlaceInfo(placeId, detailsUrl){
       closing_hours: data.closing_hours,
       logo: data.logo,
       phone_number: data.phone_number,
-      similar_places: nullToZeros(data.similar_places.sort(function(){
-        return .5 - Math.random()
-      }).slice(0, 4)),
-
+      similar_places: getSimilarPlaces(data.id, data.category, places, 4),
     };
   } finally {
     if (sidebarApp.loadingPlaceId == placeId){
@@ -366,9 +392,10 @@ async function loadPlaceInfo(placeId, detailsUrl){
 
 function loadClickedPlace(place){
   var placeLatLng = L.latLng(
-    place.coordinates.latitude,
-    place.coordinates.longitude
+    place.coordinates.latitude || place.coordinates[1],
+    place.coordinates.longitude || place.coordinates[0]
   )
+
   addPopUpRoutingBtns(placeLatLng, place.title);
   loadPlaceInfo(place.id, place.detailsUrl);
 };

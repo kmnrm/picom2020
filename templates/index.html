@@ -212,12 +212,12 @@
                     </ul>
                   </div>
                   <div class="description-police-rate">
-                    <span class="rate-value">{{ place.police_rating.charAt(0) }}/5</span>
+                    <span class="rate-value">{{ place.policeRating }}/5</span>
                     <ul class="rate-icons warnings">
-                      <template v-for="siren in parseInt(place.police_rating.charAt(0))">
+                      <template v-for="siren in place.policeRating">
                         <li class="description-rating-warnings active"></li>
                       </template>
-                      <template v-for="inactiveSiren in 5" v-if="inactiveSiren > parseInt(place.police_rating.charAt(0))">
+                      <template v-for="inactiveSiren in 5" v-if="inactiveSiren > place.policeRating">
                         <li class="description-rating-warnings"></li>
                       </template>
                     </ul>

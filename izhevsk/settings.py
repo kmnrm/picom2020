@@ -104,6 +104,8 @@ if not DEBUG:
         },
     ]
     MIDDLEWARE = MIDDLEWARE[1:]
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
 
 LANGUAGE_CODE = 'en-us'
 
@@ -167,10 +169,6 @@ SWAGGER_SETTINGS = {
    },
     'USE_SESSION_AUTH': False,
 }
-
-CSRF_COOKIE_SECURE = True
-
-SESSION_COOKIE_SECURE = True
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
