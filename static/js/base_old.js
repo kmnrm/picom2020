@@ -215,7 +215,7 @@ var lc = L.control.locate({
 
 function clearWaypoints(){
   if(control){
-    control.setWaypoints(null);
+    // control.setWaypoints(null);
     control.hide();
   }};
 
