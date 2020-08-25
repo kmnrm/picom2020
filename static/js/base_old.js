@@ -51,29 +51,6 @@ function loadJSON(elementId){
 
 let places = loadJSON('places-geojson');
 
-/*
-var ZZGo = L.Class.extend({
-  geocode: function(query, cb, context) {
-    var params = {
-        title: query
-      };
-
-    getJSON(
-      window.location.href + 'api/places.json',
-      L.extend(params, this.options.geocodingQueryParams),
-      function(data) {
-        var results = [],
-          loc,
-          latLng,
-          latLngBounds;}
-
-
-    )
-  }
-});
-*/
-
-
 
 /* ======--Routing Machine--======*/
 var control = L.Routing.control({
@@ -82,7 +59,6 @@ var control = L.Routing.control({
   routeWhileDragging: false,
   draggableWaypoints: false,
   reverseWaypoints: false,
-  // geocoder: ZZGo,
   geocoder: L.Control.Geocoder.nominatim(),
   lineOptions : {
     addWaypoints: false,
