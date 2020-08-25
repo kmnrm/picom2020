@@ -380,7 +380,10 @@ function loadClickedPlace(place){
     place.coordinates.latitude || place.coordinates[1],
     place.coordinates.longitude || place.coordinates[0]
   )
-
+  L.popup()
+    .setLatLng(placeLatLng)
+    .setContent(place.title)
+    .openOn(map);
   // addPopUpRoutingBtns(placeLatLng, place.title);
   loadPlaceInfo(place.id, place.detailsUrl);
 };
