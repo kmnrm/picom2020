@@ -11,26 +11,26 @@ from apps.places.serializer import (PlaceSerializer,
                                     ReviewSerializer)
 
 
-class OwnerPlaceFilter(DjangoFilterBackend):
+class PlaceTitleFilter(DjangoFilterBackend):
     def filter_queryset(self, request, queryset, view):
-        if 'uploaded_by' in request.query_params:
-            uploaded_by = request.query_params['uploaded_by']
+        if 'title' in request.query_params:
+            place_title = request.query_params['title']
             return queryset.filter(
-                uploaded_by=uploaded_by
+                title__contains=place_title
             ).calculate_auto_fill_fields()
         return queryset
 
     class Meta:
         model = Place,
-        fields = ('uploaded_by',)
+        fields = ('title', )
 
 
 class PlaceViewSet(ModelViewSet):
     queryset = Place.objects.all()
     serializer_class = PlaceSerializer
     permission_classes = [IsUploaderOrReadOnly]
-    filter_backends = [OwnerPlaceFilter]
-    filterset_fields = ['uploaded_by', ]
+    filter_backends = [PlaceTitleFilter]
+    filterset_fields = ['title', ]
 
     def get_object(self):
         place_id = super(PlaceViewSet, self).get_object().id
@@ -43,7 +43,6 @@ class PlaceViewSet(ModelViewSet):
         return Place.objects.prefetch_related(
             'images',
             'events',
-            'reviews',
             'reviews__author'
         ).calculate_auto_fill_fields()
 
