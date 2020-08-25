@@ -125,7 +125,7 @@ var locations = L.geoJSON(places, {
       marker.on('click', function(event){
         sidebar.show();
         loadPlaceInfo(geoJsonPoint.properties.placeId, geoJsonPoint.properties.detailsUrl);
-        addPopUpRoutingBtns(event.latlng, geoJsonPoint.properties.title);
+        // addPopUpRoutingBtns(event.latlng, geoJsonPoint.properties.title);
       });
       return marker;
     }
@@ -135,7 +135,7 @@ map.addLayer(locations);
 
 
 
-var addPopUpRoutingBtns = function(locationLatLng, locationTitle) {
+function addPopUpRoutingBtns(locationLatLng, locationTitle) {
   var container = L.DomUtil.create('div'),
     placeTitle = L.DomUtil.create('p', '', container),
     startBtn = createButton('Start', container, 'leaflet-route-start'),
@@ -191,7 +191,8 @@ var searchControl = new L.Control.Search({
 
 searchControl.on('search:locationfound', function (e) {
   sidebar.show();
-  addPopUpRoutingBtns(e.latlng, e.layer.feature.properties.title);
+  // addPopUpRoutingBtns(e.latlng, e.layer.feature.properties.title);
+  e.layer.openPopup();
   loadPlaceInfo(
     e.layer.feature.properties.placeId,
     e.layer.feature.properties.detailsUrl
@@ -212,7 +213,7 @@ var lc = L.control.locate({
 });
 
 
-var clearWaypoints = function(){
+function clearWaypoints(){
   if(control){
     control.setWaypoints(null);
     control.hide();
@@ -222,7 +223,7 @@ var clearWaypoints = function(){
 var controlContainer = control.getContainer(),
   showGeocoderBtn = document.createElement("button");
 
-var setGeocoderBtn = function() {
+function setGeocoderBtn() {
 
   showGeocoderBtn.classList.add('leaflet-geocoders-toggler');
   controlContainer.appendChild(showGeocoderBtn);
@@ -245,7 +246,7 @@ showGeocoderBtn.onclick = function () {
   controlContainer.removeChild(showGeocoderBtn);
 };
 
-var closeRoutingControl = function () {
+function closeRoutingControl() {
   if (lc._map){
     lc.stop();
     map.removeControl(lc);
@@ -312,7 +313,7 @@ if (!Array.prototype.last){
     };
 };
 
-var getSimilarPlaces = function (parentPlaceId, placeCategory, placesGeoJson, setSize) {
+function getSimilarPlaces(parentPlaceId, placeCategory, placesGeoJson, setSize) {
   var similarPlaces = [],
     places = placesGeoJson.features;
   for (i = 0; i < places.length; i++){
@@ -377,6 +378,6 @@ function loadClickedPlace(place){
     place.coordinates.longitude || place.coordinates[0]
   )
 
-  addPopUpRoutingBtns(placeLatLng, place.title);
+  // addPopUpRoutingBtns(placeLatLng, place.title);
   loadPlaceInfo(place.id, place.detailsUrl);
 };
