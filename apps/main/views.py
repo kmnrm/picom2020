@@ -4,6 +4,7 @@ from rest_framework import renderers
 from rest_framework.response import Response
 
 from apps.places.views import PlaceViewSet
+from apps.places.models import get_rating_status
 
 
 def to_dict(input_ordered_dict):
@@ -37,18 +38,6 @@ def make_feature_for_geojson(place):
         }
     }
     return feature
-
-
-def get_rating_status(rating):
-    rating_range = {
-        0: 'Not rated',
-        1: 'Poor',
-        2: 'Average',
-        3: 'Good',
-        4: 'Very Good',
-        5: 'Excellent'
-    }
-    return rating_range[round(rating)]
 
 
 class MainViewSet(PlaceViewSet):

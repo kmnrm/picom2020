@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from drf_yasg import openapi
+from apps.places.models import get_rating_status
 from apps.places.models import (Place,
                                 PlaceImage,
                                 Event,
@@ -91,6 +92,7 @@ class PlaceSerializer(serializers.ModelSerializer):
     reviews = ReviewSerializer(many=True, read_only=True)
     logo = serializers.SerializerMethodField('get_logo_url')
     phone_number = serializers.SerializerMethodField()
+    rating_status = serializers.SerializerMethodField()
     detailsUrl = serializers.HyperlinkedIdentityField(view_name="places-detail", lookup_field='pk')
 
     class Meta:
@@ -113,6 +115,7 @@ class PlaceSerializer(serializers.ModelSerializer):
             'events',
             'images',
             'rating',
+            'rating_status',
             'reviews',
             'detailsUrl',
         )
@@ -153,6 +156,9 @@ class PlaceSerializer(serializers.ModelSerializer):
 
     def get_phone_number(self, place):
         return place.standardize_phone_number()
+
+    def get_rating_status(self, place):
+        return get_rating_status(place.rating)
 
 
 class DrinkSerializer(serializers.ModelSerializer):

@@ -13,6 +13,11 @@ from izhevsk.settings import BAIDUV3_GEOCODER_KEY, BAIDU_SECURITY_KEY
 from geopy.geocoders import BaiduV3
 
 
+def get_rating_status(rating):
+    rating_range = PlaceUserReview.RATING_CHOICES
+    return rating_range[round(rating)][1]
+
+
 def fetch_address_coordinates(address):
     locator = BaiduV3(api_key=BAIDUV3_GEOCODER_KEY, security_key=BAIDU_SECURITY_KEY)
     location = locator.geocode(
