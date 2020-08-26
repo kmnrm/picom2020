@@ -63,10 +63,12 @@ class PlaceImageSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     author = serializers.PrimaryKeyRelatedField(read_only=True)
     username = serializers.SerializerMethodField()
+    publishing_date = serializers.SerializerMethodField()
+    publishing_time = serializers.SerializerMethodField()
 
     class Meta:
         model = PlaceUserReview
-        fields = '__all__'
+        exclude = ('published_at', )
 
     def create(self, validated_data):
         validated_data.update(
@@ -79,6 +81,14 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     def get_username(self, review):
         return review.author.username
+
+    def get_publishing_date(self, review):
+        return str(review.published_at.date())
+
+    def get_publishing_time(self, review):
+        return format_time(
+            review.published_at.time().replace(microsecond=0)
+        )
 
 
 class PlaceSerializer(serializers.ModelSerializer):

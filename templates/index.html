@@ -93,10 +93,9 @@
                 <img src="../static/img/contacts-time.svg" alt="">
               </div>
               <div class="text">
-                <p v-if="selectedPlace.opening_hours !== null && selectedPlace.closing_hours !== null">
-                  {{ selectedPlace.opening_hours.slice(0, -3) }} - {{ selectedPlace.closing_hours.slice(0, -3) }}
-                <p class="label">Open now</p>
-                <p v-else>-</p>
+                <p>{{ selectedPlace.businessHours }}</p>
+                <p class="label" v-if="placeIsOpen">Open now</p>
+                <p class="label" v-else>Closed now</p>
               </div>
             </li>
             <li>
@@ -104,7 +103,7 @@
                 <img src="../static/img/contacts-card.svg" alt="">
               </div>
               <div class="text">
-                <p v-if="selectedPlace.average_price !== 0">¥{{ selectedPlace.average_price }}</p>
+                <p v-if="selectedPlace.averagePrice !== 0">¥{{ selectedPlace.averagePrice }}</p>
                 <p class="label">Average price</p>
                 <p v-else>-</p>
               </div>
@@ -122,7 +121,7 @@
                 <img src="../static/img/contacts-phone.svg" alt="">
               </div>
               <div class="text">
-                <p>{{ selectedPlace.phone_number }}</p>
+                <p>{{ selectedPlace.phoneNumber }}</p>
               </div>
             </li>
           </ul>
@@ -131,27 +130,27 @@
             <div class="description-rating">
               <span class="rate-value">{{ selectedPlace.rating }}/5</span>
               <ul class="rate-icons stars">
-                <template v-for="star in selectedPlace.rating_rounded">
+                <template v-for="star in selectedPlace.ratingRounded">
                   <li class="description-rating-stars active"></li>
                 </template>
-                <template v-for="inactiveStar in 5" v-if="inactiveStar > selectedPlace.rating_rounded">
+                <template v-for="inactiveStar in 5" v-if="inactiveStar > selectedPlace.ratingRounded">
                   <li class="description-rating-stars"></li>
                 </template>
               </ul>
-              <p class="rating-category">{{ selectedPlace.rating_status }}
+              <p class="rating-category">{{ selectedPlace.ratingStatus }}
               </p>
             </div>
             <div class="description-police-rate">
-              <span class="rate-value">{{ selectedPlace.police_rating_value }}/5</span>
+              <span class="rate-value">{{ selectedPlace.policeRatingValue }}/5</span>
               <ul class="rate-icons warnings">
-                <template v-for="siren in selectedPlace.police_rating_value">
+                <template v-for="siren in selectedPlace.policeRatingValue">
                   <li class="description-rating-warnings active"></li>
                 </template>
-                <template v-for="inactiveSiren in 5" v-if="inactiveSiren > selectedPlace.police_rating_value">
+                <template v-for="inactiveSiren in 5" v-if="inactiveSiren > selectedPlace.policeRatingValue">
                   <li class="description-rating-warnings"></li>
                 </template>
               </ul>
-              <p class="rating-category">{{ selectedPlace.police_rating }}</p>
+              <p class="rating-category">{{ selectedPlace.policeRating }}</p>
             </div>
           </div>
           {% endverbatim sidebar %}
@@ -205,7 +204,7 @@
             <h2>Other {{selectedPlace.category}}s</h2>
           </div>
           <ul>
-            <li class="place-card" v-for="place in selectedPlace.similar_places">
+            <li class="place-card" v-for="place in selectedPlace.similarPlaces">
               <div type="button" v-on:click="loadClickedPlace(place)">
                 <div class="place-image">
                   <img v-bind:src="place.logo" v-bind:alt="place.title">
@@ -254,7 +253,7 @@
                 <div class="review-card">
                   <div>
                     <p class="name">{{ review.username }}</p>
-                    <p class="date">1997-02-07</p>
+                    <p class="date">{{ review.publishing_date }}</p>
                   </div>
                   <p class="text">{{ review.text }}</p>
                 </div>

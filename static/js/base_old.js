@@ -299,6 +299,22 @@ var sidebarApp = new Vue({
       }
       return this.selectedPlace.images;
     },
+
+    placeIsOpen: function () {
+      if (!this.selectedPlace){
+        return false
+      }
+      var now = new Date(),
+        nowDate = now.toISOString().split('T')[0],
+        openTime = new Date(nowDate + 'T' + this.selectedPlace.openingHours + '.000+08:00');
+        closeTime = new Date(nowDate + 'T' + this.selectedPlace.closingHours + '.000+08:00');
+
+      if (this.selectedPlace.openingHours > this.selectedPlace.closingHours) {
+        if (now >= closeTime && now < openTime) { return false }
+        closeTime.setDate(closeTime.getDate() + 1);
+      }
+      return now >= openTime && now < closeTime || openTime === closeTime
+    }
   },
   updated: function () {
     this.$nextTick(function () {
@@ -351,6 +367,15 @@ function getSimilarPlaces(parentPlaceId, placeCategory, placesGeoJson, setSize) 
   return (similarPlaces.sort(() => 0.5 - Math.random())).slice(0, setSize)
 }
 
+function getBusinessHours(openHours, closeHours) {
+  if (openHours !== null && closeHours !== null) {
+    if (openHours === closeHours) {
+      return '24/7'
+    }
+    return openHours.slice(0, -3) + ' - ' + closeHours.slice(0, -3)
+  }
+  return '-'
+}
 
 async function loadPlaceInfo(placeId, detailsUrl){
   sidebarApp.selectedPlace = null;
@@ -377,20 +402,20 @@ async function loadPlaceInfo(placeId, detailsUrl){
       category: data.category,
       description: data.description,
       address: data.address,
-      pinyin_address: data.pinyin_address,
-      average_price: data.average_price,
+      averagePrice: data.average_price,
       rating: data.rating || 0,
-      rating_rounded: Math.round(data.rating),
-      rating_status: data.rating_status,
-      police_rating: data.police_rating.slice(3, ),
-      police_rating_value: parseInt(data.police_rating.charAt(0)),
+      ratingRounded: Math.round(data.rating),
+      ratingStatus: data.rating_status,
+      policeRating: data.police_rating.slice(3, ),
+      policeRatingValue: parseInt(data.police_rating.charAt(0)),
       events: data.events,
       reviews: data.reviews,
-      opening_hours: data.opening_hours,
-      closing_hours: data.closing_hours,
+      businessHours: getBusinessHours(data.opening_hours, data.closing_hours),
+      openingHours: data.opening_hours,
+      closingHours: data.closing_hours,
       logo: data.logo,
-      phone_number: data.phone_number,
-      similar_places: getSimilarPlaces(data.id, data.category, places, 4),
+      phoneNumber: data.phone_number,
+      similarPlaces: getSimilarPlaces(data.id, data.category, places, 4),
     };
   } finally {
     if (sidebarApp.loadingPlaceId == placeId){
