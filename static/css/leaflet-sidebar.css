@@ -8,6 +8,38 @@
 /* Source code from leaflet-sidebar plugin https://github.com/Turbo87/leaflet-sidebar/ */
 
 @font-face {
+  font-family: "HagridVariable";
+  src: url("../fonts/Hagrid-Variable.ttf") format("truetype"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "HagridVariable";
+  src: url("../fonts/Hagrid-Variable.ttf") format("truetype"); /* Modern Browsers */
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "HagridVariable";
+  src: url("../fonts/Hagrid-Variable.ttf") format("truetype"); /* Modern Browsers */
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HagridVariable2";
+  src: url("../fonts/Hagrid-Variable-trial.eot"); /* IE9 Compat Modes */
+  src: url("../fonts/Hagrid-Variable-trial.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/Hagrid-Variable-trial.otf") format("opentype"), /* Open Type Font */
+    url("../fonts/Hagrid-Variable-trial.svg") format("svg"), /* Legacy iOS */
+    url("../fonts/Hagrid-Variable-trial.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("../fonts/Hagrid-Variable-trial.woff") format("woff"), /* Modern Browsers */
+    url("../fonts/Hagrid-Variable-trial.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Hagrid';
   src: url('../fonts/Hagrid-Text-Bold-trial.eot');
   src: url('../fonts/Hagrid-Text-Bold-trial.eot?#iefix') format('embedded-opentype'),
@@ -173,13 +205,18 @@
   background: transparent; /* Disable scrollbar Chrome/Safari/Webkit */
 }
 
+.main-page {
+  margin-top: 3rem;
+}
+
 .main-page .wrapper {
   padding-left: 40px;
   padding-right: 40px;
 }
 
 .main-page h2 {
-  font-family: Hagrid, sans-serif;
+  font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
+  font-weight: 800;
   margin-bottom: 1.5rem;
 }
 
@@ -187,6 +224,7 @@
   margin-left: 40px;
   margin-right: 40px;
   margin-bottom: 40px;
+  height: 3.5rem;
 } 
 
 #search .leaflet-control-search {
@@ -251,10 +289,10 @@
 }
 
 .places-list .place-name {
-  font-family: Hagrid, sans-serif;
+  font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
   font-size: 2rem;
   line-height: 1.2;
-  font-weight: bold;
+  font-weight: 800;
 }
 
 .places-list .place-ratings { 
@@ -368,8 +406,8 @@
 .description-title {
   margin-left: 140px;
   margin-bottom: 25px;
-  font-family: Hagrid, sans-serif;
-  font-weight: bold;
+  font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
+  font-weight: 800;
   font-size: 2rem;
   line-height: 1.2;
 }
@@ -531,7 +569,8 @@
 }
 
 #reviews h2 {
-  font-family: Hagrid, sans-serif;
+  font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
+  font-weight: normal;
   margin-bottom: 1rem;
 }
 
@@ -597,7 +636,7 @@
 }
 .reviews-more {
   display: block;
-  width: 33%;
+  width: 50%;
   margin: 0 auto;
   padding: 5px;
   border: 2px solid #0859F5;
@@ -707,7 +746,8 @@
 .leaflet-popup-content {
   padding: 9px 19px 13px;
   margin: 0;
-  font-family: Hagrid, sans-serif;
+  font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
+  font-weight: 800;
   text-align: center;
   font-size: 1.2rem;
   line-height: 2;
@@ -804,6 +844,8 @@
 }
 
 #events h2 {
+  font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
+  font-weight: normal;
   margin-bottom: 30px;
 }
 
@@ -855,6 +897,8 @@
 }
 
 #same-places h2 {
+  font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
+  font-weight: normal;
   margin-bottom: 30px;
 }
 
@@ -890,9 +934,9 @@
 }
 
 #same-places .place-card .place-title {
-  font-weight: bold;
+  font-weight: 800;
   line-height: 2.5rem;
-  font-family: Hagrid, sans-serif;
+  font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
 }
 
 #same-places .rating-category {
