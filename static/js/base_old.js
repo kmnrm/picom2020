@@ -72,7 +72,7 @@ var control = L.Routing.control({
     addWaypoints: false,
     styles: [{ color: '#0053b5', opacity: 1, weight: 5 }]
   },
-  
+
   createMarker: function (i, start, n){
     var marker = L.marker (start.latLng, {
       icon: L.icon({
@@ -316,14 +316,21 @@ var sidebarApp = new Vue({
 });
 
 map.addControl(searchControl);
+var backButton = document.getElementById('back-button');
 
-map.on('click', function () {
+function getBackToMain() {
   sidebarApp.selectedPlace = null;
   sidebarApp.loadingPlaceId = null;
+  backButton.style.display = 'none';
+  map.closePopup();
+}
 
-  if (!searchControl._map) {
-    map.addControl(searchControl);
-  }
+backButton.onclick = function () {
+  getBackToMain();
+}
+
+map.on('click', function () {
+  getBackToMain()
 })
 
 if (!Array.prototype.last){
@@ -348,7 +355,7 @@ function getSimilarPlaces(parentPlaceId, placeCategory, placesGeoJson, setSize) 
 async function loadPlaceInfo(placeId, detailsUrl){
   sidebarApp.selectedPlace = null;
   sidebarApp.loadingPlaceId = placeId;
-
+  backButton.style.display = 'block';
 
   try {
     let response = await fetch(detailsUrl);
