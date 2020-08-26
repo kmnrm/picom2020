@@ -32,7 +32,10 @@ function showGeocodersPopUp(event) {
 }
 function setMyLocation(event) {
   let element = event.target.parentElement.parentElement.children[1];
+  // There could be your advertisment
+  element.value = 'Hack, yeah!';
   console.log(element);
+  console.log(element.value);
 }
 
 L.control.layers(null, overlays).addTo(map);
