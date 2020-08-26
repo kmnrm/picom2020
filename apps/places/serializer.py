@@ -94,6 +94,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 class PlaceSerializer(serializers.ModelSerializer):
     uploaded_by = serializers.PrimaryKeyRelatedField(read_only=True)
     coordinates = CoordinatesField()
+    address = serializers.SerializerMethodField()
     events = EventSerializer(many=True, read_only=True)
     images = serializers.SerializerMethodField()
     police_rating = serializers.ChoiceField(choices=Place.POLICE_RATING)
@@ -169,6 +170,9 @@ class PlaceSerializer(serializers.ModelSerializer):
 
     def get_rating_status(self, place):
         return get_rating_status(place.rating)
+
+    def get_address(self, place):
+        return place.address.replace('河南省', '').replace('郑州市', '')
 
 
 class DrinkSerializer(serializers.ModelSerializer):
