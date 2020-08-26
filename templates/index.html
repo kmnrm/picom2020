@@ -54,15 +54,15 @@
               </div>
               <div class="place-info">
                 <div class="category time">
-                  <img src="../static/img/time.svg" alt="">
+                  <img src="../static/img/contacts-time.svg" alt="">
                   <p>{{ place.opening_hours }}-{{ place.closing_hours }}</p>
                 </div>
                 <div class="category phone">
-                  <img src="../static/img/phone.svg" alt="">
+                  <img src="../static/img/contacts-phone.svg" alt="">
                   <p>{{ place.phone_number }}</p>
                 </div>
                 <div class="category location">
-                  <img src="../static/img/marker.svg" alt="">
+                  <img src="../static/img/contacts-marker.svg" alt="">
                   <p>{{ place.address }}</p>
                 </div>
               </div>
@@ -87,6 +87,46 @@
           <h5 class="description-title" class="mb-3">{{ selectedPlace.title }}</h5>
           <p class="description-text">{{ selectedPlace.description }}</p>
 
+          <ul class="description-contacts">
+            <li>
+              <div class="image">
+                <img src="../static/img/contacts-time.svg" alt="">
+              </div>
+              <div class="text">
+                <p v-if="selectedPlace.opening_hours !== null && selectedPlace.closing_hours !== null">
+                  {{ selectedPlace.opening_hours.slice(0, -3) }} - {{ selectedPlace.closing_hours.slice(0, -3) }}
+                <p class="label">Open now</p>
+                <p v-else>-</p>
+              </div>
+            </li>
+            <li>
+              <div class="image">
+                <img src="../static/img/contacts-card.svg" alt="">
+              </div>
+              <div class="text">
+                <p v-if="selectedPlace.average_price !== 0">¥{{ selectedPlace.average_price }}</p>
+                <p class="label">Average price</p>
+                <p v-else>-</p>
+              </div>
+            </li>
+            <li>
+              <div class="image">
+                <img src="../static/img/contacts-marker.svg" alt="">
+              </div>
+              <div class="text">
+                <p>{{ selectedPlace.address }}</p>
+              </div>
+            </li>
+            <li>
+              <div class="image">
+                <img src="../static/img/contacts-phone.svg" alt="">
+              </div>
+              <div class="text">
+                <p>{{ selectedPlace.phone_number }}</p>
+              </div>
+            </li>
+          </ul>
+
           <div class="ratings">
             <div class="description-rating">
               <span class="rate-value">{{ selectedPlace.rating }}/5</span>
@@ -98,7 +138,8 @@
                   <li class="description-rating-stars"></li>
                 </template>
               </ul>
-              <p class="rating-category">rating review: <span id="description-rating-value">{{ selectedPlace.rating }}</span></p>
+              <p class="rating-category">{{ selectedPlace.rating }}
+              </p>
             </div>
             <div class="description-police-rate">
               <span class="rate-value">{{ selectedPlace.police_rating_value }}/5</span>
@@ -110,34 +151,9 @@
                   <li class="description-rating-warnings"></li>
                 </template>
               </ul>
-              <p class="rating-category">police rating: <span id="description-police-rate-value">{{ selectedPlace.police_rating }}</span></p>
+              <p class="rating-category">{{ selectedPlace.police_rating }}</p>
             </div>
           </div>
-
-          <hr>
-
-          <ul class="description-contacts">
-            <li><div class="icon-place"></div>
-              <p>{{ selectedPlace.address }}</p>
-            </li>
-            <li>
-              <div class="icon-price"></div>
-              <p v-if="selectedPlace.average_price !== 0">¥{{ selectedPlace.average_price }}</p>
-              <p v-else>-</p>
-            </li>
-            <li>
-              <div class="icon-time"></div>
-              <p v-if="selectedPlace.opening_hours !== null && selectedPlace.closing_hours !== null">
-                {{ selectedPlace.opening_hours.slice(0, -3) }} - {{ selectedPlace.closing_hours.slice(0, -3) }}
-              </p>
-              <p v-else>-</p>
-            </li>
-            
-            <li>
-              <div class="icon-phone"></div>
-              <p>{{ selectedPlace.phone_number }}</p>
-            </li>
-          </ul>
           {% endverbatim sidebar %}
         </div>
         
@@ -172,21 +188,16 @@
             <h2>Events</h2>
             <ul>
               <template v-for="event in selectedPlace.events">
-                <div class="wrapper">
-                  <li>
-                    <p class="event-date">{{ event.date }}</p>
-                    <p class="event-name">{{ event.title }}</p>
-                    <p class="event-time">{{ event.time_from }} - {{ event.time_till }}</p>
-                  </li>
-                </div>
-               
+                <li>
+                  <p class="event-date">{{ event.date }}</p>
+                  <p class="event-name">{{ event.title }}</p>
+                  <p class="event-time">{{ event.time_from }} - {{ event.time_till }}</p>
+                </li>
               </template>
             </ul>
           </div>
         </section>
         {% endverbatim events %}
-
-        <div class="wrapper"><hr></div>
 
         {% verbatim similar_places %}
         <section id="same-places">
@@ -201,27 +212,27 @@
                 </div>
                 <h5 class="place-title">{{ place.title }}</h5>
                 <div class="ratings">
-                  <div class="description-rating">
-                    <span class="rate-value">{{ place.rating }}/5</span>
-                    <ul class="rate-icons stars">
-                      <template v-for="star in Math.round(place.rating)">
-                        <li class="description-rating-stars active"></li>
-                      </template>
-                      <template v-for="inactiveStar in 5" v-if="inactiveStar > Math.round(place.rating)">
-                        <li class="description-rating-stars"></li>
-                      </template>
-                    </ul>
+                  <div class="rating-category">
+                    <img src="../static/img/rating-star.svg" alt="">
+                    <span class="rate-value">{{ place.rating }}</span>
                   </div>
-                  <div class="description-police-rate">
-                    <span class="rate-value">{{ place.policeRating }}/5</span>
-                    <ul class="rate-icons warnings">
-                      <template v-for="siren in place.policeRating">
-                        <li class="description-rating-warnings active"></li>
-                      </template>
-                      <template v-for="inactiveSiren in 5" v-if="inactiveSiren > place.policeRating">
-                        <li class="description-rating-warnings"></li>
-                      </template>
-                    </ul>
+                  <div class="rating-category">
+                    <img src="../static/img/rating-warning.svg" alt="">
+                    <span class="rate-value">{{ place.policeRating }}</span>
+                  </div>
+                </div>
+                <div class="contacts">
+                  <div class="category">
+                    <div class="image">
+                      <img src="../static/img/contacts-time.svg" alt="">
+                    </div>
+                    <p class="text">time</p>
+                  </div>
+                  <div class="category">
+                    <div class="image">
+                      <img src="../static/img/contacts-marker.svg" alt="">
+                    </div>
+                    <p class="text">place</p>
                   </div>
                 </div>
               </div>
@@ -230,44 +241,27 @@
         </section>
         {% endverbatim similar_places %}
 
-        <div class="wrapper">
-          <hr>
-        </div>
-
         {% verbatim reviews %}
         <section id="reviews">
           <div class="wrapper">
+            <h2>Reviews</h2>
             <div class="reviews-head">
-              <h2 class="reviews-title">Reviews</h2>
-              <p class="reviews-average-rating">{{ selectedPlace.rating }}/5 <span>Average mark</span></p>
-            </div>
-          </div>
-                  
-          <div class="user-reviews">
-            <template v-for="review in selectedPlace.reviews">
-              <div class="review-card">
-                <div class="wrapper">
-                  <div class="user-avatar"></div>
-                  <div class="user-review">
+              <p class="reviews-average-rating">{{ selectedPlace.rating }}</p>
+              <button>Write review</button>
+            </div>  
+            <div class="user-reviews">
+              <template v-for="review in selectedPlace.reviews">
+                <div class="review-card">
+                  <div>
                     <p class="name">{{ review.username }}</p>
-                    <p class="text">{{ review.text }}</p>
+                    <p class="date">1997-02-07</p>
                   </div>
+                  <p class="text">{{ review.text }}</p>
                 </div>
-              </div>
-            </template>            
-          </div>
-          <div class="wrapper">
-            <div class="reviews-controls clearfix">
-              <button class="reviews-write">Write a review</button>
-              <div id="reviews-pages">
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">…</a>
-              </div>
+              </template>            
             </div>
+            <button class="reviews-more">More</button>
           </div>
-          
         </section>
         {% endverbatim reviews %}
         

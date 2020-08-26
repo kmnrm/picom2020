@@ -292,6 +292,7 @@
   border-radius: 20px;
 }
 .leaflet-routing-geocoders h4 {
+    font-family: Hagrid, sans-serif;
   -webkit-box-ordinal-group: 1;
       -ms-flex-order: 0;
           order: 0;
@@ -389,7 +390,7 @@
 .leaflet-routing-geocoders .leaflet-routing-reverse-waypoints {
     right: -1px;
   position: absolute;
-  top: 92px;
+  top: 48%;
   background: none;
 }
 

@@ -135,6 +135,10 @@ L.Control.Search = L.Control.extend({
 		this._map = map;
 		this._container = L.DomUtil.create('div', 'leaflet-control-search');
 		this._input = this._createInput(this.options.textPlaceholder, 'search-input');
+		this._back = this._createButton(this.options.textPlaceholder, 'back');
+		this._back.innerHTML = `<svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 2L2 11.1892L10 19" stroke="#898989" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>Back to bar list`;
 		this._tooltip = this._createTooltip('search-tooltip');
 		this._cancel = this._createCancel(this.options.textCancel, 'search-cancel');
 		this._button = this._createButton(this.options.textPlaceholder, 'search-button');

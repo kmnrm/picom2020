@@ -7,6 +7,70 @@
 
 /* Source code from leaflet-sidebar plugin https://github.com/Turbo87/leaflet-sidebar/ */
 
+@font-face {
+  font-family: 'Hagrid';
+  src: url('../fonts/Hagrid-Text-Bold-trial.eot');
+  src: url('../fonts/Hagrid-Text-Bold-trial.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Hagrid-Text-Bold-trial.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hagrid';
+  src: url('../fonts/HagridTextTrial-Bold.svg#HagridTextTrial-Bold') format('svg'),
+       url('../fonts/HagridTextTrial-Bold.ttf') format('truetype'),
+       url('../fonts/HagridTextTrial-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hagrid';
+  src: url('../fonts/Hagrid-Extrabold-trial.eot');
+  src: url('../fonts/Hagrid-Extrabold-trial.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Hagrid-Extrabold-trial.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hagrid';
+  src: url('../fonts/HagridTrial-Extrabold.svg#HagridTrial-Extrabold') format('svg'),
+       url('../fonts/HagridTrial-Extrabold.ttf') format('truetype'),
+       url('../fonts/HagridTrial-Extrabold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Regular.eot');
+  src: url('../fonts/Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Montserrat-Regular.svg#Montserrat-Regular') format('svg'),
+       url('../fonts/Montserrat-Regular.ttf') format('truetype'),
+       url('../fonts/Montserrat-Regular.woff') format('woff'),
+       url('../fonts/Montserrat-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-SemiBold.eot');
+  src: url('../fonts/Montserrat-SemiBold.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Montserrat-SemiBold.svg#Montserrat-SemiBold') format('svg'),
+       url('../fonts/Montserrat-SemiBold.ttf') format('truetype'),
+       url('../fonts/Montserrat-SemiBold.woff') format('woff'),
+       url('../fonts/Montserrat-SemiBold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+.leaflet-container {
+  font-family: Montserrat, sans-serif;
+}
+
 .leaflet-sidebar .close {
   display: none;
 }
@@ -115,12 +179,14 @@
 }
 
 .main-page h2 {
+  font-family: Hagrid, sans-serif;
   margin-bottom: 1.5rem;
 }
 
 #search {
   margin-left: 40px;
   margin-right: 40px;
+  margin-bottom: 40px;
 } 
 
 #search .leaflet-control-search {
@@ -147,7 +213,7 @@
   background: #ECECEC;
   font-size: 1rem;
   line-height: 1.2;
-  margin-bottom: 3rem;
+  margin-bottom: 0.5rem;
 }
 
 #search .leaflet-control-searchinput:hover,
@@ -156,6 +222,15 @@
   border: 2px solid #999;
 }
 
+#search .back {
+  font-size: 1rem;
+  color: #7C7C7C;
+  padding: 7px;
+}
+#search .back svg {
+  margin-right: 7px;
+  margin-top: -2px;
+}
 
 .places-list {
   padding: 0;
@@ -176,6 +251,7 @@
 }
 
 .places-list .place-name {
+  font-family: Hagrid, sans-serif;
   font-size: 2rem;
   line-height: 1.2;
   font-weight: bold;
@@ -205,8 +281,9 @@
 
 .place-ratings .rating .value {
   position: relative;
-  width: 80px;    
+  width: 80px;    ;
   font-size: 1.4rem;
+  font-weight: bold;
   line-height: 1.2;
   margin-bottom: 0;
 }
@@ -258,6 +335,7 @@
 }
 .place-info .category p {
   font-size: 1rem;
+  font-weight: bold;
   line-height: 1.2;
   margin-bottom: 0;
 }
@@ -290,6 +368,7 @@
 .description-title {
   margin-left: 140px;
   margin-bottom: 25px;
+  font-family: Hagrid, sans-serif;
   font-weight: bold;
   font-size: 2rem;
   line-height: 1.2;
@@ -303,7 +382,7 @@
   display: -webkit-box;
   max-width: 100%;
   height: 3.6rem;
-  margin-bottom: 34px;
+  margin-bottom: 4rem;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -331,7 +410,8 @@
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
 }
 
 .description-rating {
@@ -356,7 +436,6 @@
   top: -3px;
   font-size: 2rem;
   line-height: 1.4;
-  color: #C4C4C4;
 }
 
 .rate-icons {
@@ -389,10 +468,6 @@
   background-position: -30px 0;
 }
 
-hr {
-  border: 1px solid #c4c4c4;
-}
-
 .description-contacts {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -401,8 +476,8 @@ hr {
       flex-wrap: wrap;
   list-style: none;
   padding: 0;
-  margin-top: 30px;
-  margin-bottom: 50px;
+  margin-top: 3rem;
+  margin-bottom: 2rem
 }
 
 .description-contacts li {
@@ -412,6 +487,7 @@ hr {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  flex-wrap: wrap;
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
@@ -420,127 +496,117 @@ hr {
   line-height: 1.2;
 }
 
-.description-contacts div {
+.description-contacts .image {
   -ms-flex-preferred-size: 35px;
       flex-basis: 35px;
-  position: relative;
-  top: 12px;
   display: inline-block;
-  background: url("../img/contact-icons.png") no-repeat;
   width: 35px;
   height: 40px;
   margin-right: 20px;
 }
 
-.description-contacts p {
+.description-contacts .text {
+  font-weight: bold;
   -ms-flex-preferred-size: calc(100% - 60px);
       flex-basis: calc(100% - 60px);
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
-
-.description-contacts .icon-place {
-  background-position: 0 0; }
-.description-contacts .icon-time {
-  background-position: -35px 0; }
-.description-contacts .icon-price {
-  background-position: -70px 0; }
-.description-contacts .icon-phone {
-  background-position: -105px 0; }
+.description-contacts .text p {
+  margin: 0;
+}
+.description-contacts .label {
+  font-weight: normal;
+  flex-basis: 100%;
+  font-size: 0.8rem;
+}
 
 
 #place-photos {
-  margin-bottom: 70px;
+  margin-bottom: 3rem;
 }
 
 #reviews {
-  margin: 40px 0;
+  margin-bottom: 3rem;
+}
+
+#reviews h2 {
+  font-family: Hagrid, sans-serif;
+  margin-bottom: 1rem;
 }
 
 .reviews-head {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: space-between;
 }
 
-.reviews-head > * {
-  -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
-  font-size: 1.6rem;
-  line-height: 1.2;
+.reviews-head p {
+  position: relative;
+  flex: 0 0 110px;
+  font-size: 2rem;
+}
+.reviews-head p:after {
+  position: absolute;
+  content: "";
+  top: 7px;
+  background: url("../img/rating-star.svg");
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
 }
 
-.reviews-average-rating span {
-  font-size: 1rem;
-  line-height: 1.2;
+.reviews-head button {
+  flex: 0 0 150px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0859F5;
+  border: none;
+  background: none;
+}
+
+.user-reviews {
+  margin-bottom: 1.5rem;
 }
 
 .review-card {
-  background-color: #F7F7F7;
+  padding: 25px 15px;
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.09);
+  border-radius: 10px;
+  margin-bottom: 16px;
 }
 
-.review-card > * {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.review-card div {
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin: 17px 0;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  justify-content: space-between;
 }
 
-.review-card .user-avatar {
-  -ms-flex-preferred-size: 50px;
-      flex-basis: 50px;
-  height: 50px;
-  border-radius: 25px;
-  background-color: #666;
-}
-
-.review-card .user-review {
-  -ms-flex-preferred-size: calc(100% - 70px);
-      flex-basis: calc(100% - 70px);
-}
-
-.review-card .user-review .name {
+.review-card .name {
+  flex: 1 0 100px;
   font-size: 1rem;
   font-weight: bold;
 }
-
-.review-card .user-review .text {
+.review-card .date {
+  flex: 0 0 100px;
+  font-size: 1rem;
+}
+.review-card .text {
   font-size: 1rem;
   line-height: 1.2;
 }
-
-.reviews-controls .reviews-write { 
-  width: 191px;
-  height: 41px;
+.reviews-more {
+  display: block;
+  width: 33%;
+  margin: 0 auto;
+  padding: 5px;
+  border: 2px solid #0859F5;
+  border-radius: 10px;
+  background: none;
   font-size: 1rem;
-  background: #C4C4C4;
-  border: none;
-  border-radius: 19px;
+  color: #0859F5;
 }
 
-.reviews-controls .reviews-write:hover {
-  border: 1px solid black;
-  opacity: 0.8;
-}
-
-.reviews-controls #reviews-pages {
-  float: right;
-}
-
-.reviews-controls #reviews-pages a{
-  margin-left: 5px;
-  text-decoration: none;
-  font-size: 1.5;
-  line-height: 1.2;
-  color: #868686;
-}
-
-.reviews-controls #reviews-pages a:hover {
-  text-decoration: underline;
-}
 
 @media (max-width: 480px) {
   .ratings > * { -ms-flex-preferred-size: 100%; flex-basis: 100%; }
@@ -630,9 +696,20 @@ hr {
   }
 }
 
+
+.leaflet-popup-content-wrapper {
+  border-radius: 35px;
+}
 .leaflet-popup-content { 
-  width: 300px;
-  /* margin: 0; */
+  width: 235px;
+}
+.leaflet-popup-content {
+  padding: 9px 19px 13px;
+  margin: 0;
+  font-family: Hagrid, sans-serif;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 2;
 }
 
 .leaflet-popup-content > div {
@@ -688,8 +765,9 @@ hr {
 
 
 .leaflet-container a.leaflet-popup-close-button {
-  top: 3px;
-  right: 5px;
+  top: 7px;
+  right: 20px;
+  display: none;
 }
 .leaflet-control-layers-expanded {
   padding: 7px 10px 1px 6px;
@@ -697,8 +775,8 @@ hr {
 
 
 #events { 
-  margin-top: 60px;
-  margin-bottom: 60px;
+  position: relative;
+  margin-bottom: 4rem;
 }
 
 #events h2 {
@@ -714,9 +792,9 @@ hr {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: space-between;
   font-size: 1rem;
   line-height: 1.2rem;
-  margin-left: 20px;
   margin-bottom: 20px;
 }
 
@@ -727,27 +805,28 @@ hr {
 #events li .event-date {
   -ms-flex-preferred-size: 60px;
       flex-basis: 60px;
+      flex-shrink: 0;
   font-size: 1rem;
   line-height: 1.2;
   font-weight: bold;
 }
 #events li .event-name {
-  margin-left: 20px;
   -ms-flex-preferred-size: calc(100% - 180px);
       flex-basis: calc(100% - 180px);
   font-size: 1rem;
   line-height: 1.2;
 }
 #events li .event-time {
-  -ms-flex-preferred-size: 120px;
-      flex-basis: 120px;
+  -ms-flex-preferred-size: 110px;
+      flex-basis: 110px;
+  flex-shrink: 0;
   font-size: 1rem;
   line-height: 1.2;
   font-weight: bold;
 }
 
 #same-places {
-  margin-top: 60px;
+  margin-bottom: 3rem;
 }
 
 #same-places h2 {
@@ -768,68 +847,57 @@ hr {
 
 #same-places .place-card {
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 auto;
-          flex: 0 0 auto;
-  /* display: inline-block; */
-  width: 247px;
-  padding: 29px;
-  margin: 0 10px;
-  background: #F7F7F7;
-  border-radius: 46px;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  width: 253px;
+  padding: 19px;
+  margin: 7px 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 9px #ddd;
 }
 
 #same-places .place-card .place-image {
   width: 100%;
-  height: 150px;
+  height: 180px;
   background: #DEDEDE;
-  border-radius: 46px;
-  margin-bottom: 10px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
 }
 
 #same-places .place-card .place-title {
   font-weight: bold;
   line-height: 2.5rem;
+  font-family: Hagrid, sans-serif;
 }
 
-#same-places .ratings {
-  display: block;
+
+#same-places .rating-category {
+  flex-basis: 50%;
+  display: flex;
+}
+
+#same-places .rating-category img {
+  margin-right: 0.5rem;
 }
 
 #same-places .rate-value {
-  position: relative;
-  top: -6px;
-  font-size: 1rem;
+  position: static;
+  font-size: 1.8rem;
   line-height: 1.2;
-  color: #C4C4C4;
+  color: #000;
 }
 
-#same-places .rate-icons {
-  display: inline-block;
-  list-style: none;
-  margin-left: 0;
-  padding: 0;
+#same-places .category {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 5px;
 }
-
-#same-places .rate-icons li {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  width: 19px;
-  height: 18px;
+#same-places .category .image {
+  flex: 1 0 30px;
+  margin-right: 10px;
 }
-
-#same-places .rate-icons li:first-child {
-  margin-left: 5px;
-}
-
-#same-places .rate-icons.stars li {
-  background: url("../img/Star-19.png") no-repeat;
-}
-#same-places .rate-icons.warnings li {
-  background: url("../img/Police-19.png") no-repeat;
-}
-#same-places .rate-icons li.active {
-  background-position: -19px 0;
+#same-places .category .text {
+  flex: 1 1 calc(100% - 40px);
 }
 
 @media (max-width: 450px) {
@@ -994,6 +1062,6 @@ hr {
   }
   .leaflet-routing-geocoders .leaflet-routing-reverse-waypoints {
     right: -3px;
-    top: 71px;
+    top: 44%;
   }
 }
