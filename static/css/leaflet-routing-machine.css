@@ -334,27 +334,25 @@
   -ms-flex-preferred-size: calc(100% - 60px);
       flex-basis: calc(100% - 60px);
 }
+/* .leaflet-routing-geocoder > input:focus~ .popUp {
+    display: block;
+} */
 .leaflet-routing-geocoders .btnSetRoute {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
-  /* height: 44px; */
   margin: 0;
+  font-family: Montserrat, sans-serif;
   font-size: 20px;
   line-height: 44px;
   background-color: #9A9A9A;
   color: white;
-  border: 2px solid transparent;
-  border-radius: none;
+  border-radius: 0;
 }
-.leaflet-routing-geocoders .btnSetRoute:hover {
-  border: 2px solid #666;
+.leaflet-routing-geocoders .btnSetRoute:hover,
+.leaflet-routing-geocoders .btnSetRoute:focus {
   background-color: #888;
   opacity: 0.8;
-}
-.leaflet-routing-geocoders .btnSetRoute:focus {
-  outline: none;
-  border: 2px solid #666;
 }
 .leaflet-geocoders-toggler {
   width: 100px;
@@ -363,6 +361,7 @@
   border-radius: 50px;
   background-color: #fff;
   border: 2px solid transparent;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .leaflet-geocoders-toggler:hover,
 .leaflet-geocoders-toggler:focus {

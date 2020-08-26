@@ -25,6 +25,16 @@ function sidebarToggle() {
   sidebar.classList.toggle('visible');
 }
 
+function showGeocodersPopUp(event) {
+  let element = event.target.nextElementSibling;
+  element.style.display = 'block';
+  setTimeout(() => element.style.display = "none", 3000);
+}
+function setMyLocation(event) {
+  let element = event.target.parentElement.parentElement.children[1];
+  console.log(element);
+}
+
 L.control.layers(null, overlays).addTo(map);
 L.control.zoom({
     position: 'bottomright'

@@ -202,6 +202,8 @@
         <section id="same-places">
           <div class="wrapper">
             <h2>Other {{selectedPlace.category}}s</h2>
+            <button class="same-places prev"><img src="../static/img/same-places-prev.svg" alt=""></button>
+            <button class="same-places next"><img src="../static/img/same-places-next.svg" alt=""></button>
           </div>
           <ul>
             <li class="place-card" v-for="place in selectedPlace.similarPlaces">

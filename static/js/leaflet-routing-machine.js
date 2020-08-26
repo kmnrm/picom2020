@@ -1976,6 +1976,7 @@ module.exports={
 				var container = L.DomUtil.create('div', 'leaflet-routing-geocoder'),
 				    fromto = L.DomUtil.create('p', '', container),
 					input = L.DomUtil.create('input', '', container),
+					gPopUp = L.DomUtil.create('div', 'popUp', container),
 					remove = options.addWaypoints ? L.DomUtil.create('span', 'leaflet-routing-remove-waypoint', container) : undefined;
 
 				input.disabled = false;
@@ -1984,6 +1985,7 @@ module.exports={
 					container: container,
 					fromto: fromto,
 					input: input,
+					gPopUp: gPopUp,
 					closeButton: remove
 				};
 			},
@@ -2019,7 +2021,10 @@ module.exports={
 			var g = this.options.createGeocoder(i, nWps, this.options),
 				closeButton = g.closeButton,
 				gFromTo = g.fromto,
-				geocoderInput = g.input;
+				geocoderInput = g.input,
+				gPopUp = g.gPopUp;
+			gPopUp.innerHTML = '<button onclick="setMyLocation(event)">My location</button>';
+			geocoderInput.setAttribute('onclick', 'showGeocodersPopUp(event)');
 			geocoderInput.setAttribute('placeholder', this.options.geocoderPlaceholder(i, nWps, this)[0]);
 			gFromTo.textContent = this.options.geocoderPlaceholder(i, nWps, this)[1];
 
@@ -3225,7 +3230,7 @@ module.exports = L.Routing = {
 			var container = L.DomUtil.create('div', 'leaflet-routing-geocoders ' + this.options.geocodersClassName),
                 gTitle,
                 gClose,
-                gButton,
+								gButton,
 				waypoints = this._waypoints,
 			    reverseBtn;
 
@@ -3237,7 +3242,7 @@ module.exports = L.Routing = {
             gButton.textContent = 'Set a route';
             gClose = L.DomUtil.create('button', '', container);
             gClose.textContent = 'x';
-            gClose.setAttribute('class', 'btnClose');
+						gClose.setAttribute('class', 'btnClose');
 			this._geocoderElems = [];
 
 			if (this.options.reverseWaypoints) {

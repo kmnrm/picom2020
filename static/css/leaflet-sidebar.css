@@ -558,7 +558,7 @@
 }
 
 .reviews-head button {
-  flex: 0 0 150px;
+  flex: 0 0 160px;
   font-size: 1.2rem;
   font-weight: bold;
   color: #0859F5;
@@ -588,7 +588,7 @@
   font-weight: bold;
 }
 .review-card .date {
-  flex: 0 0 100px;
+  flex: 0 0 110px;
   font-size: 1rem;
 }
 .review-card .text {
@@ -659,6 +659,7 @@
   }
 }
 @media (max-width: 1380px) {
+  html { font-size: 16px!important; }
   .leaflet-sidebar.left.visible ~ .leaflet-left {
     left: 400px;
   }
@@ -773,6 +774,29 @@
   padding: 7px 10px 1px 6px;
 }
 
+.leaflet-routing-geocoders .popUp {
+  display: none;
+  position: absolute;
+  top: 11px;
+  left: 55%;
+  background-color: #eee;
+  border: 1px solid #999;
+  border-radius: 5px;
+  padding: 0;
+}
+.leaflet-routing-geocoders .popUp button {
+  font-family: Montserrat, sans-serif;
+  font-size: 0.9rem;
+  line-height: 2;
+  font-weight: normal;
+  background: none;
+  width: 6.5rem;
+}
+.leaflet-routing-geocoders .popUp button:hover,
+.leaflet-routing-geocoders .popUp button:focus {
+  font-weight: bold;
+  outline: none;
+}
 
 #events { 
   position: relative;
@@ -826,6 +850,7 @@
 }
 
 #same-places {
+  position: relative;
   margin-bottom: 3rem;
 }
 
@@ -870,7 +895,6 @@
   font-family: Hagrid, sans-serif;
 }
 
-
 #same-places .rating-category {
   flex-basis: 50%;
   display: flex;
@@ -900,8 +924,28 @@
   flex: 1 1 calc(100% - 40px);
 }
 
+#same-places button.same-places {
+  position: absolute;
+  top: 180px;
+  background: none;
+  border: none;
+}
+#same-places button.same-places:focus {
+  outline: none;
+  filter: invert(0.6);
+}
+#same-places button.same-places img {
+  filter: drop-shadow(0px 0px 3px #666);
+}
+#same-places button.same-places.prev {
+  left: 20px;
+}
+#same-places button.same-places.next {
+  right: 20px;
+}
+
 @media (max-width: 450px) {
-  html { font-size: 14px; }
+  html { font-size: 14px!important; }
   .leaflet-sidebar {
     padding: 0 12px;
   }
@@ -948,7 +992,7 @@
 
   .leaflet-sidebar.left.visible {
     left: 0;
-    height: 105px;
+    height: 115px;
     overflow: hidden;
   }
   .leaflet-sidebar.left.visible > .leaflet-control {
