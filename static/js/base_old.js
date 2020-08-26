@@ -1,3 +1,7 @@
+var scripts = document.getElementsByTagName('script'),
+    path = scripts[scripts.length-1].src.split('?')[0],
+    thisDir = path.split('/').slice(0, -1).join('/')+'/';
+
 var map = L.map('map', {zoomControl: false});
 map.setView([34.76, 113.71], 12);
 
@@ -66,6 +70,18 @@ var control = L.Routing.control({
   geocoder: L.Control.Geocoder.zzgo(),
   lineOptions : {
     addWaypoints: false,
+    styles: [{ color: '#0053b5', opacity: 1, weight: 5 }]
+  },
+  
+  createMarker: function (i, start, n){
+    var marker = L.marker (start.latLng, {
+      icon: L.icon({
+        iconUrl: thisDir +'../img/wp-marker.svg',
+        iconSize:     [30, 40],
+        iconAnchor:   [15, 40]
+      })
+    })
+    return marker
   },
 
   waypointNameFallback: function(latLng) {
