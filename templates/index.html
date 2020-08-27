@@ -77,49 +77,32 @@
                   <div>
                     <p class="value">{{ place.police_rating }}</p>
                     <ul class="ratings">
-                      <li class="warning active">
-                        <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M3.8877 8.40058C3.8877 3.76107 7.64877 0 12.2883 0C16.9278 0 20.6889 3.76107 20.6889 8.40058V13.121C20.6889 14.2256 19.7934 15.121 18.6889 15.121H5.8877C4.78313 15.121 3.8877 14.2256 3.8877 13.121V8.40058Z"
-                            fill="currentColor" />
-                          <rect x="0.527344" y="17.2949" width="23.4722" height="3.70614" rx="1.85307" fill="currentColor" />
-                        </svg>
-                      </li>
-                      <li class="warning active">
-                        <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M3.8877 8.40058C3.8877 3.76107 7.64877 0 12.2883 0C16.9278 0 20.6889 3.76107 20.6889 8.40058V13.121C20.6889 14.2256 19.7934 15.121 18.6889 15.121H5.8877C4.78313 15.121 3.8877 14.2256 3.8877 13.121V8.40058Z"
-                            fill="currentColor" />
-                          <rect x="0.527344" y="17.2949" width="23.4722" height="3.70614" rx="1.85307" fill="currentColor" />
-                        </svg>
-                      </li>
-                      <li class="warning">
-                        <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M3.8877 8.40058C3.8877 3.76107 7.64877 0 12.2883 0C16.9278 0 20.6889 3.76107 20.6889 8.40058V13.121C20.6889 14.2256 19.7934 15.121 18.6889 15.121H5.8877C4.78313 15.121 3.8877 14.2256 3.8877 13.121V8.40058Z"
-                            fill="currentColor" />
-                          <rect x="0.527344" y="17.2949" width="23.4722" height="3.70614" rx="1.85307" fill="currentColor" />
-                        </svg>
-                      </li>
-                      <li class="warning">
-                        <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M3.8877 8.40058C3.8877 3.76107 7.64877 0 12.2883 0C16.9278 0 20.6889 3.76107 20.6889 8.40058V13.121C20.6889 14.2256 19.7934 15.121 18.6889 15.121H5.8877C4.78313 15.121 3.8877 14.2256 3.8877 13.121V8.40058Z"
-                            fill="currentColor" />
-                          <rect x="0.527344" y="17.2949" width="23.4722" height="3.70614" rx="1.85307" fill="currentColor" />
-                        </svg>
-                      </li>
-                      <li class="warning">
-                        <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M3.8877 8.40058C3.8877 3.76107 7.64877 0 12.2883 0C16.9278 0 20.6889 3.76107 20.6889 8.40058V13.121C20.6889 14.2256 19.7934 15.121 18.6889 15.121H5.8877C4.78313 15.121 3.8877 14.2256 3.8877 13.121V8.40058Z"
-                            fill="currentColor" />
-                          <rect x="0.527344" y="17.2949" width="23.4722" height="3.70614" rx="1.85307" fill="currentColor" />
-                        </svg>
-                      </li>
+                      {% with ''|center:place.police_rating as range %}
+                        {% for siren in range %}
+                        <li class="warning active">
+                          <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M3.8877 8.40058C3.8877 3.76107 7.64877 0 12.2883 0C16.9278 0 20.6889 3.76107 20.6889 8.40058V13.121C20.6889 14.2256 19.7934 15.121 18.6889 15.121H5.8877C4.78313 15.121 3.8877 14.2256 3.8877 13.121V8.40058Z"
+                              fill="currentColor" />
+                            <rect x="0.527344" y="17.2949" width="23.4722" height="3.70614" rx="1.85307" fill="currentColor" />
+                          </svg>
+                        </li>
+                        {% endfor %}
+                      {% endwith %}
+                      {% for inactive_siren in '12345'|make_list %}
+                        {% if inactive_siren > place.police_rating %}
+                          <li class="warning">
+                            <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M3.8877 8.40058C3.8877 3.76107 7.64877 0 12.2883 0C16.9278 0 20.6889 3.76107 20.6889 8.40058V13.121C20.6889 14.2256 19.7934 15.121 18.6889 15.121H5.8877C4.78313 15.121 3.8877 14.2256 3.8877 13.121V8.40058Z"
+                                fill="currentColor" />
+                              <rect x="0.527344" y="17.2949" width="23.4722" height="3.70614" rx="1.85307" fill="currentColor" />
+                            </svg>
+                          </li>
+                        {% endif %}
+                      {% endfor %}
                     </ul>
                   </div>
-                  
                   <p class="label">{{ place.police_rating_status }}</p>
                 </div>
               </div>

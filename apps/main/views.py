@@ -82,5 +82,5 @@ class MainViewSet(PlaceViewSet):
 
         return Response({
             "places_geojson": places_geojson,
-            "top_places": top_places
+            "top_places": top_places,
         })
