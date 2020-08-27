@@ -465,6 +465,6 @@ function loadClickedPlace(place){
     .setLatLng(placeLatLng)
     .setContent(place.title)
     .openOn(map);
-  // addPopUpRoutingBtns(placeLatLng, place.title);
+  addPopUpRoutingBtns(placeLatLng, place.title);
   loadPlaceInfo(place.id, place.detailsUrl);
 };
