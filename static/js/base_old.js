@@ -25,17 +25,33 @@ function sidebarToggle() {
   sidebar.classList.toggle('visible');
 }
 
+var locLatLng;
+map.on('locationfound', function(e) { locLatLng = e.latlng } );
+
 function showGeocodersPopUp(event) {
   let element = event.target.nextElementSibling;
   element.style.display = 'block';
   setTimeout(() => element.style.display = "none", 3000);
 }
+
 function setMyLocation(event) {
   let element = event.target.parentElement.parentElement.children[1];
-  // There could be your advertisment
-  element.value = 'Hack, yeah!';
-  console.log(element);
-  console.log(element.value);
+  if (!lc._active) {
+    lc.start();
+  }
+  setTimeout(() => {
+    if (element.placeholder === 'Start') {
+      if (control.getWaypoints()[1].name === 'My location') {
+      control.setWaypoints(null)
+      };
+      control.spliceWaypoints(0, 1, locLatLng);
+    } else {
+      if (control.getWaypoints()[0].name === 'My location') {
+        control.setWaypoints(null)
+      };
+      control.spliceWaypoints(control.getWaypoints().length - 1, 1, locLatLng);
+    }
+  }, 100);
 }
 
 L.control.layers(null, overlays).addTo(map);
@@ -124,7 +140,7 @@ setRouteBtn.addEventListener('click', function() {
     if(wp.latLng) {
       control.route();
       control.hide();
-      map.removeControl(lc);
+      lc.getContainer().style.display = 'none';
       setGeocoderBtn();
     }
   })
