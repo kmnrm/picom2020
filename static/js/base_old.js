@@ -20,7 +20,7 @@ var overlays = {
     "Light Theme": daytime
 };
 
-function sidebarToggle() { 
+function sidebarToggle() {
   var sidebar = document.getElementsByClassName('leaflet-sidebar')[0];
   sidebar.classList.toggle('visible');
 }
@@ -61,7 +61,7 @@ L.control.zoom({
 
 
 var sidebar = L.control.sidebar('sidebar', {
-  closeButton: false,
+  closeButton: true,
   position: 'left'
 });
 map.addControl(sidebar);
@@ -85,7 +85,23 @@ function loadJSON(elementId){
   return JSON.parse(element.textContent);
 }
 
+function getTopPlaces(placesGeoJson, n) {
+  var topSlice = placesGeoJson.features.slice(0, n);
+  for (i = 0; i < topSlice.length; i++) {
+    topSlice[i].properties.ratingRounded = Math.round(topSlice[i].properties.rating);
+    topSlice[i].properties.coordinates = topSlice[i].geometry.coordinates
+  }
+  var topPlaces = topSlice.map(
+    function(feature) {
+      return feature.properties
+    }
+  )
+  return topPlaces
+}
+
 let places = loadJSON('places-geojson');
+
+let topPlaces = getTopPlaces(places, 3);
 
 
 /* ======--Routing Machine--======*/
