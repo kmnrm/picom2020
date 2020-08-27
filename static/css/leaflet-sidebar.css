@@ -103,10 +103,6 @@
   font-family: Montserrat, sans-serif;
 }
 
-.leaflet-sidebar .close {
-  display: none;
-}
-
 .sidebar-swipe-btn {
   display: none;
 }
@@ -456,6 +452,7 @@
   line-height: 1.2;
   color: #676767;
   margin: 0;
+  flex-basis: 100%;
 } 
 
 .rate-value {
@@ -976,13 +973,16 @@
   .leaflet-sidebar {
     padding: 0 12px;
   }
-  .leaflet-sidebar.left.visible ~ .leaflet-left {
-    left: 0;
-  }
+  .leaflet-sidebar.left.visible ~ .leaflet-left,
   .leaflet-left {
-    position: absolute;
-    top: 0;
-    left: 0;
+    top: 5px;
+    left: 5px;
+  }
+  .leaflet-sidebar.left .leaflet-control {
+    overflow: hidden;
+  }
+  .leaflet-sidebar.left.visible .leaflet-control {
+    overflow: scroll;
   }
   .leaflet-sidebar.left {
     -webkit-transition: all 0.3s;
@@ -992,12 +992,13 @@
     left: 0;
     width: calc(100% - 12px);
     bottom: 0;
-    height: 70vh;
+    height: 115px;
+  }
+  .leaflet-sidebar.left.visible {
+    left: 0;
+    height: 60vh;
   }
 
-  .leaflet-sidebar.left.visible {
-    bottom: 0;
-  }
   .leaflet-sidebar .sidebar-swipe-btn {
     display: block;
     position: absolute;
@@ -1015,15 +1016,6 @@
   .leaflet-sidebar > .leaflet-control {
     border-radius: 25px 25px 0 0;
     -webkit-border-radius: 25px 25px 0 0;
-  }
-
-  .leaflet-sidebar.left.visible {
-    left: 0;
-    height: 115px;
-    overflow: hidden;
-  }
-  .leaflet-sidebar.left.visible > .leaflet-control {
-    overflow: hidden;
   }
 
   .leaflet-touch .leaflet-sidebar > .leaflet-control {

@@ -45,13 +45,12 @@ L.control.zoom({
 
 
 var sidebar = L.control.sidebar('sidebar', {
-  closeButton: true,
+  closeButton: false,
   position: 'left'
 });
 map.addControl(sidebar);
 
-
-sidebar.show();
+if (document.documentElement.clientWidth > 450) sidebar.show();
 
 function createButton(label, container, elemClass) {
   var btn = L.DomUtil.create('button', '', container);
