@@ -61,7 +61,7 @@ L.control.zoom({
 
 
 var sidebar = L.control.sidebar('sidebar', {
-  closeButton: true,
+  closeButton: false,
   position: 'left'
 });
 map.addControl(sidebar);

@@ -156,7 +156,6 @@
 }
 
 .leaflet-sidebar .close {
-  display: none;
   position: absolute;
   right: 33px;
   top: 26px;
@@ -186,7 +185,7 @@
 /* ======================================== */
 
 #sidebar-app {
-  margin: 2.5rem 0;
+  margin: 40px 0;
 }
 
 #sidebar,
@@ -305,7 +304,7 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  flex: 1 0 170px;
+  flex: 1 0 165px;
 }
 
 .place-ratings .rating > div {
@@ -359,7 +358,7 @@
   margin-bottom: 0;
 }
 .place-info .category.time {
-      flex: 1 0 160px;
+      flex: 1 0 150px;
 }
 .place-info .category.time div {
   position: relative;
@@ -371,7 +370,7 @@
   font-size: 0.8rem;
 }
 .place-info .category.phone {
-  flex: 1 0 165px;
+  flex: 1 0 160px;
 }
 .place-info .category.location {
   -ms-flex-preferred-size: 210px;
@@ -534,7 +533,6 @@
 
 
 #place-photos {
-  margin-top: 1rem;
   margin-bottom: 3rem;
 }
 
@@ -671,8 +669,8 @@
     border: 0;
   }
   /* Элементы */
-  #search {
-    width: calc(100% - 115px);
+  #search .leaflet-control-search .search-button {
+    right: 49px;  
   }
 }
 
@@ -711,6 +709,7 @@
     padding-right: 20px;
   }
   .place-info .category {
+    height: 80px;
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
     /* display: flex; */
@@ -804,7 +803,7 @@
   display: none;
   position: absolute;
   top: 11px;
-  left: 50%;
+  left: 55%;
   background-color: #eee;
   border: 1px solid #999;
   border-radius: 5px;
@@ -1003,7 +1002,7 @@
   .leaflet-sidebar .sidebar-swipe-btn {
     display: block;
     position: absolute;
-    top: 1px;
+    top: 3px;
     padding: 1px;
     left: 30%;
     width: 40%;
@@ -1038,7 +1037,7 @@
     margin: 18px;
   }
   .leaflet-bottom .leaflet-bar {
-    margin-bottom: 83px;
+    margin-bottom: 89px;
   }
   .leaflet-geocoders-toggler {
     width: 80px;
@@ -1062,6 +1061,7 @@
     padding-right: 20px;
   }
   .place-info .category {
+    height: 80px;
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
     /* display: flex; */
@@ -1125,27 +1125,6 @@
   .leaflet-routing-geocoders .leaflet-routing-reverse-waypoints {
     right: -3px;
     top: 44%;
-  }
-  .reviews-average-rating .ratings li {
-    display: none;
-  }
-  .reviews-average-rating .ratings li:first-child {
-    display: block;
-  }
-  .reviews-average-rating {
-    flex: 0 0 80px;
-  }
-  .reviews-more {
-    width: 50%;
-  }
-  .leaflet-popup-content {
-    min-width: 150px;
-    max-width: 220px;
-    padding: 7px 10px 8px;
-  }
-  .leaflet-container .leaflet-control-attribution, .leaflet-container .leaflet-control-scale {
-    font-size: 11px;
-    width: 200px;
   }
 }
 
