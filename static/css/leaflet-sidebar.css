@@ -309,40 +309,15 @@
       flex-wrap: wrap;
 }
 
-.place-ratings .rating:after {
-  content: "";
-  position: absolute; 
-  left: 35px;
-  width: 20px;
-  height: 20px;
+.place-ratings .rating > div {
+  display: flex;
 }
 
 .place-ratings .rating .value {
-  position: relative;
-  width: 80px;    ;
   font-size: 1.4rem;
   font-weight: bold;
   line-height: 1.2;
-  margin-bottom: 0;
-}
-.places-list .rating .value:after {
-  content: "";
-  position: absolute; 
-  width: 20px;
-  height: 20px;
-  margin-bottom: 0;
-}
-.places-list .rating.star .value:after {
-  left: 45px;
-  top: 3px;
-  background: url("../img/Star-19.png") no-repeat;
-  background-position: -19px 0px;
-}
-.places-list .rating.warning .value:after {
-  left: 25px;
-  top: 3px;
-  background: url("../img/Police-19.png") no-repeat;
-  background-position: -19px 0px;
+  margin-right: 5px;
 }
 
 .place-ratings .rating .label {
@@ -361,15 +336,19 @@
       flex-wrap: wrap;
 }
 .place-info .category {
+  display: flex;
+  align-items: center;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  margin-bottom: 1rem;
 } 
 .place-info .category img {
   width: 30px;
   height: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
+  margin-right: 10px;
 }
 .place-info .category p {
   font-size: 1rem;
@@ -380,6 +359,15 @@
 .place-info .category.time {
   -ms-flex-preferred-size: 120px;
       flex-basis: 120px;
+}
+.place-info .category.time div {
+  position: relative;
+  top: 0.5rem;
+}
+.place-info .category.time .label {
+  font-weight: normal;
+  flex-basis: 100%;
+  font-size: 0.8rem;
 }
 .place-info .category.phone {
   -ms-flex-preferred-size: 140px;
@@ -606,8 +594,12 @@
   width: 23px;
   color: #dadada;
 }
-.ratings > li.active {
+.ratings > li.star.active {
   color: #F8D108;
+}
+.ratings > li.warning.active {
+  color: #EF5E31;
+  filter: drop-shadow(0 0 3px #EF5E31);
 }
 
 .reviews-head button {
@@ -755,7 +747,8 @@
   border-radius: 35px;
 }
 .leaflet-popup-content { 
-  width: 235px;
+  min-width: 170px;
+  max-width: 270px;
 }
 .leaflet-popup-content {
   padding: 9px 19px 13px;
@@ -950,6 +943,8 @@
   font-weight: 800;
   line-height: 2.5rem;
   font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 
 #same-places .rating-category {
