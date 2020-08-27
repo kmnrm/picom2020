@@ -299,6 +299,7 @@
   display: -webkit-box; 
   display: -ms-flexbox; 
   display: flex;
+  flex-wrap: wrap;
 }
 
 .place-ratings .rating {
@@ -307,10 +308,13 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  flex: 1 0 165px;
 }
 
 .place-ratings .rating > div {
   display: flex;
+  flex-wrap: wrap;
+  flex: 1 0;
 }
 
 .place-ratings .rating .value {
@@ -357,8 +361,7 @@
   margin-bottom: 0;
 }
 .place-info .category.time {
-  -ms-flex-preferred-size: 120px;
-      flex-basis: 120px;
+      flex: 1 0 150px;
 }
 .place-info .category.time div {
   position: relative;
@@ -370,8 +373,7 @@
   font-size: 0.8rem;
 }
 .place-info .category.phone {
-  -ms-flex-preferred-size: 140px;
-      flex-basis: 140px;
+  flex: 1 0 160px;
 }
 .place-info .category.location {
   -ms-flex-preferred-size: 210px;
@@ -472,26 +474,24 @@
   padding: 0;
 }
 
+.rate-icons li:first-child {
+  margin-left: 5px;
+}
 .rate-icons li {
   margin: 0;
   padding: 0;
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 31px;
+  height: 31px;
 }
-
-.rate-icons li:first-child {
-  margin-left: 5px;
-}
-
 .rate-icons.stars li {
-  background: url("../img/Star-small.png") no-repeat;
+  background: url("../img/Star.png") no-repeat;
 }
 .rate-icons.warnings li {
-  background: url("../img/Police-small.png") no-repeat;
+  background: url("../img/Police.png") no-repeat;
 }
 .rate-icons li.active {
-  background-position: -30px 0;
+  background-position: -31px 0;
 }
 
 .description-contacts {
@@ -508,8 +508,8 @@
 
 .description-contacts li {
   -webkit-box-flex: 1;
-      -ms-flex: 1 0 250px;
-          flex: 1 0 250px;
+      -ms-flex: 1 0 190px;
+          flex: 1 0 190px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -584,10 +584,13 @@
 
 .ratings {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   list-style: none;
   padding: 0;
   margin: 0;
+  flex-basis: 120px;
+
 }
 
 .ratings > li {
@@ -654,7 +657,6 @@
 
 
 @media (max-width: 480px) {
-  .ratings > * { -ms-flex-preferred-size: 100%; flex-basis: 100%; }
   .description-contacts > * { -ms-flex-preferred-size: 100%; flex-basis: 100%; }
 }
 
@@ -693,7 +695,7 @@
 @media (min-width: 768px) {
   .leaflet-sidebar {
     min-width: 400px;
-    max-width: 620px;
+    max-width: 727px;
     width: 29vw;
   }
   .leaflet-sidebar.left.visible ~ .leaflet-left {
@@ -708,6 +710,14 @@
   .leaflet-sidebar.left.visible ~ .leaflet-left {
     left: 400px;
   }
+  .rate-icons li {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 24px;
+    height: 28px;
+  }
+
   #search {
     margin-left: 20px;
     margin-right: 20px;
@@ -728,20 +738,6 @@
   .place-info .category img { margin-right: 15px; }
   .main-page form input { margin-bottom: 1.5rem; }
 }
-@media (max-width: 1599px) {
-  .rate-value {
-    font-size: 1.6rem;
-    line-height: 1.2;
-  }
-  .rate-icons li {
-    width: 30px;
-    height: 30px;
-  }
-  .rating-category {
-    font-size: 1rem;
-  }
-}
-
 
 .leaflet-popup-content-wrapper {
   border-radius: 35px;
@@ -1168,5 +1164,21 @@
   .leaflet-routing-geocoders .leaflet-routing-reverse-waypoints {
     right: -3px;
     top: 44%;
+  }
+}
+
+@media (max-width: 1910px) {
+  .rate-icons li {
+    width: 24px;
+    height: 28px;
+  }
+  .rate-icons.stars li {
+    background: url("../img/Star-small.png") no-repeat;
+  }
+  .rate-icons.warnings li {
+    background: url("../img/Police-small.png") no-repeat;
+  }
+  .rate-icons li.active {
+    background-position: -24px 0;
   }
 }
