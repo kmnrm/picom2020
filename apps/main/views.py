@@ -34,6 +34,9 @@ def make_feature_for_geojson(place):
             "logo": place["logo"],
             "rating": place["rating"],
             "policeRating": int(place["police_rating"][0]),
+            "address": place["address"],
+            "openingHours": place["opening_hours"],
+            "closingHours": place["closing_hours"],
             "detailsUrl": place["detailsUrl"],
         }
     }
@@ -66,7 +69,7 @@ class MainViewSet(PlaceViewSet):
 
         places = [to_dict(place) for place in places]
 
-        top_places = places[:3]
+        top_places = [place.copy() for place in places[:3]]
 
         for place in top_places:
             place["police_rating_status"] = place["police_rating"][4:]

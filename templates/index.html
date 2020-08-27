@@ -308,19 +308,20 @@
                   <div class="contacts">
                     <div class="category">
                       <div class="image">
-                        <img src="../static/img/contacts-marker.svg" alt="">
+                        <img src="../static/img/contacts-time.svg" alt="">
                       </div>
                       <div class="text">
-                        <p class="info">time</p>
-                        <p class="label">Open now</p>
+                        <p class="info">{{ getBusinessHours(place.openingHours, place.closingHours) }}</p>
+                        <p class="label" v-if="checkIfPlaceOpen(place.openingHours, place.closingHours)">Open now</p>
+                        <p class="label" v-else>Closed now</p>
                       </div>
                     </div>
                     <div class="category">
                       <div class="image">
-                        <img src="../static/img/contacts-time.svg" alt="">
+                        <img src="../static/img/contacts-marker.svg" alt="">
                       </div>
                       <div class="text">
-                        <p class="info">Place</p>
+                        <p class="info">{{ place.address }}</p>
                       </div>
                     </div>
                   </div>

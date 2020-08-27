@@ -307,6 +307,20 @@ closeRoutingControlBtn.onclick = function () {
   closeRoutingControl()
 }
 
+
+function checkIfPlaceOpen(placeOpeningHours, placeClosingHours) {
+  var now = new Date(),
+      nowDate = now.toISOString().split('T')[0],
+      openTime = new Date(nowDate + 'T' + placeOpeningHours + '.000+08:00');
+      closeTime = new Date(nowDate + 'T' + placeClosingHours + '.000+08:00');
+
+  if (placeOpeningHours > placeClosingHours) {
+    if (now >= closeTime && now < openTime) { return false }
+    closeTime.setDate(closeTime.getDate() + 1);
+  }
+  return now >= openTime && now < closeTime || openTime === closeTime
+}
+
 var sidebarApp = new Vue({
   el: '#sidebar-app',
   data: {
@@ -332,16 +346,10 @@ var sidebarApp = new Vue({
       if (!this.selectedPlace){
         return false
       }
-      var now = new Date(),
-        nowDate = now.toISOString().split('T')[0],
-        openTime = new Date(nowDate + 'T' + this.selectedPlace.openingHours + '.000+08:00');
-        closeTime = new Date(nowDate + 'T' + this.selectedPlace.closingHours + '.000+08:00');
-
-      if (this.selectedPlace.openingHours > this.selectedPlace.closingHours) {
-        if (now >= closeTime && now < openTime) { return false }
-        closeTime.setDate(closeTime.getDate() + 1);
-      }
-      return now >= openTime && now < closeTime || openTime === closeTime
+      return checkIfPlaceOpen(
+        this.selectedPlace.openingHours,
+        this.selectedPlace.closingHours
+      )
     }
   },
   updated: function () {
