@@ -106,6 +106,7 @@ let topPlaces = getTopPlaces(places, 3);
 
 /* ======--Routing Machine--======*/
 var control = L.Routing.control({
+  router: L.Routing.mapbox(config.MAPBOX_KEY),
   position: 'topleft',
   autoRoute: false,
   routeWhileDragging: false,
@@ -188,7 +189,7 @@ var locations = L.geoJSON(places, {
       marker.on('click', function(event){
         sidebar.show();
         loadPlaceInfo(geoJsonPoint.properties.placeId, geoJsonPoint.properties.detailsUrl);
-        // addPopUpRoutingBtns(event.latlng, geoJsonPoint.properties.title);
+        addPopUpRoutingBtns(event.latlng, geoJsonPoint.properties.title);
       });
       return marker;
     }
@@ -201,9 +202,7 @@ map.addLayer(locations);
 function addPopUpRoutingBtns(locationLatLng, locationTitle) {
   var container = L.DomUtil.create('div'),
     placeTitle = L.DomUtil.create('p', '', container),
-    startBtn = createButton('Start', container, 'leaflet-route-start'),
-    fromMyLoc = createButton('Get here now', container, 'leaflet-route-get-here'),
-    destBtn = createButton('Go', container, 'leaflet-route-go');
+    destBtn = createButton('Set a route', container, 'leaflet-route-go');
     placeTitle.textContent = locationTitle;
 
     L.popup()
@@ -211,30 +210,11 @@ function addPopUpRoutingBtns(locationLatLng, locationTitle) {
       .setLatLng(locationLatLng)
       .openOn(map);
 
-    L.DomEvent.on(startBtn, 'click', function() {
-      control.show();
-      showGeocoderBtn.style.display = "none";
-      control.spliceWaypoints(0, 1, locationLatLng);
-      map.closePopup();
-    });
-
     L.DomEvent.on(destBtn, 'click', function() {
       control.show();
       showGeocoderBtn.style.display = "none";
       control.spliceWaypoints(control.getWaypoints().length - 1, 1, locationLatLng);
       map.closePopup();
-    });
-
-    L.DomEvent.on(fromMyLoc, 'click', function(){
-      control.show();
-      map.addControl(lc);
-      showGeocoderBtn.style.display = "none";
-      lc.stop();
-      lc.start();
-      map.on('locationfound', function(e){
-        control.spliceWaypoints(0, 1, e.latlng);
-        control.spliceWaypoints(control.getWaypoints().length - 1, 1, locationLatLng);
-      });
     });
 }
 

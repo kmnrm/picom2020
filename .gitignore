@@ -128,3 +128,4 @@ dmypy.json
 frontend/
 frontend2/
 media/
+config.js
