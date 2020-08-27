@@ -73,21 +73,20 @@ function paginator() {
   createPageButton();
 }
 
-function scrollChangeDirection() {
-document.getElementById("place-cards-list")
-  .addEventListener('wheel', function (event) {
+function addScroll(event) {
+  event.target.onwheel = function (event) {
     if (event.deltaMode == event.DOM_DELTA_PIXEL) {
-      var modifier = 1;
+      var modifier = 0.5;
       // иные режимы возможны в Firefox
     } else if (event.deltaMode == event.DOM_DELTA_LINE) {
-      var modifier = parseInt(getComputedStyle(this).lineHeight);
+      var modifier = parseInt(getComputedStyle(this).lineHeight) / 2;
     } else if (event.deltaMode == event.DOM_DELTA_PAGE) {
-      var modifier = this.clientHeight;
+      var modifier = this.clientHeight / 2;
     }
     if (event.deltaY != 0) {
       // замена вертикальной прокрутки горизонтальной
       this.scrollLeft += modifier * event.deltaY;
       event.preventDefault();
     }
-  });
-}
+  }
+};

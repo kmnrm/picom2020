@@ -126,6 +126,7 @@
             </li>
             {% endfor %}
           </ul>
+          <button class="reviews-more">More</button>
         </div>
       </div>
 
@@ -188,10 +189,22 @@
               <span class="rate-value">{{ selectedPlace.rating }}/5</span>
               <ul class="rate-icons stars">
                 <template v-for="star in selectedPlace.ratingRounded">
-                  <li class="description-rating-stars active"></li>
+                  <li class="active">
+                    <svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M10.5516 1.23574C10.8561 0.325346 12.1439 0.325347 12.4484 1.23574L14.3026 6.77934C14.439 7.18719 14.8209 7.46214 15.2509 7.46214H21.1882C22.1639 7.46214 22.562 8.71651 21.7648 9.27915L17.0118 12.6337C16.6511 12.8883 16.5 13.3493 16.6401 13.7679L18.4673 19.2308C18.7737 20.147 17.7316 20.9221 16.9423 20.365L12.0766 16.9309C11.7309 16.6869 11.2691 16.6869 10.9234 16.9309L6.05773 20.365C5.2684 20.9221 4.22628 20.147 4.53274 19.2307L6.35992 13.7679C6.49996 13.3493 6.34888 12.8883 5.98819 12.6337L1.23518 9.27914C0.438008 8.71651 0.836087 7.46214 1.81182 7.46214H7.74908C8.17913 7.46214 8.56103 7.18719 8.69744 6.77934L10.5516 1.23574Z"
+                        fill="#F8D108" />
+                    </svg>
+                  </li>
                 </template>
                 <template v-for="inactiveStar in 5" v-if="inactiveStar > selectedPlace.ratingRounded">
-                  <li class="description-rating-stars"></li>
+                  <li class="description-rating-stars">
+                    <svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M10.5516 1.23574C10.8561 0.325346 12.1439 0.325347 12.4484 1.23574L14.3026 6.77934C14.439 7.18719 14.8209 7.46214 15.2509 7.46214H21.1882C22.1639 7.46214 22.562 8.71651 21.7648 9.27915L17.0118 12.6337C16.6511 12.8883 16.5 13.3493 16.6401 13.7679L18.4673 19.2308C18.7737 20.147 17.7316 20.9221 16.9423 20.365L12.0766 16.9309C11.7309 16.6869 11.2691 16.6869 10.9234 16.9309L6.05773 20.365C5.2684 20.9221 4.22628 20.147 4.53274 19.2307L6.35992 13.7679C6.49996 13.3493 6.34888 12.8883 5.98819 12.6337L1.23518 9.27914C0.438008 8.71651 0.836087 7.46214 1.81182 7.46214H7.74908C8.17913 7.46214 8.56103 7.18719 8.69744 6.77934L10.5516 1.23574Z"
+                        fill="#dadada" />
+                    </svg>
+                  </li>
                 </template>
               </ul>
               <p class="rating-category">{{ selectedPlace.ratingStatus }}
@@ -201,10 +214,24 @@
               <span class="rate-value">{{ selectedPlace.policeRatingValue }}/5</span>
               <ul class="rate-icons warnings">
                 <template v-for="siren in selectedPlace.policeRatingValue">
-                  <li class="description-rating-warnings active"></li>
+                  <li class="active">
+                    <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M3.8877 8.40058C3.8877 3.76107 7.64877 0 12.2883 0C16.9278 0 20.6889 3.76107 20.6889 8.40058V13.121C20.6889 14.2256 19.7934 15.121 18.6889 15.121H5.8877C4.78313 15.121 3.8877 14.2256 3.8877 13.121V8.40058Z"
+                        fill="#EF5E31" />
+                      <rect x="0.527344" y="17.2949" width="23.4722" height="3.70614" rx="1.85307" fill="#EF5E31" />
+                    </svg>
+                  </li>
                 </template>
                 <template v-for="inactiveSiren in 5" v-if="inactiveSiren > selectedPlace.policeRatingValue">
-                  <li class="description-rating-warnings"></li>
+                  <li class="description-rating-warnings">
+                    <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M3.8877 8.40058C3.8877 3.76107 7.64877 0 12.2883 0C16.9278 0 20.6889 3.76107 20.6889 8.40058V13.121C20.6889 14.2256 19.7934 15.121 18.6889 15.121H5.8877C4.78313 15.121 3.8877 14.2256 3.8877 13.121V8.40058Z"
+                        fill="#dadada" />
+                      <rect x="0.527344" y="17.2949" width="23.4722" height="3.70614" rx="1.85307" fill="#dadada" />
+                    </svg>
+                  </li>
                 </template>
               </ul>
               <p class="rating-category">{{ selectedPlace.policeRating }}</p>
@@ -259,10 +286,8 @@
         <section id="same-places">
           <div class="wrapper">
             <h2>Other {{selectedPlace.category}}s</h2>
-            <button class="same-places prev"><img src="../static/img/same-places-prev.svg" alt=""></button>
-            <button class="same-places next"><img src="../static/img/same-places-next.svg" alt=""></button>
           </div>
-          <ul>
+          <ul id="places-list" onmouseover="addScroll(event)">
             <li class="place-card" v-for="place in selectedPlace.similarPlaces">
               <div type="button" v-on:click="loadClickedPlace(place)">
                 <div class="place-image">

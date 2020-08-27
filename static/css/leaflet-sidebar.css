@@ -321,6 +321,7 @@
   font-size: 1.4rem;
   font-weight: bold;
   line-height: 1.2;
+  margin-top: -3px;
   margin-right: 5px;
 }
 
@@ -386,7 +387,7 @@
 
 .description-logo {
   position: absolute;
-  top: 80px;
+  top: 0px;
   width: 100px;
   height: 100px;
   margin-bottom: 20px;
@@ -409,8 +410,7 @@
   display: block;
   display: -webkit-box;
   max-width: 100%;
-  height: 3.6rem;
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -424,10 +424,10 @@
   }
   .description-title {
     position: relative;
+    margin-left: 0;
   }
   .description-text {
     margin-left: 0;
-    margin-top: 60px;
   }
 }
 
@@ -442,35 +442,32 @@
   margin-bottom: 1.5rem;
 }
 
-.description-rating {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 250px;
-          flex: 1 0 250px;
-}
+.description-rating,
 .description-police-rate {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 250px;
-          flex: 1 0 250px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 1 0 200px;
+  margin-bottom: 1rem;
 }
 
 .rating-category {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   line-height: 1.2;
   color: #676767;
+  margin: 0;
 } 
 
 .rate-value {
-  position: relative;
-  top: -3px;
+  flex-basis: 65px;
   font-size: 2rem;
   line-height: 1.4;
 }
 
 .rate-icons {
-  display: inline-block;
+  display: flex;
   list-style: none;
-  margin-left: 0;
-  margin-bottom: 10px;
+  margin: 0;
   padding: 0;
 }
 
@@ -480,18 +477,8 @@
 .rate-icons li {
   margin: 0;
   padding: 0;
-  display: inline-block;
   width: 31px;
   height: 31px;
-}
-.rate-icons.stars li {
-  background: url("../img/Star.png") no-repeat;
-}
-.rate-icons.warnings li {
-  background: url("../img/Police.png") no-repeat;
-}
-.rate-icons li.active {
-  background-position: -31px 0;
 }
 
 .description-contacts {
@@ -585,12 +572,10 @@
 .ratings {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  list-style: none;
-  padding: 0;
+  margin-bottom: 1rem;
   margin: 0;
-  flex-basis: 120px;
-
+  padding: 0;
+  list-style: none;
 }
 
 .ratings > li {
@@ -927,11 +912,15 @@
   box-shadow: 0 0 9px #ddd;
 }
 
+#same-places .place-card:last-of-type {
+  margin-right: 20px;
+}
+
 #same-places .place-card .place-image {
   width: 100%;
   height: 180px;
   background: #DEDEDE;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
   margin-bottom: 1rem;
 }
 
@@ -981,25 +970,6 @@
   font-weight: bold;
 }
 
-#same-places button.same-places {
-  position: absolute;
-  top: 180px;
-  background: none;
-  border: none;
-}
-#same-places button.same-places:focus {
-  outline: none;
-  filter: invert(0.6);
-}
-#same-places button.same-places img {
-  filter: drop-shadow(0px 0px 3px #666);
-}
-#same-places button.same-places.prev {
-  left: 20px;
-}
-#same-places button.same-places.next {
-  right: 20px;
-}
 
 @media (max-width: 450px) {
   html { font-size: 14px!important; }
@@ -1122,7 +1092,6 @@
     margin-left: 0;
     margin-top: 20px;
     font-size: 1rem;
-    height: 3.6rem;
   }
   #events li .event-date {
     -ms-flex-preferred-size: 30px;
@@ -1173,10 +1142,10 @@
     height: 28px;
   }
   .rate-icons.stars li {
-    background: url("../img/Star-small.png") no-repeat;
+    /* background: url("../img/Star-small.png") no-repeat; */
   }
   .rate-icons.warnings li {
-    background: url("../img/Police-small.png") no-repeat;
+    /* background: url("../img/Police-small.png") no-repeat; */
   }
   .rate-icons li.active {
     background-position: -24px 0;
