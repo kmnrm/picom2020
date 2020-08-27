@@ -102,8 +102,9 @@
                 <div class="category time">
                   <img src="../static/img/contacts-time.svg" alt="">
                   <div>
-                    <p>{{ place.openingHours }}-{{ place.closingHours }}</p>
-                    <p class="label">Open now</p>
+                    <p>{{ getBusinessHours(place.openingHours, place.closingHours) }}</p>
+                    <p class="label" v-if="checkIfPlaceOpen(place.openingHours, place.closingHours)">Open now</p>
+                    <p class="label" v-else>Closed now</p>
                   </div>
                 </div>
                 <div class="category phone">
