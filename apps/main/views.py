@@ -74,6 +74,7 @@ class MainViewSet(PlaceViewSet):
             place["opening_hours"] = format_time(place["opening_hours"])
             place["closing_hours"] = format_time(place["closing_hours"])
             place["rating_status"] = get_rating_status(place["rating"])
+            place["rating_rounded"] = round(place["rating"])
 
         for place in places:
             feature = make_feature_for_geojson(place)
