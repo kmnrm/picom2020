@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
@@ -104,8 +106,8 @@ class Place(models.Model):
         null=True,
         help_text="Automatically set field. Is a pinyin representation of place address in Chinese."
     )
-    opening_hours = models.TimeField(blank=True, null=True)
-    closing_hours = models.TimeField(blank=True, null=True)
+    opening_hours = models.TimeField(default=datetime.time(12, 00))
+    closing_hours = models.TimeField(default=datetime.time(2, 00))
     average_price = models.FloatField(
         default=0,
         blank=True,
