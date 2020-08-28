@@ -120,28 +120,38 @@ var control = L.Routing.control({
 
   createMarker: function (i, start, n){
     var marker = L.marker (start.latLng, {
+      /*
       icon: L.icon({
         iconUrl: thisDir +'../img/wp-marker.svg',
         iconSize:     [30, 40],
         iconAnchor:   [15, 40]
+      }),*/
+      icon: L.divIcon({
+        html: '<div><div class="map-label-content">HELLO</div><div class="map-label-arrow"></div></div>'
       })
     })
+    /* --------- ТУТ ПОПАП ИСЧЕЗАЕТ ПРИ КЛИКЕ НА КАРТУ. closeOnClick НЕ РАБОАТЕТ -----------
+    var popUp = L.popup({
+        className: 'wp-pop-up',
+        closeOnEscapeKey: false,
+        autoClose: false,
+        closeOnClick: false,
+        closeButton: false
+      })
+        .setLatLng(start.latLng)
+        .setContent(function () {
+          if (!start.name) {
+            return 'My location'
+          }
+          return start.name
+        })
+        .openOn(map);
+    return marker.bindPopup(popUp)
+    -------------------*/
     return marker
   },
 
   waypointNameFallback: function(latLng) {
-    var featureIndex,
-      waypointLngLat = [latLng.lng, latLng.lat],
-      locs = places.features;
-    for (featureIndex = 0; featureIndex <locs.length; featureIndex++) {
-      if (waypointLngLat.every(
-        function(value, index){
-          return value === locs[featureIndex].geometry.coordinates[index]
-        })
-      ){
-        return locs[featureIndex].properties.title;
-      }
-    }
     return 'My location'
   }
 });
