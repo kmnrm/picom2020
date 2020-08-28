@@ -2,7 +2,7 @@ var scripts = document.getElementsByTagName('script'),
     path = scripts[scripts.length-1].src.split('?')[0],
     thisDir = path.split('/').slice(0, -1).join('/')+'/';
 
-var map = L.map('map', {zoomControl: false});
+var map = L.map('map', {zoomControl: false, minZoom: 2});
 map.setView([34.76, 113.71], 12);
 
 /*L.tileLayer.provider('OpenStreetMap.Mapnik').addTo(map);*/
