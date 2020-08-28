@@ -94,7 +94,23 @@ http://hostname/api/places?title=space
 
 
 
-#### Запуск сервера
+#### Запуск
+Для корректной работы сервера на локальной машине необходим `.env` файл со следующими переменными окружения:
+
+```env
+BAIDUV3_GEOCODER_KEY=здесь_будет_ваш_baidu_api_key
+BAIDU_SECURITY_KEY=здесь_будет_ваш_security_key
+SECRET_KEY=здесь_будет_ваш_project_secret_key
+DEBUG=True
+```
+Также для построения маршрута необходим API-ключ [Mapbox](https://docs.mapbox.com/api/), который необходимо сохранить в файле `config.js` в `static/js`:
+```JavaScript
+var config = {
+  MAPBOX_KEY : 'ВАШ_API_KEY'
+}
+```
+
+##### Команды для запуска 
 ```bash
 picom$ pip3 install -r requirements.txt
 picom$ python3 manage.py migrate
