@@ -119,31 +119,12 @@ var control = L.Routing.control({
   },
 
   createMarker: function (i, start, n){
-    console.log(start);
     var marker = L.marker (start.latLng, {
-      icon: L.icon({
-        iconUrl: thisDir +'../img/wp-marker.svg',
-        iconSize:     [30, 40],
-        iconAnchor:   [15, 40]
+      icon: L.divIcon({
+        html: '<div><div class="map-label-arrow"></div><p class="map-label-content">' + start.name + '</p></div>'
       })
     });
-
-    var popUp = L.popup({
-        className: 'wp-pop-up',
-        closeOnEscapeKey: false,
-        autoClose: false,
-        closeOnClick: false,
-        closeButton: false
-      })
-        .setLatLng(start.latLng)
-        .setContent(function () {
-          if (!start.name) {
-            return 'My location'
-          }
-          return start.name
-        })
-        .openOn(map);
-    return marker.bindPopup(popUp)
+    return marker
   },
   waypointNameFallback: function(latLng) {
     var featureIndex,
@@ -173,7 +154,7 @@ setRouteBtn.addEventListener('click', function() {
     if(wp.latLng) {
       control.route();
       control.hide();
-      lc.getContainer().style.display = 'none';
+      // lc.getContainer().style.display = 'none';
       setGeocoderBtn();
     }
   })
@@ -216,7 +197,8 @@ map.addLayer(locations);
 
 
 function addPopUpRoutingBtns(locationLatLng, locationTitle) {
-  var container = L.DomUtil.create('div'),
+  var plan = control._plan,
+    container = L.DomUtil.create('div'),
     placeTitle = L.DomUtil.create('p', '', container),
     destBtn = createButton('Set a route', container, 'leaflet-route-go');
     placeTitle.textContent = locationTitle;
@@ -231,7 +213,8 @@ function addPopUpRoutingBtns(locationLatLng, locationTitle) {
       showGeocoderBtn.style.display = "none";
       control.spliceWaypoints(control.getWaypoints().length - 1, 1, locationLatLng);
       map.closePopup();
-    });
+      plan._markers[1]._icon.children[0].children[1].textContent = plan._waypoints[1].name;
+    })
 }
 
 
