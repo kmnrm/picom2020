@@ -186,7 +186,7 @@
 /* ======================================== */
 
 #sidebar-app {
-  margin: 2.5rem 0;
+  margin: 4rem 0 3rem;
 }
 
 #sidebar,
@@ -206,23 +206,24 @@
   margin-top: 3rem;
 }
 
-.main-page .wrapper {
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
 .main-page h2 {
   font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
+  font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
 }
 
 #search {
-  margin-left: 40px;
-  margin-right: 40px;
-  margin-bottom: 40px;
-  height: 3.5rem;
+  margin: 0 2rem 3rem;
 } 
+
+#search h2 { 
+  /* display: none; */
+  font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
 
 #search .leaflet-control-search {
   position: relative;
@@ -269,6 +270,7 @@
 
 .places-list {
   padding: 0;
+  margin-bottom: 2rem;
 }
 
 .places-list .place {
@@ -287,9 +289,10 @@
 
 .places-list .place-name {
   font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 1.2;
   font-weight: 800;
+  margin-bottom: 1.7rem;
 }
 
 .places-list .place-ratings { 
@@ -320,12 +323,13 @@
   line-height: 1.2;
   margin-top: -3px;
   margin-right: 5px;
+  margin-bottom: 0.2em;
 }
 
 .place-ratings .rating .label {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   line-height: 1.2;
   color: #676767;
 }
@@ -392,7 +396,7 @@
 }
 
 .description-title {
-  margin-left: 140px;
+  margin-left: 130px;
   margin-bottom: 25px;
   font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
   font-weight: 800;
@@ -400,7 +404,7 @@
   line-height: 1.2;
 }
 .description-text {
-  margin-left: 140px;
+  margin-left: 130px;
   font-size: 1rem;
   line-height: 1.2;
   
@@ -487,8 +491,8 @@
       flex-wrap: wrap;
   list-style: none;
   padding: 0;
-  margin-top: 3rem;
-  margin-bottom: 2rem
+  margin-top: 3.3rem;
+  margin-bottom: 1.8rem;
 }
 
 .description-contacts li {
@@ -502,7 +506,7 @@
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
-  margin-bottom: 18px;
+  margin-bottom: 0.9rem;
   font-size: 1rem;
   line-height: 1.2;
 }
@@ -534,7 +538,7 @@
 
 
 #place-photos {
-  margin-top: 1rem;
+  margin-top: 1.8rem;
   margin-bottom: 3rem;
 }
 
@@ -599,7 +603,7 @@
 }
 
 .user-reviews {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .review-card {
@@ -632,10 +636,11 @@
   width: 35%;
   margin: 0 auto;
   padding: 5px;
-  border: 2px solid #0859F5;
-  border-radius: 10px;
+  border: 4px solid #0859F5;
+  border-radius: 20px;
   background: none;
   font-size: 1rem;
+  font-weight: bold;
   color: #0859F5;
 }
 
@@ -723,7 +728,7 @@
 }
 
 .leaflet-popup-content-wrapper {
-  border-radius: 35px;
+  border-radius: 20px;
 }
 .leaflet-popup-content { 
   min-width: 170px;
@@ -740,23 +745,33 @@
 }
 
 .leaflet-popup-content > div {
-  display: -webkit-box;
+  /* display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+      flex-wrap: wrap; */
 }
 
 .leaflet-popup-content  p {
-  -ms-flex-preferred-size: 100%;
+  /* -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
   -webkit-box-ordinal-group: 1;
       -ms-flex-order: 0;
-          order: 0;
-  font-size: 1rem;
+          order: 0; */
+  font-size: 1.2rem;
   line-height: 1.2;
+  margin-bottom: 0.3rem;
 }
+
 .leaflet-popup-content button {
+  background: none;
+  border: none;
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #0859F5;
+}
+/* .leaflet-popup-content button {
   font-size: 0.95rem;
   vertical-align: middle;
   height: 52px;
@@ -788,7 +803,7 @@
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
-}
+} */
 
 
 .leaflet-container a.leaflet-popup-close-button {
@@ -826,7 +841,7 @@
 
 #events { 
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 }
 
 #events h2 {
@@ -879,7 +894,7 @@
 
 #same-places {
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 #same-places h2 {
@@ -1049,8 +1064,7 @@
     -moz-box-shadow: 0 0 9px #666;
   }
   .leaflet-geocoders-toggler svg {
-    width: 65px;
-    height: 30px;
+    width: 50px;
   }
 
   #search {

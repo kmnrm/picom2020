@@ -355,10 +355,10 @@
   opacity: 0.8;
 }
 .leaflet-geocoders-toggler {
-  width: 100px;
-  height: 100px;
+  width: 116px;
+  height: 116px;
   border: none;
-  border-radius: 50px;
+  border-radius: 58px;
   background-color: #fff;
   border: 2px solid transparent;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);

@@ -172,7 +172,8 @@ L.Control.Search = L.Control.extend({
 		if(this.options.container) {
 			this._container = this.onAdd(map);
 			this._wrapper = L.DomUtil.get(this.options.container);
-			this._wrapper.style.position = 'relative';
+			// this._wrapper.style.position = 'relative';
+			this._title = this._createTitle('Where to go?', 'search-title');
 			this._wrapper.appendChild(this._container);
 		}
 		else
@@ -293,6 +294,12 @@ L.Control.Search = L.Control.extend({
 			.on(alert, 'click', this.hideAlert, this);
 
 		return alert;
+	},
+
+	_createTitle: function (title, className) {
+		var headTitle = L.DomUtil.create('h2', className, this._wrapper);
+		headTitle.innerHTML = title;
+		return headTitle;
 	},
 
 	_createInput: function (text, className) {

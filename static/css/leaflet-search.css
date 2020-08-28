@@ -1,15 +1,8 @@
  
 .leaflet-container .leaflet-control-search {
-	/* float: left; */
 	color:#1978cf;
 	background-clip: padding-box;
-	/* -moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	background-color: rgba(255, 255, 255, 0.8); */
 	z-index:1000;	
-	/* margin-left: 10px;
-	margin-top: 10px; */
 }
 .leaflet-control-search.search-exp {/*expanded*/
 	background: #fff;
@@ -18,7 +11,6 @@
 }
 .leaflet-control-search .search-input {
 	display:block;
-	float:left;
 	font-size: 15px;
 	background: #fff;
 	border:1px solid transparent;
@@ -71,7 +63,6 @@
 }
 .leaflet-control-search .search-button {
 	display: block;
-  float: left;
   width: 36px;
   height: 35px;
   background: url(../img/search-icon-mobile.png) no-repeat;
@@ -87,7 +78,6 @@
 	position:absolute;
 	top: 43px;
   left: 26px;
-	float:left;
 	list-style: none;
 	padding-left: 0;
 	min-width:120px;

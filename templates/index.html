@@ -8,7 +8,6 @@
       <!--================Top places list start =================-->
       <div v-if="promptVisible" class="main-page">
         <div class="wrapper">
-          <h2>Where to go?</h2>
           {% verbatim top_places %}
           <ul class="places-list" v-for="place in topPlaces">
             <li class="place" type="button" v-on:click="loadClickedPlace(place)">
@@ -153,7 +152,7 @@
 
           <div class="ratings">
             <div class="description-rating">
-              <span class="rate-value">{{ selectedPlace.rating }}/5</span>
+              <span class="rate-value">{{ selectedPlace.rating }}</span>
               <ul class="rate-icons stars">
                 <template v-for="star in selectedPlace.ratingRounded">
                   <li class="active">
@@ -178,7 +177,7 @@
               </p>
             </div>
             <div class="description-police-rate">
-              <span class="rate-value">{{ selectedPlace.policeRatingValue }}/5</span>
+              <span class="rate-value">{{ selectedPlace.policeRatingValue }}.0</span>
               <ul class="rate-icons warnings">
                 <template v-for="siren in selectedPlace.policeRatingValue">
                   <li class="active">
