@@ -170,9 +170,9 @@ var locations = L.geoJSON(places, {
       let color = geoJsonPoint.properties.color || 'red';
 
       let marker = L.circleMarker(latlng, {
-        color: 'rgb(92, 92, 255)',
-        fillColor: '#000',
-        fillOpacity: 0.5,
+        color: '#fff',
+        fillColor: '#0859F5',
+        fillOpacity: 1,
         radius: 6,
         clickable: true,
         riseOnHover: true
@@ -244,7 +244,7 @@ searchControl.on('search:locationfound', function (e) {
 
 /* ======--Location--======*/
 var lc = L.control.locate({
-  position: 'topleft',
+  position: 'bottomright',
   clickBehavior: { inView: 'setView' },
   setView: 'once',
   initialZoomLevel: 17,
