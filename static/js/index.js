@@ -119,6 +119,7 @@ var control = L.Routing.control({
   },
 
   createMarker: function (i, start, n){
+    console.log(start);
     var marker = L.marker (start.latLng, {
       /*
       icon: L.icon({

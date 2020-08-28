@@ -44,7 +44,7 @@ def generate_random_string(length):
 
 def set_upload_location(instance, filename):
     filebase, extension = filename.split('.')
-    return 'images/%s.%s' % (generate_random_string(30), extension)
+    return 'images/place%s/%s.%s' % (instance.place.id, generate_random_string(30), extension)
 
 
 class Round(models.Func):
