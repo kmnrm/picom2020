@@ -152,7 +152,7 @@ class Place(models.Model):
     def standardize_phone_number(self):
         empty_phone = ''
         if self.phone_number == empty_phone:
-            return '-'
+            self.phone_number = phonenumbers.parse("13299999999", 'CN')
         return phonenumbers.format_number(
             self.phone_number,
             phonenumbers.PhoneNumberFormat.NATIONAL
