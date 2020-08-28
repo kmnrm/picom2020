@@ -1,3 +1,4 @@
+import random
 from json import loads, dumps
 
 from rest_framework import renderers
@@ -41,6 +42,7 @@ def make_feature_for_geojson(place):
             "closingHours": place["closing_hours"],
             "detailsUrl": place["detailsUrl"],
             "phoneNumber": place["phone_number"],
+            "randomImage": random.choice(place['images']) if len(place['images']) else ''
         }
     }
     return feature

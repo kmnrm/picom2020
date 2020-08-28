@@ -257,7 +257,7 @@
             <li class="place-card" v-for="place in selectedPlace.similarPlaces">
               <div type="button" v-on:click="loadClickedPlace(place)">
                 <div class="place-image">
-                  <img v-bind:src="place.logo" v-bind:alt="place.title">
+                  <img v-bind:src="place.randomImage" v-bind:alt="place.title">
                 </div>
                 <div class="wrapper">
                   <h5 class="place-title">{{ place.title }}</h5>
