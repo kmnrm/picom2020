@@ -1,6 +1,12 @@
 # picom летняя кухня 2020-7
 
-Бэкенд веб-приложения с заведениями китайского города.
+Веб-приложение с заведениями китайского города.
+
+[Here we go!](https://kmnrm2.pythonanywhere.com)
+
+### Backend
+
+[Swagger specifications](https://kmnrm2.pythonanywhere.com/api/swagger/)
 
 *Заведения имеют следующие атрибуты:*
 - название (обязательное поле)
@@ -10,6 +16,8 @@
 - описание
 - адрес на китайском (обязательное поле)
 - адрес на пиньине (рассчитывается автоматически)
+- логотип заведения (изображение размером 100х100)
+- номер телефона (с валидацией; формат - CN national)
 - режим работы
 - средняя стоимость напитков/блюд (рассчитывается автоматически как mean)
 - кординаты - широта и долгота (рассчитываются автоматически через геокодер)
@@ -17,14 +25,17 @@
 - отзывы
 - рейтинг (рассчитывается как среднее арифметическое имеющихся оценок отзывов)
 - события (events, Events model related name)
+- напитки (drinks, Drink model related name)
 
-*Свойства инстанса события:*
+*Атрибуты события:*
 - название
 - заведение, в котором оно проводится (foreign key Place)
 - описание
 - стоимость на входе
 - фото афиши
-- дата и время
+- дата события
+- время начала события
+- время окончания события
 
 *Атрибуты напитка:*
 - название
@@ -41,12 +52,12 @@
 ##### Права доступа
 При регистрации пользователь автоматически попадает в группу "Users". Чтобы создать заведение пользователь должен находиться в группе "Owners"(владелец). Заведения может создавать и редактировать только владелец, напитки и события добавлять и редактировать может только создатель заведения.
 
-
-#### Запуск
-```bash
-picom$ python manage.py migrate
-picom$ python manage.py runserver
+##### Фильтрация
+Реализована фильтрация `places-list` по названию заведения (`title__contains`).
+```shell script
+http://hostname/api/places?title=space
 ```
+
 
 #### Модели:
 - Place
@@ -55,29 +66,37 @@ picom$ python manage.py runserver
 - Place Review
 - Drink
 
-#### Примеры API endpoints
-
-1. Place List (GET)
-![place_list](screenshots/api_place_list.png)
-
-2. Place Instnace (GET)
-![place_instance](screenshots/api_get_place.png)
-
-3. Events List (GET)
-![events_list](screenshots/api_event_list.png)
-
-4. Drink Instance (GET)
-![drink_instnace](screenshots/api_get_drink.png)
-
-5. User Registration (POST)
-![new_user](screenshots/api_new_user.png)
-![new_user_created](screenshots/api_new_user_201.png)
-
-6. User Authorization (POST)
-![user_login](screenshots/api_user_login.png)
-
 
 #### Пример админки
 
-Place Admin
-![place_admin](screenshots/admin_place.png)
+#### Place Admin
+
+Структура:
+- Main info
+- Additional info
+- Images
+- Events
+
+ **Main info**
+
+![place_admin_main_info](screenshots/admin_place_main_info.png)
+
+
+**Additional info and images**
+
+![place_admin_main_info](screenshots/admin_place_add_info_imgs.png)
+
+**Events**
+
+![place_admin_main_info](screenshots/admin_place_events.png)
+
+Данные из базы данных передаются на фронтенд [в формате `geoJSON`](place.json).
+
+
+
+#### Запуск сервера
+```bash
+picom$ pip3 install -r requirements.txt
+picom$ python3 manage.py migrate
+picom$ python3 manage.py runserver
+```
