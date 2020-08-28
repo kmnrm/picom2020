@@ -1,4 +1,6 @@
 import datetime
+import random
+import string
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -27,6 +29,22 @@ def fetch_address_coordinates(address):
         timeout=300
     )
     return location.longitude, location.latitude
+
+
+def generate_random_string(length):
+    return ''.join(
+        [
+            random.choice(
+                ''.join([string.ascii_letters, string.digits])
+            )
+            for i in range(length)
+        ]
+    )
+
+
+def set_upload_location(instance, filename):
+    filebase, extension = filename.split('.')
+    return 'images/%s.%s' % (generate_random_string(30), extension)
 
 
 class Round(models.Func):
@@ -165,32 +183,9 @@ class Place(models.Model):
         ordering = ['title']
 
 
-@receiver(pre_save, sender=Place)
-def get_pinyin_address(sender, instance, **kwargs):
-    city_name_full = 'hé nán shěng zhèng zhōu shì'
-    city_name_short = 'hé nán zhèng zhōu'
-    pinyin_address = pinyin.get(instance.address, format='diacritical', delimiter=" ")
-    if pinyin_address.startswith(city_name_full):
-        instance.pinyin_address = pinyin_address.replace(city_name_full, '')
-    elif pinyin_address.startswith(city_name_short):
-        instance.pinyin_address = pinyin_address.replace(city_name_short, '')
-    else:
-        instance.pinyin_address = pinyin_address
-
-
-@receiver(pre_save, sender=Place)
-def geocode_address(sender, instance, **kwargs):
-    try:
-        instance.longitude, instance.latitude = fetch_address_coordinates(
-            instance.address
-        )
-    except GeocoderServiceError:
-        instance.longitude = instance.latitude = None
-
-
 class PlaceImage(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to=set_upload_location)
     order_number = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
@@ -277,3 +272,26 @@ class Drink(models.Model):
         default=0,
         help_text="Price in CNY from CNY0 to CNY9999.99"
     )
+
+
+@receiver(pre_save, sender=Place)
+def get_pinyin_address(sender, instance, **kwargs):
+    city_name_full = 'hé nán shěng zhèng zhōu shì'
+    city_name_short = 'hé nán zhèng zhōu'
+    pinyin_address = pinyin.get(instance.address, format='diacritical', delimiter=" ")
+    if pinyin_address.startswith(city_name_full):
+        instance.pinyin_address = pinyin_address.replace(city_name_full, '')
+    elif pinyin_address.startswith(city_name_short):
+        instance.pinyin_address = pinyin_address.replace(city_name_short, '')
+    else:
+        instance.pinyin_address = pinyin_address
+
+
+@receiver(pre_save, sender=Place)
+def geocode_address(sender, instance, **kwargs):
+    try:
+        instance.longitude, instance.latitude = fetch_address_coordinates(
+            instance.address
+        )
+    except GeocoderServiceError:
+        instance.longitude = instance.latitude = None
