@@ -121,3 +121,35 @@ html, body, #map {
 .leaflet-top > .navigate-button:focus {
   outline: none;
 }
+
+
+.leaflet-div-icon {
+  background: none;
+  border: none;
+}
+.map-label {
+  position: absolute;
+  bottom: 0;left: -50%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+/*Wrap the content of the divicon (text) in this class*/
+.map-label-content {
+  max-width: 240px;
+  margin-bottom: 0;
+  margin-left: 20px;
+  font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: white;
+}
+/*Add this arrow*/
+.map-label-arrow {
+  position: absolute;
+  top: -31px;
+  left: -7px;
+  background: url(../img/wp-marker.svg) no-repeat;
+  width: 40px;
+  height: 32px;
+}

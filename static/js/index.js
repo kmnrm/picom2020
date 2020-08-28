@@ -128,7 +128,7 @@ var control = L.Routing.control({
         iconAnchor:   [15, 40]
       }),*/
       icon: L.divIcon({
-        html: '<div><div class="map-label-content">HELLO</div><div class="map-label-arrow"></div></div>'
+        html: '<div><div class="map-label-arrow"></div><p class="map-label-content">' + 'Hack, yeah' + '</p></div>'
       })
     })
     /* --------- ТУТ ПОПАП ИСЧЕЗАЕТ ПРИ КЛИКЕ НА КАРТУ. closeOnClick НЕ РАБОАТЕТ -----------
@@ -393,7 +393,8 @@ backButton.onclick = function () {
 }
 
 map.on('click', function () {
-  getBackToMain()
+  getBackToMain();
+  document.querySelector('.search-title').style.display = 'block';
 })
 
 if (!Array.prototype.last){
@@ -428,6 +429,7 @@ async function loadPlaceInfo(placeId, detailsUrl){
   sidebarApp.selectedPlace = null;
   sidebarApp.loadingPlaceId = placeId;
   backButton.style.display = 'block';
+  document.querySelector('.search-title').style.display = 'none';
 
   try {
     let response = await fetch(detailsUrl);
