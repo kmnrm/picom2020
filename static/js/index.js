@@ -195,7 +195,7 @@ function addPopUpRoutingBtns(locationLatLng, locationTitle) {
   var plan = control._plan,
     container = L.DomUtil.create('div'),
     placeTitle = L.DomUtil.create('p', '', container),
-    destBtn = createButton('Set a route', container, 'leaflet-route-go');
+    destBtn = createButton('Get here', container, 'leaflet-route-go');
     placeTitle.textContent = locationTitle;
 
     L.popup()
@@ -228,8 +228,8 @@ var searchControl = new L.Control.Search({
 
 searchControl.on('search:locationfound', function (e) {
   sidebar.show();
-  // addPopUpRoutingBtns(e.latlng, e.layer.feature.properties.title);
   e.layer.openPopup();
+  addPopUpRoutingBtns(e.latlng, e.layer.feature.properties.title);
   loadPlaceInfo(
     e.layer.feature.properties.placeId,
     e.layer.feature.properties.detailsUrl
