@@ -64,6 +64,15 @@ class PlaceAdmin(admin.ModelAdmin):
         EventInline,
     ]
 
+    def get_queryset(self, request):
+        return super(PlaceAdmin, self).get_queryset(request).calculate_auto_fill_fields()
+
+    def rating(self, obj):
+        return obj.rating
+
+    def average_price(self, obj):
+        return obj.average_price
+
 
 @admin.register(PlaceUserReview)
 class ReviewAdmin(admin.ModelAdmin):

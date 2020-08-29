@@ -1,21 +1,11 @@
 import random
-from json import loads, dumps
 
+from django.urls import reverse
 from rest_framework import renderers
 from rest_framework.response import Response
 
 from apps.places.views import PlaceViewSet
 from apps.places.models import get_rating_status
-
-
-def to_dict(input_ordered_dict):
-    return loads(dumps(input_ordered_dict))
-
-
-def format_time(time_str):
-    if time_str is None:
-        return ""
-    return time_str[:-3]
 
 
 def make_feature_for_geojson(place):
@@ -24,25 +14,27 @@ def make_feature_for_geojson(place):
         "geometry": {
             "type": "Point",
             "coordinates": [
-                place["coordinates"]["longitude"],
-                place["coordinates"]["latitude"]
+                place.longitude,
+                place.latitude
             ],
         },
         "properties": {
-            "title": place["title"],
-            "placeId": place["id"],
-            "category": place["category"],
-            "logo": place["logo"],
-            "rating": place["rating"],
-            "ratingStatus": get_rating_status(place["rating"]),
-            "policeRating": int(place["police_rating"][0]),
-            "policeRatingStatus": place["police_rating"][4:],
-            "address": place["address"],
-            "openingHours": place["opening_hours"],
-            "closingHours": place["closing_hours"],
-            "detailsUrl": place["detailsUrl"],
-            "phoneNumber": place["phone_number"],
-            "randomImage": random.choice(place['images']) if len(place['images']) else ''
+            "title": place.title,
+            "placeId": place.id,
+            "category": place.get_category_display(),
+            "logo": place.logo_url(),
+            "rating": place.rating,
+            "ratingStatus": get_rating_status(place.rating),
+            "policeRating": int(place.get_police_rating_display()[0]),
+            "policeRatingStatus": place.get_police_rating_display()[4:],
+            "address": place.address,
+            "openingHours": place.opening_hours,
+            "closingHours": place.closing_hours,
+            "detailsUrl": reverse('places-detail', args=[place.pk]),
+            "phoneNumber": place.standardize_phone_number(),
+            "randomImage": random.choice(
+                [image.image.url for image in place.images.all()]
+            ) if len(place.images.all()) else ''
         }
     }
     return feature
@@ -59,22 +51,13 @@ class MainViewSet(PlaceViewSet):
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
 
         places_geojson = {
             "type": "FeatureCollection",
             "features": [],
         }
 
-        places = sorted(
-            serializer.data,
-            key=lambda k: k['rating'],
-            reverse=True
-        )
-
-        places = [to_dict(place) for place in places]
-
-        for place in places:
+        for place in queryset:
             feature = make_feature_for_geojson(place)
             places_geojson["features"].append(feature)
 

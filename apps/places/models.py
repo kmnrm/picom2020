@@ -55,22 +55,21 @@ class Round(models.Func):
 class PlaceQuerySet(models.QuerySet):
     def calculate_auto_fill_fields(self):
         places = self.annotate(
-            avg_rating=Round(
+            rating=Round(
                 models.Avg(
                     'reviews__rating',
                     filter=models.Q(reviews__rating__gt=0)
                 )
             )
         ).annotate(
-            average_price_for_drink=models.Avg('drinks__price')
-        ).order_by('id')
+            average_price=models.Avg('drinks__price')
+        ).order_by('-rating')
 
         for place in places:
-            price = place.average_price_for_drink
+            price = place.average_price
             place.average_price = int(price) if price else 0
-            rating = place.avg_rating
+            rating = place.rating
             place.rating = rating if rating else 0.0
-
         return places
 
 
@@ -126,12 +125,7 @@ class Place(models.Model):
     )
     opening_hours = models.TimeField(default=datetime.time(12, 00))
     closing_hours = models.TimeField(default=datetime.time(2, 00))
-    average_price = models.FloatField(
-        default=0,
-        blank=True,
-        null=True,
-        help_text="Automatically calculated as mean of place drinks prices."
-    )
+
     police_rating = models.CharField(
         max_length=3,
         choices=POLICE_RATING,
@@ -155,10 +149,7 @@ class Place(models.Model):
         null=True,
         help_text="Longitude coordinate related to the address."
     )
-    rating = models.FloatField(
-        default=0.0,
-        help_text="Automatically calculated as mean of users rates given to a place."
-    )
+
     objects = PlaceQuerySet.as_manager()
 
     def logo_url(self):
