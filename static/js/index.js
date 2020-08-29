@@ -249,7 +249,7 @@ var lc = L.control.locate({
   },
   icon: 'locate-marker',
 });
-
+lc.addTo(map);
 
 function clearWaypoints(){
   if(control){
@@ -282,7 +282,6 @@ setGeocoderBtn();
 
 showGeocoderBtn.onclick = function () {
   control.show();
-  lc.addTo(map);
   lc.stop();
   controlContainer.removeChild(showGeocoderBtn);
 };
