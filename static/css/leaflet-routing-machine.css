@@ -152,7 +152,6 @@
 }
 
 .leaflet-routing-geocoder-result {
-    font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
     position: absolute;
     max-height: 0;
     overflow: hidden;
@@ -163,6 +162,9 @@
 }
 
 .leaflet-routing-geocoder-result table {
+    font: Montserrat, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 0 0 4px 4px;
@@ -175,7 +177,7 @@
 }
 
 .leaflet-routing-geocoder-selected, .leaflet-routing-geocoder-result tr:hover {
-    background-color: #eee;
+    background-color: #f2f2f2;
 }
 
 .leaflet-routing-geocoder-no-results {

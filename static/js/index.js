@@ -330,7 +330,7 @@ var sidebarApp = new Vue({
       setTimeout(() => { 
         let element = document.getElementById('places-list');
         if (element) addHorizontalScroll(element);
-      }, 1000);
+      }, 2000);
       return this.loadingPlaceId;
     },
 

@@ -1070,7 +1070,7 @@
     margin-top: 0;
   }
   .leaflet-routing-geocoder {
-    margin: -5px 10px;
+    margin: 0px 15px;
   }
   .leaflet-routing-geocoder:nth-child(2) {
     margin-bottom: 0px;
@@ -1145,7 +1145,7 @@
     margin-right: 10px;
   }
   .leaflet-routing-geocoders input {
-    padding: 5px 20px 5px 7px;
+    /* padding: 5px 20px 5px 7px; */
   }
   .leaflet-routing-remove-waypoint:after {
     right: -4px;
@@ -1156,12 +1156,12 @@
     line-height: 40px;
   }
   .leaflet-routing-geocoder > input {
-  -ms-flex-preferred-size: calc(100% - 70px);
-      flex-basis: calc(100% - 70px);
+  -ms-flex-preferred-size: calc(100% - 40px);
+      flex-basis: calc(100% - 40px);
   }
   .leaflet-routing-geocoders .leaflet-routing-reverse-waypoints {
-    right: -3px;
-    top: 44%;
+    top: 5rem;
+    right: 5px;
   }
   .reviews-average-rating .ratings li {
     display: none;
