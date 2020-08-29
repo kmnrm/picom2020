@@ -55,7 +55,7 @@ class Round(models.Func):
 
 class PlaceQuerySet(models.QuerySet):
     def calculate_auto_fill_fields(self):
-        places = self.annotate(
+        return self.annotate(
             rating=Coalesce(
                 Round(
                     models.Avg(
@@ -74,13 +74,6 @@ class PlaceQuerySet(models.QuerySet):
                 0
             )
         ).order_by('-rating')
-
-        for place in places:
-            price = place.average_price
-            place.average_price = int(price) if price else 0
-            rating = place.rating
-            place.rating = rating if rating else 0.0
-        return places
 
 
 class Place(models.Model):
