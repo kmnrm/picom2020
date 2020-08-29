@@ -114,9 +114,10 @@ var control = L.Routing.control({
   },
 
   createMarker: function (i, start, n){
+    var markerTitle = start.name || 'My location'
     var marker = L.marker (start.latLng, {
       icon: L.divIcon({
-        html: '<div><div class="map-label-arrow"></div><p class="map-label-content">' + start.name + '</p></div>'
+        html: '<div><div class="map-label-arrow"></div><p class="map-label-content">' + markerTitle + '</p></div>'
       })
     });
     return marker
