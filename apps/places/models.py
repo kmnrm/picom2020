@@ -4,6 +4,7 @@ import string
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.functions import Coalesce
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
@@ -55,14 +56,23 @@ class Round(models.Func):
 class PlaceQuerySet(models.QuerySet):
     def calculate_auto_fill_fields(self):
         places = self.annotate(
-            rating=Round(
-                models.Avg(
-                    'reviews__rating',
-                    filter=models.Q(reviews__rating__gt=0)
-                )
+            rating=Coalesce(
+                Round(
+                    models.Avg(
+                        'reviews__rating',
+                        filter=models.Q(reviews__rating__gt=0)
+                    )
+                ),
+                0.0
             )
         ).annotate(
-            average_price=models.Avg('drinks__price')
+            average_price=Coalesce(
+                models.Avg(
+                    'drinks__price',
+                    output_field=models.PositiveSmallIntegerField()
+                ),
+                0
+            )
         ).order_by('-rating')
 
         for place in places:
@@ -96,7 +106,6 @@ class Place(models.Model):
         db_index=True
     )
     title = models.CharField(max_length=100, help_text="Place title.")
-    # logo = models.ImageField(upload_to='logos/', default='', blank=True)
     logo = StdImageField(
         upload_to='logos/',
         default='',

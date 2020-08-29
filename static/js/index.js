@@ -413,6 +413,13 @@ function getBusinessHours(openHours, closeHours) {
   return '-'
 }
 
+function getRating(rating) {
+ if (rating.toString().length === 1) {
+   return rating + '.0'
+ }
+ return rating || '0.0'
+}
+
 async function loadPlaceInfo(placeId, detailsUrl){
   sidebarApp.selectedPlace = null;
   sidebarApp.loadingPlaceId = placeId;
@@ -440,7 +447,7 @@ async function loadPlaceInfo(placeId, detailsUrl){
       description: data.description,
       address: data.address,
       averagePrice: data.average_price,
-      rating: data.rating || 0,
+      rating: getRating(data.rating),
       ratingRounded: Math.round(data.rating),
       ratingStatus: data.rating_status,
       policeRating: data.police_rating.slice(3, ),

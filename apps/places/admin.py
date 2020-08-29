@@ -41,6 +41,7 @@ class DrinkInline(admin.TabularInline):
 
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
+    list_display = ('title', 'average_price', 'rating', 'police_rating', )
     fieldsets = (
         ('Main Info', {
             'fields': (
