@@ -30,7 +30,7 @@ map.on('locationfound', function(e) { locLatLng = e.latlng } );
 
 
 function setMyLocation(event) {
-  let element = event.target.parentElement.parentElement.children[0];
+  let element = event.target.parentElement.children[0];
   console.log(element);
   if (!lc._active) {
     lc.start();
@@ -247,7 +247,8 @@ var lc = L.control.locate({
   strings: {
     title: "Show me where I am, yo!",
     popup: "Time to go somewhere, bro..."
-  }
+  },
+  icon: 'locate-marker',
 });
 
 
