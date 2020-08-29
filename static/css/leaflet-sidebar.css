@@ -832,15 +832,17 @@
 .leaflet-routing-geocoders .my-location {
   display: inline-block;
   width: 30px;
-  height: 20px;
-  background: url(../img/wp-marker.svg) no-repeat center;
+  height: 30px;
+  border-radius: 15px;
+  background: url(../img/Location.svg) no-repeat center;
   position: absolute;
-  top: 13px;
+  top: 8px;
   left: 5px;
 }
 .leaflet-routing-geocoders .my-location:hover,
 .leaflet-routing-geocoders .my-location:focus {
   outline: none;
+  /* background: none; */
 }
 
 #events { 
@@ -937,7 +939,7 @@
   display: block;
   height: 0;
   width: 100%;
-  padding-top: 150px;
+  padding-top: 180px;
   position: relative;
   overflow: hidden;
   margin-bottom: 1rem;
@@ -1030,7 +1032,7 @@
     left: 0;
     width: calc(100% - 12px);
     bottom: 0;
-    height: 115px;
+    height: 130px;
   }
   .leaflet-sidebar.left.visible {
     left: 0;
@@ -1039,14 +1041,16 @@
 
   .leaflet-sidebar .sidebar-swipe-btn {
     display: block;
-    position: absolute;
-    top: 1px;
-    padding: 1px;
-    left: 30%;
-    width: 40%;
-    background-clip: padding-box;
+    padding: 15px 0;
+    margin: 0 auto;
+    width: 55%;
+    height: 5px;
+    box-sizing: content-box;
+    background-clip: content-box;
     background-color: #000;
-    border: 15px solid transparent;
+    border: none;
+    filter: drop-shadow(-6px 0px 4px rgba(200,200,200,0.3)) 
+            drop-shadow(6px 0px 4px rgba(200,200,200,0.3));
   }
   .sidebar-swipe-btn:focus {
     outline: 1px dotted #666;
@@ -1078,9 +1082,9 @@
     margin-bottom: 83px;
   }
   .leaflet-geocoders-toggler {
-    width: 80px;
-    height: 80px;
-    border-radius: 40px;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
     -webkit-box-shadow: 0 0 9px #666;
             box-shadow: 0 0 9px #666;
     -moz-box-shadow: 0 0 9px #666;
@@ -1089,6 +1093,10 @@
     width: 50px;
   }
 
+  #sidebar-app {
+    margin: 2.5rem 0 3rem;
+  }
+  
   #search {
     margin-left: 20px;
     margin-right: 20px;

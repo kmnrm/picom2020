@@ -73,8 +73,8 @@ function paginator() {
   createPageButton();
 }
 
-function addScroll(event) {
-  event.target.onwheel = function (event) {
+function addHorizontalScroll(element) {
+  element.onwheel = function (event) {
     if (event.deltaMode == event.DOM_DELTA_PIXEL) {
       var modifier = 0.5;
       // иные режимы возможны в Firefox

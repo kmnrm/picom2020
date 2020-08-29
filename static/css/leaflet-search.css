@@ -171,7 +171,8 @@
 .locate-marker {
 	display: inline-block;
   margin: auto;
-  width: 20px;
-  height: 25px;
-  background: url(../img/wp-marker.svg) no-repeat center;
+  width: 23px;
+  height: 26px;
+  background: url(../img/Location.svg) no-repeat center;
+  background-size: 22px;
 }

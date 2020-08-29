@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block sidebar %}
   <div id="sidebar">
-    <button class="sidebar-swipe-btn" onclick="sidebarToggle()"></button>
     <div id="sidebar-app">
       <div id="search"></div>
 
@@ -256,7 +255,7 @@
           <div class="wrapper">
             <h2>Other {{selectedPlace.category}}s</h2>
           </div>
-          <ul id="places-list" onmouseover="addScroll(event)">
+          <ul id="places-list">
             <li class="place-card" v-for="place in selectedPlace.similarPlaces">
               <div type="button" v-on:click="loadClickedPlace(place)">
                 <div class="place-image">

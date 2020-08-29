@@ -327,7 +327,12 @@ var sidebarApp = new Vue({
       return !this.loading && !this.selectedPlace;
     },
     loading: function () {
-      return this.loadingPlaceId !== null;
+      this.loadingPlaceId !== null;
+      setTimeout(() => { 
+        let element = document.getElementById('places-list');
+        if (element) addHorizontalScroll(element);
+      }, 1000);
+      return this.loadingPlaceId;
     },
 
     carouselImages: function () {

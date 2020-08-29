@@ -319,7 +319,8 @@
   order: 2;
   font-family: Montserrat, sans-serif;
   font-size: 20px;
-  border: 3px solid rgba(8, 89, 245, 0.1);
+    color: #0859F5;
+  border: 3px solid #0859F5;
   box-sizing: border-box;
   border-radius: 20px;
 }

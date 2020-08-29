@@ -23,6 +23,10 @@ L.Control.Sidebar = L.Control.extend({
 
     // Create sidebar container
     var container = this._container = L.DomUtil.create('div', l + 'sidebar ' + this.options.position);
+    var button = document.createElement('button');
+    button.setAttribute('class','sidebar-swipe-btn');
+    button.setAttribute('onclick','sidebarToggle()');
+    container.appendChild(button);
 
     // Style and attach content container
     L.DomUtil.addClass(content, l + 'control');
