@@ -234,8 +234,8 @@
 
 #search .leaflet-control-search .search-button {
   position: absolute;
-  top: 2px;
-  right: 6px;  
+  top: 1px;
+  right: 1px;  
 }
 
 #search .leaflet-control-search input {
@@ -385,17 +385,44 @@
 /* ======================================== */
 .place-description .wrapper { position: relative; }
 
+
+.description-head {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 150px;
+}
+
 .description-logo {
-  position: absolute;
-  top: 0px;
+  display: block;
+  padding-top: 100px;
+  overflow: hidden;
+  position: relative;
   width: 100px;
-  height: 100px;
+  height: 0;
+  margin-top: 15px;
   margin-bottom: 20px;
+  margin-right: 25px;
   background-color: #fff;
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.description-logo img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .description-title {
-  margin-left: 130px;
+  width: calc(100% - 125px);
   margin-bottom: 25px;
   font-family: HagridVariable, HagridVariable2, Hagrid, sans-serif;
   font-weight: 800;
@@ -403,32 +430,17 @@
   line-height: 1.2;
 }
 .description-text {
-  margin-left: 130px;
+  width: calc(100% - 125px);
   font-size: 1rem;
   line-height: 1.2;
-  
   display: block;
   display: -webkit-box;
-  max-width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
-}
-
-@media (max-width: 1399px) {
-  .description-logo {
-    position: static;
-  }
-  .description-title {
-    position: relative;
-    margin-left: 0;
-  }
-  .description-text {
-    margin-left: 0;
-  }
+  text-overflow: ellipsis;
 }
 
 #same-places .ratings {
@@ -490,7 +502,7 @@
       flex-wrap: wrap;
   list-style: none;
   padding: 0;
-  margin-top: 3.3rem;
+  margin-top: 3rem;
   margin-bottom: 1.8rem;
 }
 
@@ -804,37 +816,22 @@
           order: 3;
 } */
 
-
-.leaflet-container a.leaflet-popup-close-button {
-  top: 7px;
-  right: 20px;
-  display: none;
+.leaflet-control-layers {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
+
 .leaflet-control-layers-expanded {
   padding: 7px 10px 1px 6px;
 }
 
-.leaflet-routing-geocoders .popUp {
-  display: none;
+.leaflet-routing-geocoders .my-location {
   position: absolute;
-  top: 11px;
-  left: 50%;
-  background-color: #eee;
-  border: 1px solid #999;
-  border-radius: 5px;
-  padding: 0;
-}
-.leaflet-routing-geocoders .popUp button {
-  font-family: Montserrat, sans-serif;
-  font-size: 0.9rem;
-  line-height: 2;
-  font-weight: normal;
+  top: 13px;
+  left: 10px;
   background: none;
-  width: 6.5rem;
 }
-.leaflet-routing-geocoders .popUp button:hover,
-.leaflet-routing-geocoders .popUp button:focus {
-  font-weight: bold;
+.leaflet-routing-geocoders .my-location:hover,
+.leaflet-routing-geocoders .my-location:focus {
   outline: none;
 }
 
@@ -929,19 +926,28 @@
 }
 
 #same-places .place-card .place-image {
+  display: block;
+  height: 0;
   width: 100%;
-  height: 180px;
-  background: #DEDEDE;
-  border-radius: 10px 10px 0 0;
-  margin-bottom: 1rem;
+  padding-top: 150px;
+  position: relative;
   overflow: hidden;
 }
 
 #same-places .place-card .place-image img {
-  min-height: 100%;
-  min-width: 100%;
-  max-width: 130%;
-  max-height: 130%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  object-fit: cover;
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 20px 20px 0 0;
 }
 
 #same-places .place-card .place-title {
@@ -1170,7 +1176,17 @@
   }
 }
 
-@media (max-width: 1910px) {
+@media (max-width: 1900px) {
+  .description-head {
+    flex-wrap: nowrap;
+    height: auto;
+  }
+  .description-title {
+    width: 100%;
+  }
+  .description-text {
+    width: 100%;
+  }
   .rate-icons li {
     width: 24px;
     height: 28px;

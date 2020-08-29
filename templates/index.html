@@ -105,11 +105,14 @@
       <div class="place-description" v-if="selectedPlace">
         <div class="wrapper">
           {% verbatim sidebar %}
-          <div class="description-logo">
-            <img v-bind:src="selectedPlace.logo" v-bind:alt="selectedPlace.title">
+          <div class="description-head">
+            <div class="description-logo">
+              <img v-bind:src="selectedPlace.logo" v-bind:alt="selectedPlace.title">
+            </div>
+            <h5 class="description-title" class="mb-3">{{ selectedPlace.title }}</h5>
+            <p class="description-text">{{ selectedPlace.description }}</p>
           </div>
-          <h5 class="description-title" class="mb-3">{{ selectedPlace.title }}</h5>
-          <p class="description-text">{{ selectedPlace.description }}</p>
+          
 
           <ul class="description-contacts">
             <li>

@@ -28,14 +28,10 @@ function sidebarToggle() {
 var locLatLng;
 map.on('locationfound', function(e) { locLatLng = e.latlng } );
 
-function showGeocodersPopUp(event) {
-  let element = event.target.nextElementSibling;
-  element.style.display = 'block';
-  setTimeout(() => element.style.display = "none", 3000);
-}
 
 function setMyLocation(event) {
-  let element = event.target.parentElement.parentElement.children[1];
+  let element = event.target.parentElement.parentElement.children[0];
+  console.log(element);
   if (!lc._active) {
     lc.start();
   }

@@ -1974,18 +1974,22 @@ module.exports={
 		options: {
 			createGeocoder: function(i, nWps, options) {
 				var container = L.DomUtil.create('div', 'leaflet-routing-geocoder'),
-				    fromto = L.DomUtil.create('p', '', container),
+				    // fromto = L.DomUtil.create('p', '', container),
 					input = L.DomUtil.create('input', '', container),
-					gPopUp = L.DomUtil.create('div', 'popUp', container),
+					gMyLocation = L.DomUtil.create('button', 'my-location', container),
 					remove = options.addWaypoints ? L.DomUtil.create('span', 'leaflet-routing-remove-waypoint', container) : undefined;
+				if (remove != undefined) remove.innerHTML = `<svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line x1="11.6055" y1="2.12132" x2="3.12019" y2="10.6066" stroke="#BDBDBD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="11.4841" y1="10.6064" x2="2.99887" y2="2.12117" stroke="#BDBDBD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
 
 				input.disabled = false;
 
 				return {
 					container: container,
-					fromto: fromto,
+					// fromto: fromto,
 					input: input,
-					gPopUp: gPopUp,
+					gMyLocation: gMyLocation,
 					closeButton: remove
 				};
 			},
@@ -2020,13 +2024,16 @@ module.exports={
 
 			var g = this.options.createGeocoder(i, nWps, this.options),
 				closeButton = g.closeButton,
-				gFromTo = g.fromto,
+				// gFromTo = g.fromto,
 				geocoderInput = g.input,
-				gPopUp = g.gPopUp;
-			gPopUp.innerHTML = '<button onclick="setMyLocation(event)">My location</button>';
-			geocoderInput.setAttribute('onclick', 'showGeocodersPopUp(event)');
+				gMyLocation = g.gMyLocation;
+			gMyLocation.innerHTML = `<svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.00837 0C3.13995 0 0 3.10917 0 6.93966C0 9.67572 1.1555 12.4367 3.34091 14.9323C4.97368 16.7978 6.58971 17.8508 6.65669 17.9005C6.75717 17.9668 6.88277 18 6.99999 18C7.11722 18 7.24282 17.9668 7.34329 17.9005C7.41028 17.859 9.02631 16.7978 10.6591 14.9323C12.8445 12.4367 14 9.66743 14 6.93966C14.0084 3.10917 10.8684 0 7.00837 0ZM7.00837 16.6154C5.71889 15.6619 1.25598 12.0055 1.25598 6.93966C1.25598 3.79733 3.83492 1.24367 7.00837 1.24367C10.1818 1.24367 12.7608 3.79733 12.7608 6.93966C12.7524 12.0055 8.29784 15.6619 7.00837 16.6154Z" fill="#585858"/>
+<path d="M7 4C5.34639 4 4 5.34639 4 7C4 8.65361 5.34639 10 7 10C8.65361 10 10 8.65361 10 7C10 5.34639 8.65361 4 7 4ZM7 8.65361C6.09639 8.65361 5.35542 7.91265 5.35542 7.00904C5.35542 6.10542 6.09639 5.36446 7 5.36446C7.90361 5.36446 8.64458 6.10542 8.64458 7.00904C8.64458 7.91265 7.90361 8.65361 7 8.65361Z" fill="#585858"/>
+</svg>`;
+			gMyLocation.setAttribute('onclick', 'setMyLocation(event)');
 			geocoderInput.setAttribute('placeholder', this.options.geocoderPlaceholder(i, nWps, this)[0]);
-			gFromTo.textContent = this.options.geocoderPlaceholder(i, nWps, this)[1];
+			// gFromTo.textContent = this.options.geocoderPlaceholder(i, nWps, this)[1];
 
 			geocoderInput.className = this.options.geocoderClass(i, nWps);
 
@@ -3241,13 +3248,23 @@ module.exports = L.Routing = {
             gButton.setAttribute('class', 'btnSetRoute');
             gButton.textContent = 'Set a route';
             gClose = L.DomUtil.create('button', '', container);
-            gClose.textContent = 'x';
+			gClose.innerHTML = `<svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line x1="11.6055" y1="2.12132" x2="3.12019" y2="10.6066" stroke="#BDBDBD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="11.4841" y1="10.6064" x2="2.99887" y2="2.12117" stroke="#BDBDBD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
 						gClose.setAttribute('class', 'btnClose');
 			this._geocoderElems = [];
 
 			if (this.options.reverseWaypoints) {
 				reverseBtn = L.DomUtil.create('button', 'leaflet-routing-reverse-waypoints', container);
 				reverseBtn.setAttribute('type', 'button');
+				reverseBtn.innerHTML = `<svg width="26" height="19" viewBox="0 0 26 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 17V2L12 7.12195" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19 2L19 17L14 11.878" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7 2L2 7" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="bevel"/>
+<path d="M19 17L24 12" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="bevel"/>
+</svg>
+`;
 				L.DomEvent.addListener(reverseBtn, 'click', function() {
 					this._waypoints.reverse();
 					this.setWaypoints(this._waypoints);

@@ -107,12 +107,12 @@
 
 .leaflet-routing-geocoders input {
   font-size: 15px;
-  width: calc(100% - 50px);
-  padding: 7px 25px 7px 7px;
+  width: 100%;
+  padding: 7px 30px 7px 40px;
   line-height: 20px;
   border: 2px solid transparent;
   border-radius: 18px;
-  background-color: #ECECEC;
+  background-color: #F7F7F7;
 }
 
 .leaflet-routing-geocoders input:hover,
@@ -141,7 +141,6 @@
 
 .leaflet-routing-reverse-waypoints:after {
     font-weight: normal;
-    content: '\21c5';
 }
 
 .leaflet-routing-geocoders button:hover {
@@ -190,29 +189,6 @@
     margin-left: -5px;
     vertical-align: middle;
     cursor: pointer;
-}
-
-.leaflet-routing-remove-waypoint:after {
-    position: absolute;
-    display: block;
-    width: 15px;
-    height: 1px;
-    z-index: 1;
-    right: 1px;
-    top: 4px;
-    bottom: 0;
-    margin: auto;
-    padding: 2px;
-    font-size: 18px;
-    font-weight: bold;
-    content: "\00d7";
-    text-align: center;
-    cursor: pointer;
-    color: #ccc;
-    padding-bottom: 16px;
-    margin-top: -16px;
-    padding-right: 4px;
-    line-height: 1;
 }
 
 .leaflet-routing-remove-waypoint:hover {
@@ -303,8 +279,8 @@
 }
 .leaflet-routing-remove-waypoint {
   position: relative;
-  top: -3px;
-  left: -8px;
+  top: 0px;
+  left: -22px;
 }
 .leaflet-routing-geocoder {
   -webkit-box-ordinal-group: 2;
@@ -316,7 +292,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: -3px 28px;
+  margin: 0 61px 0 35px;
 }
 .leaflet-routing-geocoder:nth-child(2){
   margin-bottom: 15px;
@@ -331,28 +307,27 @@
   margin-right: 15px;
 }
 .leaflet-routing-geocoder > input {
-  -ms-flex-preferred-size: calc(100% - 60px);
-      flex-basis: calc(100% - 60px);
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
 }
-/* .leaflet-routing-geocoder > input:focus~ .popUp {
-    display: block;
-} */
+
 .leaflet-routing-geocoders .btnSetRoute {
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
-  margin: 0;
+  width: 170px;
+  height: 45px;
+  margin: 0 auto 30px;
+  -ms-flex-order: 2;
+  order: 2;
   font-family: Montserrat, sans-serif;
   font-size: 20px;
-  line-height: 44px;
-  background-color: #9A9A9A;
-  color: white;
-  border-radius: 0;
+  border: 3px solid rgba(8, 89, 245, 0.1);
+  box-sizing: border-box;
+  border-radius: 20px;
 }
 .leaflet-routing-geocoders .btnSetRoute:hover,
 .leaflet-routing-geocoders .btnSetRoute:focus {
-  background-color: #888;
-  opacity: 0.8;
+  background-color: #0859F5;
+  color: white;
+  /* opacity: 0.8; */
 }
 .leaflet-geocoders-toggler {
   width: 116px;
@@ -361,7 +336,7 @@
   border-radius: 58px;
   background-color: #fff;
   border: 2px solid transparent;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 9px rgba(0, 0, 0, 0.2);
 }
 .leaflet-geocoders-toggler:hover,
 .leaflet-geocoders-toggler:focus {
@@ -387,10 +362,16 @@
 }
 
 .leaflet-routing-geocoders .leaflet-routing-reverse-waypoints {
-    right: -1px;
+  right: 0.8rem;
   position: absolute;
-  top: 48%;
+  top: 5.95rem;
   background: none;
+}
+
+.leaflet-routing-geocoders .leaflet-routing-reverse-waypoints:hover,
+.leaflet-routing-geocoders .leaflet-routing-reverse-waypoints:focus {
+    opacity: 0.7;
+    background: none;
 }
 
 @media (max-width: 1200px) {
