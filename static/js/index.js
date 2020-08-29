@@ -289,7 +289,6 @@ showGeocoderBtn.onclick = function () {
 function closeRoutingControl() {
   if (lc._map){
     lc.stop();
-    map.removeControl(lc);
   }
 
   clearWaypoints();
