@@ -31,7 +31,6 @@ map.on('locationfound', function(e) { locLatLng = e.latlng } );
 
 function setMyLocation(event) {
   let element = event.target.parentElement.children[0];
-  console.log(element);
   if (!lc._active) {
     lc.start();
   }
@@ -455,6 +454,22 @@ async function loadPlaceInfo(placeId, detailsUrl){
     if (sidebarApp.loadingPlaceId == placeId){
       sidebarApp.loadingPlaceId = null;
     }
+    $(function(){
+      $(".review-card:hidden").slice(0, 3).show();
+      $('.reviews-more').click(function() {
+        var text = $(this).text();
+        if ($('.review-card:hidden').length !== 0) {
+          $('.review-card:hidden').slice(0, 3).slideDown();
+           if ($('.review-card:hidden').length === 0) {
+             $(this).text(text.replace('More', 'Collapse'));
+           }
+        }
+        else {
+          $('.review-card:visible').slice(3).slideUp();
+          $(this).text(text.replace('Collapse', 'More'));
+        }
+      });
+    })
   }
 }
 
