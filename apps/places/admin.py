@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from apps.places.models import Place, PlaceImage, Event, PlaceUserReview
+from apps.places.models import Place, PlaceImage, Event, PlaceUserReview, Drink
 from adminsortable2.admin import SortableInlineAdminMixin
 
 
@@ -34,6 +34,11 @@ class EventInline(admin.StackedInline):
         return format_html('<img src="{url}" height="100" />'.format(url=event.image.url))
 
 
+class DrinkInline(admin.TabularInline):
+    model = Drink
+    extra = 1
+
+
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
     fieldsets = (
@@ -55,6 +60,7 @@ class PlaceAdmin(admin.ModelAdmin):
     radio_fields = {"police_rating": admin.VERTICAL}
     inlines = [
         PlaceImageInline,
+        DrinkInline,
         EventInline,
     ]
 
