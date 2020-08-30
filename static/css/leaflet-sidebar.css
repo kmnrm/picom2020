@@ -185,7 +185,7 @@
 /* ======================================== */
 
 #sidebar-app {
-  margin: 4rem 0 3rem;
+  margin: 3.5rem 0;
 }
 
 #sidebar,
@@ -488,6 +488,9 @@
   width: 31px;
   height: 31px;
 }
+.rate-icons.warnings li {
+  filter: drop-shadow(0 0 3px #EF5E31);
+}
 
 .description-contacts {
   display: -webkit-box;
@@ -624,7 +627,7 @@
 }
 
 .review-card {
-  padding: 25px 15px;
+  padding: 1.3rem;
   box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.09);
   border-radius: 10px;
   margin-bottom: 1.6rem;
@@ -1005,6 +1008,9 @@
 #same-places .rating-category {
   flex-basis: 50%;
   display: flex;
+}
+#same-places .rating-category:last-of-type img {
+  filter: drop-shadow(0 0 3px #EF5E31);
 }
 
 #same-places .rating-category img {

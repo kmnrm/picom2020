@@ -324,8 +324,8 @@
 }
 
 .leaflet-geocoders-toggler {
-  width: 116px;
-  height: 116px;
+  width: 105px;
+  height: 105px;
   border: none;
   border-radius: 58px;
   background-color: #fff;
@@ -358,7 +358,7 @@
 .leaflet-routing-geocoders .leaflet-routing-reverse-waypoints {
   right: 0.8rem;
   position: absolute;
-  top: 5.95rem;
+  top: 5.5rem;
   background: none;
 }
 
