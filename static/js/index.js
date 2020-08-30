@@ -96,7 +96,7 @@ function getTopPlaces(placesGeoJson, n) {
 
 let places = loadJSON('places-geojson');
 
-let topPlaces = getTopPlaces(places, 3);
+let topPlaces = getTopPlaces(places, 10);
 
 
 /* ======--Routing Machine--======*/
@@ -370,6 +370,7 @@ map.addControl(searchControl);
 var backButton = document.getElementById('back-button');
 
 function getBackToMain() {
+  lazyLoadContent('.places-list .place');
   sidebarApp.selectedPlace = null;
   sidebarApp.loadingPlaceId = null;
   backButton.style.display = 'none';
@@ -465,22 +466,7 @@ async function loadPlaceInfo(placeId, detailsUrl){
     if (sidebarApp.loadingPlaceId == placeId){
       sidebarApp.loadingPlaceId = null;
     }
-    $(function(){
-      $(".review-card:hidden").slice(0, 3).show();
-      $('.reviews-more').click(function() {
-        var text = $(this).text();
-        if ($('.review-card:hidden').length !== 0) {
-          $('.review-card:hidden').slice(0, 3).slideDown();
-           if ($('.review-card:hidden').length === 0) {
-             $(this).text(text.replace('More', 'Collapse'));
-           }
-        }
-        else {
-          $('.review-card:visible').slice(3).slideUp();
-          $(this).text(text.replace('Collapse', 'More'));
-        }
-      });
-    })
+    lazyLoadContent(".review-card");
   }
 }
 
@@ -496,3 +482,24 @@ function loadClickedPlace(place){
   addPopUpRoutingBtns(placeLatLng, place.title);
   loadPlaceInfo(place.id, place.detailsUrl);
 };
+
+function lazyLoadContent(contentContainerSelector) {
+  $(function(){
+    $(contentContainerSelector + ':hidden').slice(0, 3).show();
+    $('.reviews-more').click(function() {
+      var text = $(this).text();
+      if ($(contentContainerSelector + ':hidden').length !== 0) {
+        $(contentContainerSelector + ':hidden').slice(0, 3).slideDown();
+        if ($(contentContainerSelector + ':hidden').length === 0) {
+          $(this).text(text.replace('More', 'Collapse'));
+        }
+      }
+      else {
+        $(contentContainerSelector + ':visible').slice(3).slideUp();
+        $(this).text(text.replace('Collapse', 'More'));
+      }
+    });
+  })
+}
+
+lazyLoadContent('.places-list .place');
