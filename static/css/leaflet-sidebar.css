@@ -512,6 +512,7 @@
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
+  min-height: 4rem;
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
@@ -951,6 +952,9 @@
   border-radius: 20px;
   box-shadow: 0 0 9px #ddd;
 }
+#same-places .place-card:hover {
+  cursor: pointer;
+}
 
 #same-places .place-card:last-of-type {
   margin-right: 20px;
@@ -1075,7 +1079,7 @@
   }
   .leaflet-sidebar.left.visible {
     left: 0;
-    height: 60vh;
+    height: calc(100% - 100px);
   }
 
   .leaflet-sidebar .sidebar-swipe-btn {
@@ -1086,10 +1090,10 @@
     height: 5px;
     box-sizing: content-box;
     background-clip: content-box;
-    background-color: #000;
+    background-color: #fff;
     border: none;
-    filter: drop-shadow(-6px 0px 4px rgba(200,200,200,0.3)) 
-            drop-shadow(6px 0px 4px rgba(200,200,200,0.3));
+    filter: drop-shadow(-6px 0px 4px rgba(0,0,0,0.3)) 
+            drop-shadow(6px 0px 4px rgba(0,0,0,0.3));
   }
   .sidebar-swipe-btn:focus {
     outline: 1px dotted #666;
@@ -1129,7 +1133,7 @@
     -moz-box-shadow: 0 0 9px #666;
   }
   .leaflet-geocoders-toggler svg {
-    width: 50px;
+    width: 40px;
   }
 
   #sidebar-app {
@@ -1175,6 +1179,9 @@
   }
   .leaflet-popup-content {
     width: 250px;
+  }
+  .popup-title {
+    cursor: pointer;
   }
   .leaflet-routing-geocoders .btnClose {
     top: 10px;

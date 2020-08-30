@@ -180,7 +180,7 @@ var locations = L.geoJSON(places, {
       })
 
       marker.on('click', function(event){
-        sidebar.show();
+        if (document.documentElement.clientWidth > 450) sidebar.show();
         loadPlaceInfo(geoJsonPoint.properties.placeId, geoJsonPoint.properties.detailsUrl);
         addPopUpRoutingBtns(event.latlng, geoJsonPoint.properties.title);
       });
@@ -195,7 +195,7 @@ map.addLayer(locations);
 function addPopUpRoutingBtns(locationLatLng, locationTitle) {
   var plan = control._plan,
     container = L.DomUtil.create('div'),
-    placeTitle = L.DomUtil.create('p', '', container),
+    placeTitle = L.DomUtil.create('p', 'popup-title', container),
     destBtn = createButton('Get here', container, 'leaflet-route-go');
     placeTitle.textContent = locationTitle;
 
@@ -211,6 +211,7 @@ function addPopUpRoutingBtns(locationLatLng, locationTitle) {
       map.closePopup();
       plan._markers[1]._icon.children[0].children[1].textContent = plan._waypoints[1].name;
     })
+    L.DomEvent.on(placeTitle, 'click', function() { sidebar.show() });
 }
 
 
@@ -284,6 +285,7 @@ setGeocoderBtn();
 showGeocoderBtn.onclick = function () {
   control.show();
   lc.stop();
+  sidebar.hide();
   controlContainer.removeChild(showGeocoderBtn);
 };
 

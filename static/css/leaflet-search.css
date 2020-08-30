@@ -151,6 +151,8 @@
 
 .leaflet-bottom .leaflet-bar a:first-child,
 .leaflet-bottom .leaflet-bar a:last-child {
+	font-family: 'Times New Roman', Times, serif;
+	color: #585858;
 	border-radius: 23px;
 	box-shadow: 0 0 9px rgba(0,0,0,0.2);
 	-moz-box-shadow: 0 0 9px rgba(0,0,0,0.2);
