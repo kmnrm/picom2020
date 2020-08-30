@@ -81,6 +81,10 @@ class PlaceAdmin(admin.ModelAdmin):
 
 @admin.register(PlaceUserReview)
 class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('author', 'rating', 'text', 'place', 'published_at', 'is_visible', )
+    list_display_links = ('text', )
+    list_editable = ('is_visible', )
+    search_fields = ('place', )
     fields = (
         ('place', 'author', 'rating'),
         'text',
