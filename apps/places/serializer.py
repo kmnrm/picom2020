@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from drf_yasg import openapi
 from apps.places.models import get_rating_status
@@ -68,12 +69,19 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PlaceUserReview
-        exclude = ('published_at', )
+        exclude = ('published_at', 'is_visible', )
+        extra_kwargs = {
+            'is_visible': {'read_only': True},
+        }
 
     def create(self, validated_data):
+        author = self.context['request'].user \
+            if self.context['request'].user.id \
+            else User.objects.get(id=PlaceUserReview.DEFAULT_ANONYMOUS_USER_ID)
+
         validated_data.update(
             {
-                'author': self.context['request'].user,
+                'author': author,
             }
         )
         review = PlaceUserReview.objects.create(**validated_data)
@@ -100,7 +108,7 @@ class PlaceSerializer(serializers.ModelSerializer):
     police_rating = serializers.ChoiceField(choices=Place.POLICE_RATING)
     average_price = serializers.SerializerMethodField()
     pinyin_address = serializers.SerializerMethodField()
-    reviews = ReviewSerializer(many=True, read_only=True)
+    reviews = ReviewSerializer(many=True, read_only=True, source="show_visible_reviews")
     logo = serializers.SerializerMethodField('get_logo_url')
     phone_number = serializers.SerializerMethodField()
     rating = serializers.SerializerMethodField()

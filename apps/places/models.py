@@ -60,7 +60,10 @@ class PlaceQuerySet(models.QuerySet):
                 Round(
                     models.Avg(
                         'reviews__rating',
-                        filter=models.Q(reviews__rating__gt=0)
+                        filter=models.Q(
+                            reviews__rating__gt=0,
+                            reviews__is_visible=True
+                        )
                     )
                 ),
                 0.0
@@ -169,6 +172,9 @@ class Place(models.Model):
             phonenumbers.PhoneNumberFormat.NATIONAL
         )
 
+    def show_visible_reviews(self):
+        return PlaceUserReview.objects.filter(place=self, is_visible=True).order_by('published_at')
+
     def __str__(self):
         return f"{self.title}"
 
@@ -216,6 +222,7 @@ class Event(models.Model):
 
 
 class PlaceUserReview(models.Model):
+    DEFAULT_ANONYMOUS_USER_ID = 63
     RATING_CHOICES = (
         (0, 'Not rated'),
         (1, 'Poor'),
@@ -225,7 +232,12 @@ class PlaceUserReview(models.Model):
         (5, 'Excellent')
     )
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='reviews')
-    author = models.ForeignKey(User, related_name='reviews', on_delete=models.CASCADE)
+    author = models.ForeignKey(
+        User,
+        related_name='reviews',
+        on_delete=models.CASCADE,
+        default=DEFAULT_ANONYMOUS_USER_ID,
+    )
     rating = models.PositiveSmallIntegerField(
         choices=RATING_CHOICES,
         default=0,
@@ -238,6 +250,7 @@ class PlaceUserReview(models.Model):
         blank=True,
         help_text="Set automatically as the current time by the time of a POST request."
     )
+    is_visible = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.author.username} " \

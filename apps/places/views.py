@@ -1,4 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ModelViewSet
 from apps.main.permissions import (IsUploaderOrReadOnly,
                                    IsOwnerOrReadOnly,
@@ -57,8 +58,9 @@ class DrinkViewSet(ModelViewSet):
 
 
 class ReviewViewSet(ModelViewSet):
-    queryset = PlaceUserReview.objects.all()
+    queryset = PlaceUserReview.objects.filter(is_visible=True)
     serializer_class = ReviewSerializer
-    permission_classes = [IsReviewerOrReadOnly]
+    permission_classes = [AllowAny]
+    # permission_classes = [IsReviewerOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['place', 'rating', 'author', ]
