@@ -217,6 +217,9 @@ class Event(models.Model):
         help_text="Entrance fee."
     )
 
+    class Meta:
+        ordering = ['date']
+
     def __str__(self):
         return f"{self.title} {self.date} ({self.time_from} - {self.time_till})"
 
