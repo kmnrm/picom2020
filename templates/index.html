@@ -8,84 +8,86 @@
       <div v-if="promptVisible" class="main-page">
         <div class="wrapper">
           {% verbatim top_places %}
-          <ul class="places-list" v-for="place in topPlaces">
-            <li class="place" type="button" v-on:click="loadClickedPlace(place)">
-              <p class="place-name">{{ place.title }}</p>
-              <div class=place-ratings>
-                <div class="rating">
-                  <div>
-                    <p class="value">{{ place.rating }}</p>
-                    <ul class="ratings">
-                      <template v-for="star in place.ratingRounded">
-                        <li class="star active">
-                          <svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M10.5516 1.23574C10.8561 0.325346 12.1439 0.325347 12.4484 1.23574L14.3026 6.77934C14.439 7.18719 14.8209 7.46214 15.2509 7.46214H21.1882C22.1639 7.46214 22.562 8.71651 21.7648 9.27915L17.0118 12.6337C16.6511 12.8883 16.5 13.3493 16.6401 13.7679L18.4673 19.2308C18.7737 20.147 17.7316 20.9221 16.9423 20.365L12.0766 16.9309C11.7309 16.6869 11.2691 16.6869 10.9234 16.9309L6.05773 20.365C5.2684 20.9221 4.22628 20.147 4.53274 19.2307L6.35992 13.7679C6.49996 13.3493 6.34888 12.8883 5.98819 12.6337L1.23518 9.27914C0.438008 8.71651 0.836087 7.46214 1.81182 7.46214H7.74908C8.17913 7.46214 8.56103 7.18719 8.69744 6.77934L10.5516 1.23574Z"
-                              fill="currentColor" />
-                          </svg>
-                        </li>
-                      </template>
-                      <template v-for="inactiveStar in 5" v-if="inactiveStar > place.ratingRounded">
-                        <li class="star">
-                          <svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
+          <ul class="places-list">
+            <template v-for="place in topPlaces">
+              <li class="place" v-on:click="loadClickedPlace(place)">
+                <p class="place-name">{{ place.title }}</p>
+                <div class=place-ratings>
+                  <div class="rating">
+                    <div>
+                      <p class="value">{{ place.rating }}</p>
+                      <ul class="ratings">
+                        <template v-for="star in place.ratingRounded">
+                          <li class="star active">
+                            <svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
                                 d="M10.5516 1.23574C10.8561 0.325346 12.1439 0.325347 12.4484 1.23574L14.3026 6.77934C14.439 7.18719 14.8209 7.46214 15.2509 7.46214H21.1882C22.1639 7.46214 22.562 8.71651 21.7648 9.27915L17.0118 12.6337C16.6511 12.8883 16.5 13.3493 16.6401 13.7679L18.4673 19.2308C18.7737 20.147 17.7316 20.9221 16.9423 20.365L12.0766 16.9309C11.7309 16.6869 11.2691 16.6869 10.9234 16.9309L6.05773 20.365C5.2684 20.9221 4.22628 20.147 4.53274 19.2307L6.35992 13.7679C6.49996 13.3493 6.34888 12.8883 5.98819 12.6337L1.23518 9.27914C0.438008 8.71651 0.836087 7.46214 1.81182 7.46214H7.74908C8.17913 7.46214 8.56103 7.18719 8.69744 6.77934L10.5516 1.23574Z"
                                 fill="currentColor" />
-                          </svg>
-                        </li>
-                      </template>
-                    </ul>
+                            </svg>
+                          </li>
+                        </template>
+                        <template v-for="inactiveStar in 5" v-if="inactiveStar > place.ratingRounded">
+                          <li class="star">
+                            <svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M10.5516 1.23574C10.8561 0.325346 12.1439 0.325347 12.4484 1.23574L14.3026 6.77934C14.439 7.18719 14.8209 7.46214 15.2509 7.46214H21.1882C22.1639 7.46214 22.562 8.71651 21.7648 9.27915L17.0118 12.6337C16.6511 12.8883 16.5 13.3493 16.6401 13.7679L18.4673 19.2308C18.7737 20.147 17.7316 20.9221 16.9423 20.365L12.0766 16.9309C11.7309 16.6869 11.2691 16.6869 10.9234 16.9309L6.05773 20.365C5.2684 20.9221 4.22628 20.147 4.53274 19.2307L6.35992 13.7679C6.49996 13.3493 6.34888 12.8883 5.98819 12.6337L1.23518 9.27914C0.438008 8.71651 0.836087 7.46214 1.81182 7.46214H7.74908C8.17913 7.46214 8.56103 7.18719 8.69744 6.77934L10.5516 1.23574Z"
+                                  fill="currentColor" />
+                            </svg>
+                          </li>
+                        </template>
+                      </ul>
+                    </div>
+                    <p class="label">{{ place.ratingStatus }}</p>
                   </div>
-                  <p class="label">{{ place.ratingStatus }}</p>
-                </div>
-                <div class="rating">
-                  <div>
-                    <p class="value">{{ place.policeRating }}</p>
-                    <ul class="ratings">
-                      <template v-for="siren in place.policeRating">
-                        <li class="warning active">
-                          <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M3.8877 8.40058C3.8877 3.76107 7.64877 0 12.2883 0C16.9278 0 20.6889 3.76107 20.6889 8.40058V13.121C20.6889 14.2256 19.7934 15.121 18.6889 15.121H5.8877C4.78313 15.121 3.8877 14.2256 3.8877 13.121V8.40058Z"
-                              fill="currentColor" />
-                            <rect x="0.527344" y="17.2949" width="23.4722" height="3.70614" rx="1.85307" fill="currentColor" />
-                          </svg>
-                        </li>
-                      </template>
-                      <template v-for="inactiveSiren in 5" v-if="inactiveSiren > place.policeRating">
-                        <li class="warning">
-                          <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
+                  <div class="rating">
+                    <div>
+                      <p class="value">{{ place.policeRating }}</p>
+                      <ul class="ratings">
+                        <template v-for="siren in place.policeRating">
+                          <li class="warning active">
+                            <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
                                 d="M3.8877 8.40058C3.8877 3.76107 7.64877 0 12.2883 0C16.9278 0 20.6889 3.76107 20.6889 8.40058V13.121C20.6889 14.2256 19.7934 15.121 18.6889 15.121H5.8877C4.78313 15.121 3.8877 14.2256 3.8877 13.121V8.40058Z"
                                 fill="currentColor" />
-                            <rect x="0.527344" y="17.2949" width="23.4722" height="3.70614" rx="1.85307" fill="currentColor" />
-                          </svg>
-                        </li>
-                      </template>
-                    </ul>
+                              <rect x="0.527344" y="17.2949" width="23.4722" height="3.70614" rx="1.85307" fill="currentColor" />
+                            </svg>
+                          </li>
+                        </template>
+                        <template v-for="inactiveSiren in 5" v-if="inactiveSiren > place.policeRating">
+                          <li class="warning">
+                            <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M3.8877 8.40058C3.8877 3.76107 7.64877 0 12.2883 0C16.9278 0 20.6889 3.76107 20.6889 8.40058V13.121C20.6889 14.2256 19.7934 15.121 18.6889 15.121H5.8877C4.78313 15.121 3.8877 14.2256 3.8877 13.121V8.40058Z"
+                                  fill="currentColor" />
+                              <rect x="0.527344" y="17.2949" width="23.4722" height="3.70614" rx="1.85307" fill="currentColor" />
+                            </svg>
+                          </li>
+                        </template>
+                      </ul>
+                    </div>
+                    <p class="label">{{ place.policeRatingStatus }}</p>
                   </div>
-                  <p class="label">{{ place.policeRatingStatus }}</p>
                 </div>
-              </div>
-              <div class="place-info">
-                <div class="category time">
-                  <img src="../static/img/contacts-time.svg" alt="">
-                  <div>
-                    <p>{{ getBusinessHours(place.openingHours, place.closingHours) }}</p>
-                    <p class="label" v-if="checkIfPlaceOpen(place.openingHours, place.closingHours)">Open now</p>
-                    <p class="label" v-else>Closed now</p>
+                <div class="place-info">
+                  <div class="category time">
+                    <img src="../static/img/contacts-time.svg" alt="">
+                    <div>
+                      <p>{{ getBusinessHours(place.openingHours, place.closingHours) }}</p>
+                      <p class="label" v-if="checkIfPlaceOpen(place.openingHours, place.closingHours)">Open now</p>
+                      <p class="label" v-else>Closed now</p>
+                    </div>
+                  </div>
+                  <div class="category phone">
+                    <img src="../static/img/contacts-phone.svg" alt="">
+                    <p>{{ place.phoneNumber }}</p>
+                  </div>
+                  <div class="category location">
+                    <img src="../static/img/contacts-marker.svg" alt="">
+                    <p>{{ place.address }}</p>
                   </div>
                 </div>
-                <div class="category phone">
-                  <img src="../static/img/contacts-phone.svg" alt="">
-                  <p>{{ place.phoneNumber }}</p>
-                </div>
-                <div class="category location">
-                  <img src="../static/img/contacts-marker.svg" alt="">
-                  <p>{{ place.address }}</p>
-                </div>
-              </div>
-            </li>
+              </li>
+            </template>
           </ul>
           {% endverbatim top_places %}
           <button class="reviews-more">More</button>
@@ -256,46 +258,48 @@
             <h2>Other {{selectedPlace.category}}s</h2>
           </div>
           <ul id="places-list">
-            <li class="place-card" v-for="place in selectedPlace.similarPlaces">
-              <div type="button" v-on:click="loadClickedPlace(place)">
-                <div class="place-image">
-                  <img v-bind:src="place.randomImage" v-bind:alt="place.title">
-                </div>
-                <div class="wrapper">
-                  <h5 class="place-title">{{ place.title }}</h5>
-                  <div class="ratings">
-                    <div class="rating-category">
-                      <img src="../static/img/rating-star.svg" alt="">
-                      <span class="rate-value">{{ place.rating }}</span>
+            <template v-for="place in selectedPlace.similarPlaces">
+              <li class="place-card">
+                <div v-on:click="loadClickedPlace(place)">
+                  <div class="place-image">
+                    <img v-bind:src="place.randomImage" v-bind:alt="place.title">
+                  </div>
+                  <div class="wrapper">
+                    <h5 class="place-title">{{ place.title }}</h5>
+                    <div class="ratings">
+                      <div class="rating-category">
+                        <img src="../static/img/rating-star.svg" alt="">
+                        <span class="rate-value">{{ place.rating }}</span>
+                      </div>
+                      <div class="rating-category">
+                        <img src="../static/img/rating-warning.svg" alt="">
+                        <span class="rate-value">{{ place.policeRating }}</span>
+                      </div>
                     </div>
-                    <div class="rating-category">
-                      <img src="../static/img/rating-warning.svg" alt="">
-                      <span class="rate-value">{{ place.policeRating }}</span>
+                    <div class="contacts">
+                      <div class="category">
+                        <div class="image">
+                          <img src="../static/img/contacts-time.svg" alt="">
+                        </div>
+                        <div class="text">
+                          <p class="info">{{ getBusinessHours(place.openingHours, place.closingHours) }}</p>
+                          <p class="label" v-if="checkIfPlaceOpen(place.openingHours, place.closingHours)">Open now</p>
+                          <p class="label" v-else>Closed now</p>
+                        </div>
+                      </div>
+                      <div class="category">
+                        <div class="image">
+                          <img src="../static/img/contacts-marker.svg" alt="">
+                        </div>
+                        <div class="text">
+                          <p class="info">{{ place.address }}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="contacts">
-                    <div class="category">
-                      <div class="image">
-                        <img src="../static/img/contacts-time.svg" alt="">
-                      </div>
-                      <div class="text">
-                        <p class="info">{{ getBusinessHours(place.openingHours, place.closingHours) }}</p>
-                        <p class="label" v-if="checkIfPlaceOpen(place.openingHours, place.closingHours)">Open now</p>
-                        <p class="label" v-else>Closed now</p>
-                      </div>
-                    </div>
-                    <div class="category">
-                      <div class="image">
-                        <img src="../static/img/contacts-marker.svg" alt="">
-                      </div>
-                      <div class="text">
-                        <p class="info">{{ place.address }}</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
-            </li>
+              </li>
+            </template>
           </ul>
         </section>
         {% endverbatim similar_places %}
