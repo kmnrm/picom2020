@@ -273,13 +273,12 @@
 }
 
 .places-list .place {
-  display: block;
-  height: auto;
   list-style: none;
-  margin-bottom: 1rem;
   padding: 1rem 2rem;
+  margin-bottom: 2rem;
   border-radius: 20px;
   box-shadow: 0 0 12px rgba(0,0,0,0.10);
+  cursor: pointer;
 }
 .places-list .place:hover {
   animation: shadowPulse 3s ease-in 0s infinite;
@@ -647,7 +646,7 @@
   font-size: 1rem;
   line-height: 1.2;
 }
-.reviews-more {
+.btn {
   display: block;
   width: 35%;
   margin: 0 auto;
@@ -659,7 +658,16 @@
   font-weight: bold;
   color: #0859F5;
 }
-
+.btn:hover {
+  color: #fff;
+  background-color: #0859F5;
+}
+.btn:focus {
+  outline: none;
+  color: #fff;
+  background-color: #0859F5;
+  border-color: #0022bb;
+}
 
 @media (max-width: 480px) {
   .description-contacts > * { -ms-flex-preferred-size: 100%; flex-basis: 100%; }
@@ -820,6 +828,10 @@
       -ms-flex-order: 3;
           order: 3;
 } */
+
+.leaflet-container a.leaflet-popup-close-button {
+  display: none;
+}
 
 .leaflet-control-layers {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -1214,6 +1226,6 @@
 
 @keyframes shadowPulse {
   0% {box-shadow: 0 0 10px rgba(0,0,0,0.1);}
-  50% {box-shadow: 0 0 20px rgba(0,0,0,0.5);}
+  50% {box-shadow: 0 0 15px rgba(0,0,0,0.4);}
   100% {box-shadow: 0 0 10px rgba(0,0,0,0.1);}
 }
