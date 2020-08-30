@@ -331,7 +331,7 @@ var sidebarApp = new Vue({
         let element = document.getElementById('places-list');
         if (element) addHorizontalScroll(element);
       }, 2000);
-      return this.loadingPlaceId;
+      return this.loadingPlaceId !== null;
     },
 
     carouselImages: function () {

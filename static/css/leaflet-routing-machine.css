@@ -122,17 +122,10 @@
 }
 
 .leaflet-routing-geocoders button {
-    font: bold 18px 'Lucida Console', Monaco, monospace;
     border: none;
-    border-radius: 4px;
-    background-color: white;
     margin: 0;
     margin-right: 3px;
-    float: right;
     cursor: pointer;
-    -webkit-transition: background-color 0.2s ease;
-    -o-transition: background-color 0.2s ease;
-    transition: background-color 0.2s ease;
 }
 
 .leaflet-routing-add-waypoint:after {
@@ -326,12 +319,10 @@
   box-sizing: border-box;
   border-radius: 20px;
 }
-.leaflet-routing-geocoders .btnSetRoute:hover,
-.leaflet-routing-geocoders .btnSetRoute:focus {
-  background-color: #0859F5;
-  color: white;
-  /* opacity: 0.8; */
+.leaflet-routing-geocoders .btnSetRoute:active {
+    background-color: #0859F5;
 }
+
 .leaflet-geocoders-toggler {
   width: 116px;
   height: 116px;
