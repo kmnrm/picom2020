@@ -41,7 +41,11 @@ class DrinkInline(admin.TabularInline):
 
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ('title', 'average_price', 'rating', 'police_rating', )
+    list_editable = ('police_rating', )
+    list_filter = ('category', 'police_rating', )
+    search_fields = ['title', 'address', ]
     fieldsets = (
         ('Main Info', {
             'fields': (
