@@ -136,11 +136,10 @@ class PlaceSerializer(serializers.ModelSerializer):
         validated_data.update(
             {
                 'uploaded_by': self.context['request'].user,
-                'average_price': 0,
             }
         )
         place = Place.objects.create(**validated_data)
-        return place
+        return Place.objects.filter(id=place.id).calculate_auto_fill_fields()[0]
 
     def get_coordinates(self, place):
         return {

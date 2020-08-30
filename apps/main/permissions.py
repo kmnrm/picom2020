@@ -1,4 +1,3 @@
-from django.contrib.auth.models import Group
 from rest_framework import permissions
 
 
@@ -6,7 +5,7 @@ class IsUploaderOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
-        return Group.objects.get(name='owners') in request.user.groups.all()
+        return 'owners' in [group.name for group in request.user.groups.all()]
 
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:

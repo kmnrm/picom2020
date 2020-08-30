@@ -32,13 +32,6 @@ class PlaceViewSet(ModelViewSet):
     filter_backends = [PlaceTitleFilter]
     filterset_fields = ['title', ]
 
-    def get_object(self):
-        place_id = super(PlaceViewSet, self).get_object().id
-        obj = Place.objects.filter(
-            id=place_id
-        ).prefetch_related('reviews__author').calculate_auto_fill_fields()[0]
-        return obj
-
     def get_queryset(self):
         return Place.objects.prefetch_related(
             'images',
