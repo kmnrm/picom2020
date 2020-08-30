@@ -374,21 +374,23 @@ function getBackToMain() {
   sidebarApp.loadingPlaceId = null;
   backButton.style.display = 'none';
   map.closePopup();
-}
-
-backButton.onclick = function () {
-  getBackToMain();
-}
-
-map.on('click', function () {
-  getBackToMain();
-  document.querySelector('.search-title').style.display = 'block';
   if ($('.places-list .place').length === 0) {
     setTimeout(() => {
       $('.places-list .place').css({display: 'none'});
       lazyLoadContent('.places-list .place');
     }, 100);
   }
+}
+
+backButton.onclick = function () {
+  document.querySelector('.search-title').style.display = 'block';
+  getBackToMain();
+}
+
+map.on('click', function () {
+  document.querySelector('.search-title').style.display = 'block';
+  getBackToMain();
+
 })
 
 if (!Array.prototype.last){
