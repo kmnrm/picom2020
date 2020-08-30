@@ -370,7 +370,6 @@ map.addControl(searchControl);
 var backButton = document.getElementById('back-button');
 
 function getBackToMain() {
-  lazyLoadContent('.places-list .place');
   sidebarApp.selectedPlace = null;
   sidebarApp.loadingPlaceId = null;
   backButton.style.display = 'none';
@@ -384,6 +383,12 @@ backButton.onclick = function () {
 map.on('click', function () {
   getBackToMain();
   document.querySelector('.search-title').style.display = 'block';
+  if ($('.places-list .place').length === 0) {
+    setTimeout(() => {
+      $('.places-list .place').css({display: 'none'});
+      lazyLoadContent('.places-list .place');
+    }, 100);
+  }
 })
 
 if (!Array.prototype.last){
