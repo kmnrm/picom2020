@@ -3239,10 +3239,10 @@ module.exports = L.Routing = {
 
             this._geocoderContainer = container;
             gTitle = L.DomUtil.create('h4', '', container);
-            gTitle.textContent = 'Where to go?';
+            gTitle.textContent = 'Set a route';
 						gButton = L.DomUtil.create('button', '', container);
 						gButton.setAttribute('class', 'btn btnSetRoute');
-            gButton.textContent = 'Set a route';
+            gButton.textContent = 'Move';
             gClose = L.DomUtil.create('button', '', container);
 			gClose.innerHTML = `<svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
 <line x1="11.6055" y1="2.12132" x2="3.12019" y2="10.6066" stroke="#BDBDBD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>

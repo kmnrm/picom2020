@@ -224,7 +224,7 @@ var searchControl = new L.Control.Search({
   position: 'topleft',
   marker: false,
   collapsed: false,
-  textPlaceholder: 'Where to go?',
+  textPlaceholder: 'Type a place title',
   firstTipSubmit: true,
 });
 
