@@ -285,7 +285,7 @@ setGeocoderBtn();
 showGeocoderBtn.onclick = function () {
   control.show();
   lc.stop();
-  sidebar.hide();
+  if (document.documentElement.clientWidth <= 450) sidebar.hide();
   controlContainer.removeChild(showGeocoderBtn);
 };
 
