@@ -162,11 +162,14 @@ L.Control.Sidebar = L.Control.extend({
     }
   },
 
-  toggle: function () {
+  toggle: function (e) {
     if (this.isVisible()) {
       this.hide();
     } else {
       this.show();
+    }
+    if (e) {
+      L.DomEvent.stopPropagation(e);
     }
   },
 

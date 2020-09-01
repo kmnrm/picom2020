@@ -1048,9 +1048,9 @@
 
 
 @media (max-width: 450px) {
-  /* .leaflet-sidebar .close {
-    display: block;
-  } */
+  .leaflet-sidebar .close {
+    display: none;
+  }
   html { font-size: 14px!important; }
   .leaflet-sidebar {
     padding: 0 12px;

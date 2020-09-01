@@ -386,7 +386,6 @@ backButton.onclick = function () {
 }
 
 map.on('click', function () {
-  console.log('map clicked');
   document.querySelector('.search-title').style.display = 'block';
   getBackToMain();
 })
