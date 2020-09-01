@@ -20,11 +20,6 @@ var overlays = {
     "Light Theme": daytime
 };
 
-function sidebarToggle() {
-  var sidebar = document.getElementsByClassName('leaflet-sidebar')[0];
-  sidebar.classList.toggle('visible');
-}
-
 var locLatLng;
 map.on('locationfound', function(e) { locLatLng = e.latlng } );
 
@@ -56,6 +51,7 @@ L.control.zoom({
 
 
 var sidebar = L.control.sidebar('sidebar', {
+  swipeButton: true,
   closeButton: true,
   position: 'left'
 });
@@ -390,9 +386,9 @@ backButton.onclick = function () {
 }
 
 map.on('click', function () {
+  console.log('map clicked');
   document.querySelector('.search-title').style.display = 'block';
   getBackToMain();
-
 })
 
 if (!Array.prototype.last){

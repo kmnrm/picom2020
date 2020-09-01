@@ -5,6 +5,7 @@ L.Control.Sidebar = L.Control.extend({
   includes: L.Mixin.Events,
 
   options: {
+    swipeButton: true,
     closeButton: true,
     position: 'left',
     autoPan: true,
@@ -23,19 +24,21 @@ L.Control.Sidebar = L.Control.extend({
 
     // Create sidebar container
     var container = this._container = L.DomUtil.create('div', l + 'sidebar ' + this.options.position);
-    var button = document.createElement('button');
-    button.setAttribute('class','sidebar-swipe-btn');
-    button.setAttribute('onclick','sidebarToggle()');
-    container.appendChild(button);
-
+    
     // Style and attach content container
     L.DomUtil.addClass(content, l + 'control');
     container.appendChild(content);
 
+    // Create swipe button and attach it if configured
+    if (this.options.swipeButton) {
+      var swipe = this._swipeButton = L.DomUtil.create('a', 'swipe', container);
+      swipe.innerHTML = '';
+    }
+    
     // Create close button and attach it if configured
     if (this.options.closeButton) {
       var close = this._closeButton = L.DomUtil.create('a', 'close', container);
-      close.innerHTML = '&times;';
+      close.innerHTML = '&times';
     }
   },
 
@@ -43,10 +46,14 @@ L.Control.Sidebar = L.Control.extend({
     var container = this._container;
     var content = this._contentContainer;
 
+    // Attach event to swipe button
+    if (this.options.swipeButton) {
+      var swipe = this._swipeButton;
+      L.DomEvent.on(swipe, 'click', this.toggle, this);
+    }
     // Attach event to close button
     if (this.options.closeButton) {
       var close = this._closeButton;
-
       L.DomEvent.on(close, 'click', this.hide, this);
     }
 
@@ -109,9 +116,13 @@ L.Control.Sidebar = L.Control.extend({
         .off(container, 'webkitTransitionEnd',
             this._handleTransitionEvent, this);
 
+    if (this._swipeButton && this._swipe) {
+      var swipe = this._swipeButton;
+      L.DomEvent.off(swipe, 'click', this.toggle, this);
+    }
+
     if (this._closeButton && this._close) {
       var close = this._closeButton;
-
       L.DomEvent.off(close, 'click', this.hide, this);
     }
 
@@ -125,25 +136,25 @@ L.Control.Sidebar = L.Control.extend({
   show: function () {
     if (!this.isVisible()) {
       L.DomUtil.addClass(this._container, 'visible');
-      if (this.options.autoPan) {
-        // this._map.panBy([-this.getOffset() / 2, 0], {
-        this._map.panBy([0, 0], {
-            duration: 0.5
-        });
-      }
-      // this.fire('show');
+    //   if (this.options.autoPan) {
+    //     this._map.panBy([-this.getOffset() / 2, 0], {
+    //     this._map.panBy([0, 0], {
+    //         duration: 0.5
+    //     });
+    //   }
+    //   this.fire('show');
     }
   },
 
   hide: function (e) {
     if (this.isVisible()) {
       L.DomUtil.removeClass(this._container, 'visible');
-      if (this.options.autoPan) {
-        // this._map.panBy([this.getOffset() / 2, 0], {
-        this._map.panBy([0, 0], {
-            duration: 0.5
-        });
-      }
+      // if (this.options.autoPan) {
+      //   this._map.panBy([this.getOffset() / 2, 0], {
+      //   this._map.panBy([0, 0], {
+      //       duration: 0.5
+      //   });
+      // }
       // this.fire('hide');
     }
     if(e) {
@@ -153,14 +164,18 @@ L.Control.Sidebar = L.Control.extend({
 
   toggle: function () {
     if (this.isVisible()) {
-      // this.hide();
+      this.hide();
     } else {
-      // this.show();
+      this.show();
     }
   },
 
   getContainer: function () {
     return this._contentContainer;
+  },
+
+  getSwipeButton: function () {
+    return this._swipeButton;
   },
 
   getCloseButton: function () {

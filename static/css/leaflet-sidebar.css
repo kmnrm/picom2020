@@ -185,7 +185,7 @@
 /* ======================================== */
 
 #sidebar-app {
-  margin: 3.5rem 0;
+  margin-top: 3rem;
 }
 
 #sidebar,
@@ -199,10 +199,6 @@
 *::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* Disable scrollbar Chrome/Safari/Webkit */
-}
-
-.main-page {
-  margin-top: 3rem;
 }
 
 .main-page h2 {
@@ -1052,6 +1048,9 @@
 
 
 @media (max-width: 450px) {
+  /* .leaflet-sidebar .close {
+    display: block;
+  } */
   html { font-size: 14px!important; }
   .leaflet-sidebar {
     padding: 0 12px;
@@ -1075,29 +1074,30 @@
     left: 0;
     width: calc(100% - 12px);
     bottom: 0;
-    height: 130px;
+    height: 85px;
   }
   .leaflet-sidebar.left.visible {
     left: 0;
-    height: calc(100% - 100px);
+    height: calc(100% - 130px);
   }
 
-  .leaflet-sidebar .sidebar-swipe-btn {
+  .leaflet-sidebar .swipe {
     display: block;
+    position: absolute;
+    top: -35px;
+    left: 20%;
+    z-index: 5000;
     padding: 15px 0;
-    margin: 0 auto;
-    width: 55%;
+    width: 60%;
     height: 5px;
     box-sizing: content-box;
     background-clip: content-box;
     background-color: #fff;
     border: none;
-    filter: drop-shadow(-6px 0px 4px rgba(0,0,0,0.3)) 
-            drop-shadow(6px 0px 4px rgba(0,0,0,0.3));
+    filter: drop-shadow(-6px 0px 4px rgba(0,0,0,0.3)) drop-shadow(6px 0px 4px rgba(0,0,0,0.3));
+    cursor: pointer;
   }
-  .sidebar-swipe-btn:focus {
-    outline: 1px dotted #666;
-  }
+  
   .leaflet-sidebar > .leaflet-control {
     border-radius: 25px 25px 0 0;
     -webkit-border-radius: 25px 25px 0 0;
